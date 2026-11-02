@@ -80,6 +80,8 @@ over the Jira REST API — they never touch a visible browser or the user's scre
 | `/content-takedown` | **OLS-local** — take a set of published content items out of public view: inventory the set, health-check, pick the least-damaging mechanism the accounts can use, execute, verify |
 | `/test-data-prep` | **OLS-local** — prepare/seed/fix OLS test data (media · course · LP · cover · video · account) per `ols-data-prep.md`; full ordered Gate 0 intake (env + account + CF URL → data types → style/qty → details) then every quality gate before use |
 
+Skill without a command: [tc-change-format-workflow](skills/tc-change-format-workflow/SKILL.md) (menu 12, self-contained) — copy a ticket's TC tab into the project's release TC template (Google Sheet).
+
 Contributor commands (developing Helix, not QA workflows): `/helix-check` (regression check before merge) · `/helix-release` (verify and ship Helix changes to main; CI owns the version bump).
 
 ## OLS links
