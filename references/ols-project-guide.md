@@ -13,6 +13,7 @@ AI reads this file before asking any OLS-related questions.
 - [Qase (test management)](#qase-test-management)
 - [Training-OLS smoke-test sheet](#training-ols-smoke-test-sheet)
 - [QA tracking sheet (ticket list + TC status)](#qa-tracking-sheet-ticket-list--tc-status)
+- [TC change format](#tc-change-format)
 - [Customer UAT sheet (regression TC delivery)](#customer-uat-sheet-regression-tc-delivery)
 - [Bug-status sync — `Bug report by HI` tab (hourly, added 2026-08-16)](#bug-status-sync--bug-report-by-hi-tab-hourly-added-2026-08-16)
 - [Bug mirror — the `list` tab of our own regression sheet (`bugmirror_sync.py`)](#bug-mirror--the-list-tab-of-our-own-regression-sheet-bugmirror_syncpy)
@@ -212,6 +213,47 @@ empty), then restore and re-bootstrap. Done 2026-08-16; the branch works.
 
 **Reviving it for another batch:** restore the plist name, re-add the registry entry, write a fresh
 cutoff epoch, `launchctl bootstrap gui/<uid> <plist>`. Never leave it armed with no cutoff.
+
+## TC change format
+
+Values for the Helix `tc-change-format-workflow` (copy a ticket's TC tab into the release TC template, then record the delivered file in the tracking sheet). Moved out of the skill 2026-11-03 so the skill stays portable; the rules below are the ones the work owner set on 2026-10-17/18.
+
+Sheet, folder and template IDs and the owner e-mail map are **not** kept in this public repo — resolve them from `~/.ols-qa-secrets/`, or ask the user and save them there.
+
+| Value | OLS setting |
+|---|---|
+| `{TC_TEMPLATE_SHEET}` | `<TC_TEMPLATE_SHEET_ID>` (Google Sheet, one tab) |
+| `{TC_RELEASE_ROOT_FOLDER}` | `<TC_RELEASE_ROOT_FOLDER_ID>` — sub-folders named `Release <DD>_<Mon>` |
+| `{TC_OWNER_EMAIL_MAP}` | off-repo only (`~/.ols-qa-secrets/`) |
+| `{TC_TRACKING_SHEET}` | `<TC_TRACKING_SHEET_ID>` (customer-facing — never edit existing rows unasked) |
+| `{TC_TRACKING_BUG_TAB}` | `Bug reported by HI` |
+| `{TC_TRACKING_CR_TAB}` | `CR` |
+| `{TC_TRACKING_IMPROVEMENT_TAB}` | `Improvement by SKL` |
+| Column mapping | skill default (13 columns) |
+
+### `{TC_TRACKING_COLUMN_RULES}`
+
+The same rule applies to the matching header in every tab. Headers are matched by name, never by letter.
+
+| Column | Rule kind | Value |
+|---|---|---|
+| Improvement Name | card summary | Jira `summary` |
+| Jira (Ticket improvement) | card key | key linked to the Jira issue |
+| Bug (ที่ SKL พบเอง) | empty | — |
+| Ticket status | fixed value | `PASSED ON PRE-PROD` |
+| QA Owner | owner | people chip of the TC owner |
+| TC Status | fixed value | `TC Delivered to HI-QA` |
+| Test Result Status | fixed value | `Test Result Delivered to HI-QA` |
+| TC and Test result link | TC file link | label `Link`, linked to the new TC file |
+| วันสุดท้ายในการส่ง TC & Test Result ให้ลูกค้า | empty | — |
+| Demo · UAT | same release | copied from rows whose TC link points to a file in the same release folder; none → ask |
+| Production Release | release date | e.g. `Release 04_Nov` → 4 Nov of the current year, as a real date |
+| TC Approval Status by HI | fixed value | `TO DO` |
+| Comment from HI (both) | empty | — |
+| No (CR tab) | next number | highest whole number in the column + 1 |
+| CR Name · Jira (Story) (CR tab) | card summary · card key | as Improvement Name · Jira |
+| Summary · SKL Ticket (bug tab) | card summary · card key | summary · key linked to Jira |
+| Module · HI Ticket · Latest progress · Note after recheck · UAT by HI (bug tab) | ask | no rule yet |
 
 ## Customer UAT sheet (regression TC delivery)
 

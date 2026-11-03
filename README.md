@@ -4,7 +4,7 @@ Helix QA assistant pre-configured for the **OLS** project at <ORG>.
 
 Helix skills embedded directly — no separate install needed.
 
-**OLS Workspace version: v1.55.85** (30 Oct 2026) — Helix skills vendored in-repo (see *Helix commands* below)
+**OLS Workspace version: v1.55.87** (3 Nov 2026) — Helix skills vendored in-repo (see *Helix commands* below)
 
 ## Quick start
 
@@ -74,13 +74,12 @@ over the Jira REST API — they never touch a visible browser or the user's scre
 | `/create-bug` | Open bug(s) on Jira |
 | `/catch-ai` | Audit finished work — your own output, a document, a report, or a feature — into sourced findings, open questions, coverage gaps, and a verdict. Run before claiming a check passed, a defect exists, or work is complete |
 | `/tc-review` | Review an already-written TC document against a ticket's AC/EC and business rules — traceability matrix, row-quality check, Good vs Need Improve findings anchored to quoted sources |
+| `/tc-change-format` | Copy each ticket's TC tab from a Google Sheet into a new sheet made from the release TC template, in the release folder you pick; optionally record the delivered file in the tracking sheet (OLS values in `references/ols-project-guide.md` § TC change format) |
 | `/smoke-test` | **OLS-local** — post-deployment smoke test of OLS core features on a named env; triage every non-passing case to a verified root cause; output a one-page A4-landscape PDF summary + the Playwright per-case report and post to the QA release channel |
 | `/review-result` | **OLS-local** — review already-recorded results + their evidence clips: one contact sheet per clip, judge each case against the 10 review criteria, record PASSED / FAILED / AWAITING RE-REVIEW |
 | `/sync-tc-result` | **OLS-local** — route every TC result from the QA source sheet into the 3 test-type deliverable sheets (System / Integration / Unit), all-or-nothing per tab behind a 5-layer gate. Run manually — the hourly `ols-tc-result-sync` launchd job is frozen (2026-08-11) |
 | `/content-takedown` | **OLS-local** — take a set of published content items out of public view: inventory the set, health-check, pick the least-damaging mechanism the accounts can use, execute, verify |
 | `/test-data-prep` | **OLS-local** — prepare/seed/fix OLS test data (media · course · LP · cover · video · account) per `ols-data-prep.md`; full ordered Gate 0 intake (env + account + CF URL → data types → style/qty → details) then every quality gate before use |
-
-Skill without a command: [tc-change-format-workflow](skills/tc-change-format-workflow/SKILL.md) (menu 12, self-contained) — copy a ticket's TC tab into the project's release TC template (Google Sheet).
 
 Contributor commands (developing Helix, not QA workflows): `/helix-check` (regression check before merge) · `/helix-release` (verify and ship Helix changes to main; CI owns the version bump).
 
