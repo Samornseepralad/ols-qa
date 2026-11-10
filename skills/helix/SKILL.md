@@ -36,7 +36,7 @@ Decide what to show in this order — the first step that applies wins:
 
 🔴 STOP — wait for the user's choice before starting a workflow.
 
-🔴 When the router itself must ask (which option, which of two matching workflows), ask exactly one question. Put any other missing item (URL, browser, design node) into one sentence of that question, or leave it to the routed workflow's own intake — never a numbered list of asks from the router.
+🔴 When the router itself must ask (which option, which of two matching workflows), ask exactly one question, and that question asks for one item. Leave every other missing item (URL, account, browser, design node) to the routed workflow's own intake, which asks one at a time — never fold a second item into the same question, and never a numbered list of asks from the router.
 
 ## Discipline
 

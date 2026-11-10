@@ -21,9 +21,10 @@ const flat = (s) => s.replace(/\s+/g, ' ');
 t('R6 the one-question rule is stated in Opening, before any route is loaded', () => {
   assert.ok(/exactly one question/i.test(opening), 'Opening has no "exactly one question" rule');
 });
-t('R6 other missing items go in one sentence or to the routed workflow, never a numbered list', () => {
+t('R6 (amended 10/Nov/2026, r10-exam-items R4) the one question asks for one item; others go to the routed workflow, never a numbered list', () => {
   const o = flat(opening);
-  assert.ok(/one sentence/i.test(o), 'no "one sentence" clause');
+  assert.ok(/asks for one item/i.test(o), 'no "asks for one item" clause');
+  assert.ok(!/into one sentence of that question/i.test(o), 'withdrawn "one sentence" wording still present');
   assert.ok(/numbered list/i.test(o), 'no ban on a numbered list of asks');
   assert.ok(/routed workflow/i.test(o), 'no deferral to the routed workflow intake');
 });
