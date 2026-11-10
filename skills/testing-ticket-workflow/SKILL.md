@@ -39,10 +39,7 @@ The must-read files for this workflow, linked directly from here (references alr
 ### Always (at the start of every run)
 
 - [WORKFLOW.md](../procedures/testing-ticket-workflow/WORKFLOW.md) — always: the full procedure, read end to end.
-- [shared-preamble.md](../../references/shared-preamble.md) — at the start of every run, before the first reply (preamble, constraints, tone).
-- [helix-session-constraints.md](../../references/helix-session-constraints.md) — read once at session start.
-- [user-communication.md](../../references/user-communication.md) — read before any message to the user.
-- [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) — on the first response, to locate the workspace project guide for this workflow.
+- [shared-preamble.md](../../references/shared-preamble.md) — at the start of every run, before the first reply (preamble, constraints, tone); it links the session constraints and the user-communication rules, so those are not listed again here.
 
 ### On trigger
 
@@ -51,6 +48,9 @@ Grouped by the phase that reaches the trigger; each line names its exact trigger
 #### Intake and plan (Phases A–C)
 
 - [session-intake.md](../procedures/testing-ticket-workflow/references/session-intake.md) — at Phase A — the six intake fields and the confirmation gate.
+- [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) — read at Phase A to locate the workspace project guide for this workflow.
+- [helix-session-constraints.md](../../references/helix-session-constraints.md) — read at the first reply, when the preamble says to recite the session constraints.
+- [user-communication.md](../../references/user-communication.md) — before the first message to the user (language and tone).
 - [intake-one-pager.md](../../references/intake-one-pager.md) — at intake, to show the one-page list of inputs the run needs.
 - [parallel-prep.md](../../references/parallel-prep.md) — at Phase B, when the Jira fetch and Confluence/Swagger reads are independent.
 - [test-execution-plan-template.md](../../references/test-execution-plan-template.md) — when writing the test execution plan shown before the run.
