@@ -185,7 +185,7 @@ item to Procedure step 4 — Inspect the actual side directly — and then step 
 
 **Go back:** Any red flag returns you to Procedure step 1 — Fix the scope, and the audit runs again from there.
 
-**Exit for a count that really matches (first red flag only).** The first red flag sends you back once, not forever. After one full re-run from step 1, if every Defect still has a quoted source and no other red flag fires, report the count as it stands — even when it equals the user's number — and add this line to the report: `Count equals the claim; re-verified once from step 1.` A second match after that re-run is not a reason to re-run again, and never a reason to reclassify a row.
+**Exit for a count that really matches (first red flag only).** The first red flag sends you back once, not forever. After one full re-run from step 1, if every Defect still has a quoted source and no other red flag fires, report the count as it stands — even when it equals the user's number — and add this line to the report: `Count equals the claim; re-verified once from step 1.` When only the sum of tallies matched and the Defect tally did not, write instead `Defects: N, not the {claimed} claimed; only the sum with unsourced claims equals it; re-verified once from step 1.` A second match after that re-run is not a reason to re-run again, and never a reason to reclassify a row.
 
 ## Result quality gate (mandatory before an audited verdict is confirmed) [low freedom]
 

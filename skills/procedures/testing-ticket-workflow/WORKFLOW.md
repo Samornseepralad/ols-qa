@@ -222,7 +222,7 @@ scenarios are re-checked).
 Ticket:      {KEY} — {one-line summary}
 URL:         {url}
 Login:       {user} — saved session; dead session = ready-to-run relink/mint commands the user runs, then Claude probes
-VPN:         {required|not required} — {note}
+VPN:         {required|not required} — {note; when required, end it with: environment unreachable in Phase D → stop and report, nothing marked PASSED}
 Confluence:  {url or none}
 Swagger:     {url or none}
 Design ref:  {figma node link(s) per screen — or "none for {screen}: asked {who}"}
