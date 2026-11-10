@@ -140,8 +140,8 @@ mention it, not even as "correctly not covered".
 **Business rules and ticket comments are context, not extra AC.** Read them to understand what an AC/EC
 means, and use them to judge whether a TC tests the right thing. Report a business-rule or comment item
 **only when it conflicts with an AC/EC**, and name the AC/EC it contradicts. A rule or comment that has
-no TC but does not contradict any AC/EC is not a finding. Leave it out of Need Improve, and do not add a
-"spec notes" section for it.
+no TC but does not contradict any AC/EC is not a finding. Leave it out of Need Improve, add no "spec notes"
+section, and do not name it in any closing or self-check line, not even as "not reported".
 
 Flag, with the row/AC ids named:
 
@@ -224,8 +224,8 @@ leaves the TC author guessing. Each suggestion must come from a source, never an
   check them.
 - **Taken from the AC/EC wording:** e.g. replace the wrong condition with the AC's own phrase, or add the
   missing Expected Result clause using the AC's own text.
-- **No source gives the value** (a threshold, a count or a timing the ticket never states): suggest
-  adding the value and say who confirms it ("confirm the count with dev/PO"). Never make up a number.
+- **No source gives the value** (a threshold, count or timing the ticket never states, including a boundary inferred from
+  AC wording, e.g. "past 20" → 21): suggest adding it and say who confirms ("confirm with dev/PO"). Never make up a number.
 
 Keep each bullet tight. The suggestion says what to change, not a rewritten row. If the user asks to
 narrow scope (e.g. "drop everything about

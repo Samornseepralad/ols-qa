@@ -326,7 +326,7 @@ These terms appear in the test cases. Thai follows the glossary first, then ร�
 ```
 
 **Rules:**
-- List **every** term where a Thai-vs-English choice was made — both the ones translated to Thai and the ones deliberately kept in English.
+- List **every** term where a Thai-vs-English choice was made — both the ones translated to Thai and the ones deliberately kept in English. Values fixed by the import format (Qase Type and Status values such as `Unit Test`, `System Test`, `Done`) are column values, not terms: leave them out of this table.
 - The **ที่มา** column is mandatory on every row: `glossary` (row in the Step 2.6 CSV), `fallback` (Step 3b table, no glossary row), or `user` (answered a Step 2.6 question, or a question row at this gate). A row with no provenance means the term was invented — remove it and ask.
 - **Question rows** — every term carried from Step 2.6.3 (a): put `? — ticket เขียนว่า "{label}"` in ใช้ในเทสเคสเป็น and `user` in ที่มา, and ask in the same message which word to use (keep the English label, or a Thai word the user gives). Every collision term carried from Step 2.6.3 is also a question row: put `? — glossary "{Thai term}" / UI "{English label}"` and `user`, state the evidence for the English label (ticket wording, or the Figma frame/screenshot), and ask which to use. Do not proceed until every question row has the user's answer; apply it to every cell before Step 5.
 - Where the glossary offered comma-separated variants (e.g. `แถบ, แท็บ`), propose one and mark the row `glossary` — the user confirms the pick here.
