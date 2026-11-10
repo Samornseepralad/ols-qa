@@ -22,6 +22,7 @@ AI reads this file before asking any OLS-related questions.
 - [Test-type deliverable sheets — `sync-tc-result` (System / Integration / Unit)](#test-type-deliverable-sheets--sync-tc-result-system--integration--unit)
 - [Screenshot evidence (Drive)](#screenshot-evidence-drive)
 - [Bug ticket field schema (where the bug content actually lives)](#bug-ticket-field-schema-where-the-bug-content-actually-lives)
+- [Dev session relink command](#dev-session-relink-command-login-by-command--verified-2026-11-10-post-mortem-0201)
 - [Retest-bug QA notify](#retest-bug-qa-notify)
 - [TC glossary (terminology source of truth)](#tc-glossary-terminology-source-of-truth)
 - [Test Environment](#test-environment)
@@ -738,6 +739,16 @@ Actual/Expected, and every one had to be re-edited by hand).
   **array**, sprint `customfield_10008` = numeric id, epic `parent` per the related story's epic, `labels`
   e.g. `need_fix`, `POST /rest/api/2/issue`): mirror an existing team bug (e.g. OLS-289/OLS-368) — see local
   agent memory `reference_ols-bug-create-rest-fields`. QA Owner (`customfield_12120`) NEVER the Reporter.
+
+## Dev session relink command (login by command — verified 2026-11-10, post-mortem #0201)
+
+Restores a dead dev session **without a password** (retest-bug Step 4b relink). Verified against the script itself: `session_relink_dev.js` refuses to run without the `OLS` env var (no default, `:266`) and renews exactly one roster tag per `--force`.
+
+```bash
+cd <QA_BOT_DIR> && for a in <TAG_1> <TAG_2>; do echo "=== $a"; OLS=https://<DEV_HOST> node capture/session_relink_dev.js --force "$a" >/tmp/relink-$a.log 2>&1 && echo "$a OK" || echo "$a FAILED (log: /tmp/relink-$a.log)"; done
+```
+
+Then prove it with `ROSTER=<QA_BOT_DIR>/capture/accounts_dev.json OLS=https://<DEV_HOST> node capture/session_verify.js <TAG>`. A relink that fails because the identity-provider cookies are long expired is not fixed by retrying: the account's cases are BLOCKED (session not restored). `curl` returning `000` against the dev host is a local certificate-trust result, not an outage — probe with `-k` before saying the host is unreachable.
 
 ## Retest-bug QA notify
 
