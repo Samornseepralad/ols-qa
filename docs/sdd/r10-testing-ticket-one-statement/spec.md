@@ -21,7 +21,7 @@
 
 ## Rules
 - R1 — Each rule in the inventory must have its full statement only at its kept place(s); every pointer place must be one line (one bullet, one table row, or one sentence) that names the rule and links to the kept place.
-- R2 — No clause may be lost: a clause that appears only at a pointer place must be moved into the kept place before the pointer is shortened (for example, the password clause into *Fresh login*, `superpowers:systematic-debugging` into E2, "a coverage gap, never a product FAILED" into *Cover every enumerated AC/EC id*, "confirm defect only while the expected is not superseded" into E3).
+- R2 — No clause may be lost: a clause that appears only at a pointer place must be moved into the kept place before the pointer is shortened (for example, the password clause into *Fresh login*, `superpowers:systematic-debugging` into E2, "a coverage gap, never a product FAILED" into *Cover every enumerated AC/EC id*, "confirm defect only while the expected is not superseded" into E3, "unspecified behaviour is a question, never a verdict" (customer-escape-prevention §8) into E0).
 - R3 — *QA closing* must be a checklist where each item is one line: a checkbox, the gate's name, and a link to where the gate is stated.
 - R4 — MUST/NEVER rows that become pointers must keep their *Because* text (the rationale is not stated elsewhere).
 - R5 — `skills/testing-ticket-workflow/SKILL.md` § Contents must not be edited.
