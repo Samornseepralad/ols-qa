@@ -31,16 +31,28 @@ t('R6 (amended 10/Nov/2026, r10-exam-items R4) the one question asks for one ite
 t('R6 routing section does not contradict (child intake is the child\'s, not the router\'s)', () => {
   assert.ok(/child workflow handles its own intake/.test(routing));
 });
-t('routing section and menu text unchanged vs origin/main', () => {
+// A menu item may be added (the Other number moves); everything else in the routing section and menu
+// text must stay as on origin/main. Normalise only the menu numbers and the numbered option lines.
+const normRouting = (s) => s.replace(/1[–-]\d+\b/g, '1–N').replace(/\b\d+ \(Other\)/g, 'N (Other)');
+const normMenu = (s) => s.split('\n').filter((l) => !/^\d+\. \*\*/.test(l)).join('\n').replace(/\*\*1\*\*[–-]\*\*\d+\*\*/g, '**1**–**N**');
+t('routing section and menu text unchanged vs origin/main (menu numbering aside)', () => {
   const b = base(P); if (!b) return console.log('      (origin/main unavailable — skipped)');
-  assert.strictEqual(routing, b.slice(b.indexOf('## Routing'), b.indexOf('## QA closing')));
+  assert.strictEqual(normRouting(routing), normRouting(b.slice(b.indexOf('## Routing'), b.indexOf('## QA closing'))));
   const m = fs.readFileSync(path.join(root, 'references/menu-text.md'), 'utf8');
-  assert.strictEqual(m, base('references/menu-text.md'));
+  assert.strictEqual(normMenu(m), normMenu(base('references/menu-text.md')));
 });
-t('menu range 1-13 consistent in SKILL.md and menu-text.md', () => {
+t('menu range consistent: Other is the last option, and SKILL.md uses that number everywhere', () => {
   const m = fs.readFileSync(path.join(root, 'references/menu-text.md'), 'utf8');
-  assert.ok(/13\. \*\*Other\*\*/.test(m));
-  assert.ok(!/\b12 \(Other\)|1[–-]12\b/.test(S), 'SKILL.md says 12 for Other');
+  const nums = [...m.matchAll(/^(\d+)\. \*\*/gm)].map((x) => Number(x[1]));
+  const last = Math.max(...nums);
+  assert.ok(new RegExp(`^${last}\\. \\*\\*Other\\*\\*`, 'm').test(m), `option ${last} is not Other`);
+  assert.deepStrictEqual(nums, nums.map((_, i) => i + 1), 'menu options are not numbered 1..N without gaps');
+  assert.ok(m.includes(`**1**–**${last}**`), `menu-text "Reply with" does not say 1–${last}`);
+  const ranges = [...S.matchAll(/1[–-](\d+)\b/g)].map((x) => Number(x[1]));
+  const others = [...S.matchAll(/\b(\d+) \(Other\)/g)].map((x) => Number(x[1]));
+  assert.ok(ranges.length && others.length, 'SKILL.md names no menu range / Other number');
+  assert.ok(ranges.every((n) => n === last), `SKILL.md ranges ${ranges} != 1–${last}`);
+  assert.ok(others.every((n) => n === last), `SKILL.md Other numbers ${others} != ${last}`);
 });
 t('size: SKILL.md <= 155 lines, under skill-lint 500', () => {
   assert.ok(S.split('\n').length <= 155);
