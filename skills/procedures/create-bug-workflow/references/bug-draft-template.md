@@ -4,6 +4,15 @@ Use when the user selects **Helix default** format. Every block below is require
 [defect-report-completeness.md](../../../../references/defect-report-completeness.md) (§1 five questions, §2 repro matrix, §4 resolution options, §5 dev-question gate); Priority and
 Severity come only from the [Bug Priority & Severity Matrix](../../../../references/bug-priority-matrix.md).
 
+## Contents
+
+- [Draft layout](#draft-layout)
+- [Block rules](#block-rules)
+- [Title rules](#title-rules)
+- [Field formatting](#field-formatting)
+
+## Draft layout
+
 ```text
 ━━━ Bug #{n} ━━━
 Title: [{Severity}] {Module} — {behavioral one line}
@@ -62,7 +71,7 @@ Evidence:
 ━━━━━━━━━━━━━━
 ```
 
-Block rules:
+## Block rules
 
 - **Severity** — the value the reporter gave at intake, unchanged; it is also the title bracket. Never
   replace a reporter-given severity with your own reading. If none was given, or the matrix has no cell
@@ -91,7 +100,7 @@ Block rules:
   or "complete" a step yourself; a step that seems missing is a question to the reporter (ask in the A3
   follow-up), never an invented line.
 
-Title rules:
+## Title rules
 
 - Lead with the Severity bracket (the reporter's intake value) for Jira/GitHub scanability — never a
   priority you derived.
@@ -101,7 +110,9 @@ Title rules:
 - Keep it concise **but** complete: enough to know the flow + symptom; drop details that already live in
   dedicated fields (they only duplicate).
 
-Field formatting (match the target tracker's own convention when it has one):
+## Field formatting
+
+Match the target tracker's own convention when it has one.
 
 - Write **What happens** (actual) as **bullet points — one fact per line**, not a single run-on
   paragraph. Reviewers scan bullets; they skip walls of prose. The source quote inside What should happen stays verbatim.
