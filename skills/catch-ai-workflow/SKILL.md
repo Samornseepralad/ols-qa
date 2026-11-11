@@ -231,7 +231,9 @@ Follow [qa-closing-shared.md](../../references/qa-closing-shared.md) + this work
 
 ## Must-read files
 
-All shared references: [skill-reference-index.md](../../references/skill-reference-index.md). Open each file below at the step that names it, never all up front.
+See also (optional lookup, not a must-read): [skill-reference-index.md](../../references/skill-reference-index.md) lists every shared reference.
+
+Open each file below at the step that names it, never all up front.
 
 **Read for every audit:**
 

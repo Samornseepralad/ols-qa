@@ -356,7 +356,9 @@ Shared rules: [shared-must-never.md](../../references/shared-must-never.md). Ski
 
 ## Must-read files
 
-All shared references: [skill-reference-index.md](../../references/skill-reference-index.md). Open each file below at the step that names it, never all up front.
+See also (optional lookup, not a must-read): [skill-reference-index.md](../../references/skill-reference-index.md) lists every shared reference.
+
+Open each file below at the step that names it, never all up front.
 
 - At start: [helix-session-constraints.md](../../references/helix-session-constraints.md) once per session; [long-workflow-todos.md](../../references/long-workflow-todos.md) when the run has many steps (keep the todo list).
 - Before invoking or switching skills: [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md); choosing which skill handles a request: [skill-routing.md](../../references/skill-routing.md).
