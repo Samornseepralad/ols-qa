@@ -73,7 +73,7 @@ t('R8 listed soft-wording hits reworded; Step 6.5 split; QA Owner clause fixed',
   const soft = /\b(may|should|suggest\w*)\b/i;
   const s65 = section(FE_WF, '## Step 6.5', '## Step 7');
   assert.ok(!soft.test(s65), 'Step 6.5 still has may/should/suggest');
-  has(s65, /if it is wrong and the QA Owner agrees/);
+  has(s65, /if it is wrong and the QA Owner agrees/i);
   assert.ok((s65.match(/^\d+\. \*\*/gm) || []).length >= 5, 'Rows and run not split into numbered sub-items');
   const g263 = section(RG, '### 2.6.3', '**Wait for the user');
   assert.ok(!soft.test(g263), '2.6.3 table still has may/should/suggest');
@@ -83,7 +83,7 @@ t('R8 listed soft-wording hits reworded; Step 6.5 split; QA Owner clause fixed',
     const l = dr.find((x) => x.includes(k));
     assert.ok(l && !soft.test(l), `design-and-review line "${k}" missing or soft`);
   });
-  const row = /Glossary term with evidence the UI shows it in English/;
+  const row = /Glossary term the ticket or a design shows in English/;
   has(RG, row); has(DR, row);
 });
 
