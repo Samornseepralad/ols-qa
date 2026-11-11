@@ -90,7 +90,7 @@ customer's bug was exactly that ordering. (The follow-up probe confirmed the ord
 does require operator credentials — so the caveat was true, and the PASSED was indefensible.)
 
 - If the recorded actual result contains any of `caveat` · `not verifiable` · `could not verify` ·
-  `unable to confirm` · `assumed` · `ยืนยันไม่ได้` · `ตรวจไม่ได้` · `น่าจะ` — the status **may not be
+  `unable to confirm` · `assumed` · `ยืนยันไม่ได้` · `ตรวจไม่ได้` · `น่าจะ` — the status **must not be
   PASSED**. It is `BLOCKED` (unreachable — a coverage gap) or, where the point is minor and a bug is
   raised for it, `PASSED WITH MINOR ISSUE` per the [priority matrix](bug-priority-matrix.md).
 - An expected that depends on data the UI does not show (ranking score, internal ordering, a computed
