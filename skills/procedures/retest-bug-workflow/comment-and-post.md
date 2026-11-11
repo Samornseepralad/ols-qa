@@ -298,8 +298,9 @@ wait here.
 [qa-evidence-gates.md](../../../references/qa-evidence-gates.md) sets the real bar itself: *a second
 QA — or another agent given the ticket, the deliverable and nothing else*. Make that literal.
 
-1. **Dispatch a reviewer subagent in the background** (Agent/Task tool) with **only**: the ticket, the
-   rendered body, and the evidence files. Not the session, not the reasoning, not what you meant. While
+1. **Dispatch a reviewer subagent in the background** (Agent/Task tool) with **only**: the ticket key, the
+   **file path** of the rendered body, and the **paths** of the evidence files — never paste the body
+   or evidence text into the prompt; the reviewer opens each path itself and reads it in full. Not the session, not the reasoning, not what you meant. While
    it runs, build the Step 6d bundle in parallel; the reviewer must return **CLEAN before the approval
    popup** ([round-time-contract.md](../../../references/round-time-contract.md) §3 step 1).
 2. **It answers the four adversarial questions** from the pre-delivery gate, each **by pointing at a
@@ -307,8 +308,8 @@ QA — or another agent given the ticket, the deliverable and nothing else*. Mak
    was not tested and where the deliverable says so.
 3. **Binary verdict per round:** `CLEAN` or `HAS-COMMENTS` with a numbered list. Nitpicks are not
    defects; only gaps against the ticket and the evidence count.
-4. **Report the round to the user** as it finishes, then fix every finding and dispatch a **fresh**
-   round. Loop until a round is clean — no round cap ([round-time-contract.md](../../../references/round-time-contract.md) §3
+4. **Report the round to the user** as it finishes, then fix every finding, save the fixed body to the same path, and dispatch a **fresh**
+   round with the same paths. Loop until a round is clean — no round cap ([round-time-contract.md](../../../references/round-time-contract.md) §3
    step 1), and a round whose result was never reported does not count.
    **Exit when the loop stops converging:** the same finding comes back in two consecutive rounds
    after you fixed it → stop dispatching reviewers. The draft is **not** CLEAN: put that finding in the

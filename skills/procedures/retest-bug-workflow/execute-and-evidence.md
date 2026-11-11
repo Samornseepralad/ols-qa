@@ -31,7 +31,7 @@ the gates that follow a case that did not pass. Nothing in 4d is deferred to dra
 
 **Parallel lanes (default).** Dispatch the planned lanes at once — after any parent pre-login for
 accounts sharing one OTP inbox (§3), one subagent per lane, all in a single message, each with the lane prompt from
-[parallel-test-lanes.md](../../../references/parallel-test-lanes.md) §5. Each lane runs 4a–4h on its
+[parallel-test-lanes.md](../../../references/parallel-test-lanes.md) §5 — pass each lane the **file paths** of its case list, the ticket's Expected Result/AC and any spec or design notes, never their pasted text; the lane opens and reads each path itself. Each lane runs 4a–4h on its
 own cases with **only its leased account** and records the authenticated user id at login; barrier
 cases run alone after the lanes return. The parent then runs the §6 merge (isolation · coverage ·
 evidence) and does 4i on every non-PASS itself before Step 5. Lanes never post, transition, assign,
