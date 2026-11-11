@@ -34,9 +34,9 @@
 ## Edge cases
 - R1: a batch with one hedged item and other clean items — the clean items proceed; the hedged item still counts as searched on the Board check line when its search ran (S1 p2 "3 searched").
 - R3: a reporter question and evidence against the defect at the same time → Needs Review (evidence wins over the open question).
-- R4: the user replies `confirm` without answering the comment-scope question → the other candidates are filed; that candidate waits, and the Phase F report says why.
-- R5: the ticket writes both a Thai and an English form of the term → the Thai form is reused and the question row names both.
-- R10: some rows tagged and some not → only the untagged rows are mapped `inferred`; the missing tags are still reported once.
+- R4: the user replies `confirm` without answering the comment-scope question → the Phase D hold still applies; that candidate is not created until comments are confirmed searched or the search is re-run.
+- R5: the glossary has a non-empty Thai cell for the term → term priority 1 applies (glossary verbatim); R5 does not.
+- R10: some rows tagged and some not → R10 does not apply; an untagged sibling row is handled by the existing `inconsistent tag` status.
 
 ## Done when
 - R1–R4 in create-bug `WORKFLOW.md`; R5–R8 in the tc-fe-prep files named; R9–R11 in tc-review `SKILL.md`; R12 in `execute-and-evidence.md`.
