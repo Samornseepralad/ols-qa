@@ -2,7 +2,11 @@
 
 Single-JS publish patterns for Jira comment + CSV upload. Reduces publish from 8–12 tool calls to 3.
 
-**Use with:** `Control_Chrome__execute_javascript` only — `Claude_in_Chrome__javascript_tool` cannot access Jira pages (extension sandbox).
+**Use with:** a browser-JS tool that runs in the page context of the logged-in Jira tab, so `fetch()` carries the
+Jira session — for example `Control_Chrome__execute_javascript`. A tool that runs in an isolated extension sandbox
+does not qualify (`Claude_in_Chrome__javascript_tool` cannot access Jira pages). No qualifying tool in the session →
+post the same body through the Jira REST API with curl (`POST /rest/api/3/issue/{KEY}/attachments` with
+`X-Atlassian-Token: no-check`, then `POST /rest/api/3/issue/{KEY}/comment`) and verify the same way.
 
 ---
 
@@ -60,7 +64,7 @@ window.__adfBody = '{ADF_JSON_STRING}';  // Pre-built ADF with one __ATT{n}_ID__
 
 **MUST NOT navigate** after Pattern A — navigation clears `window.*`. Navigate to the Jira issue page first, then run Pattern A.
 
-**`window.*` persistence:** Variables persist across `Control_Chrome__execute_javascript` calls on the same tab. Lost only on page navigation or refresh.
+**`window.*` persistence:** Variables persist across browser-JS calls on the same tab. Lost only on page navigation or refresh.
 
 ---
 
@@ -158,7 +162,7 @@ JSON.stringify(window.__fastPublish || {status: 'pending'});
 | `status` | What it means | Action |
 |----------|--------------|--------|
 | `ok` | Upload + comment done — Patterns B and D set `ok` only after a 2xx reply that carries a comment id | Proceed to screenshot verify. `ok` without `commentId` cannot come from the current patterns; treat it as non-ok and re-read the issue before any retry |
-| `pending`, `running` or `file{n}_done` | Still in flight | Wait 2s, read again |
+| `pending`, `running` or `file{n}_done` | Still in flight | Wait 2s, read again — for at most 120 s, then follow *Error recovery* below |
 | `error` with `attIds.length == total` | Uploads done, comment failed (or a placeholder was unfilled — see `message`) | Fix the cause, then retry comment-only with the saved `attIds` |
 | `error` with `0 < attIds.length < total` | Upload of file `attIds.length + 1` failed | Retry from that file only; keep the saved `attIds` |
 | `error` with empty `attIds` | Upload #1 failed | Check auth (401/403?), re-navigate, retry from Pattern A |
@@ -229,8 +233,8 @@ Call sequence:
 - **MUST convert `<br>` before building ADF** — rules in [jira-linebreak-conversion.md](jira-linebreak-conversion.md).
 - **MUST NOT navigate between Pattern A and Pattern B** — clears `window.*`.
 - **UTF-8 BOM** (`﻿`) preserved in Blob constructor in Pattern B for text files; a `base64` entry (`.xlsx`) is uploaded as bytes with no BOM.
-- **Use `Control_Chrome__execute_javascript`** — not `Claude_in_Chrome__javascript_tool` (Jira incompatible).
-- **No `async`/`await`** in Control_Chrome JS — use `.then()` chains only.
+- **Run in the logged-in Jira tab's page context** (see *Use with* above) — never an extension-sandboxed JS tool.
+- **No `async`/`await`** in the injected JS — use `.then()` chains only.
 
 ---
 
@@ -242,5 +246,5 @@ Call sequence:
 | `401`/`403` in error message | Re-navigate to Jira page (re-establishes auth session), then retry from Pattern A |
 | All `attIds` saved, comment failed | Skip re-upload; post comment with saved IDs directly |
 | Some `attIds` saved | Re-upload only the files after the last saved id; use saved + new ids for the comment |
-| `pending`/`running` after 3s | Read Pattern C once more; if still running, re-execute Pattern B |
+| `pending`/`running`/`file{n}_done` | Never re-execute Pattern B or D on an in-flight state — the first request can still land and post twice. Read Pattern C every 2 s for at most 120 s. Still in flight at 120 s, or `window.__fastPublish` lost to a navigation or refresh → `GET /rest/api/3/issue/{KEY}/comment?orderBy=-created` and `GET /rest/api/3/issue/{KEY}?fields=attachment`, and look for this post (its marker line, its attachment filenames). Comment present → it posted; go to verify. Attachments present, comment absent → comment-only retry with those attachment ids. Neither present → retry from Pattern A |
 | JS execution error (not fetch error) | Verify page is on correct Jira issue; re-run Pattern A + B |

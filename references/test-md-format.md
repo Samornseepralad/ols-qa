@@ -69,7 +69,7 @@ A Helix TC table is a *suite* of cases. Helix maps **one reviewed TC row → one
 | (suite / ISSUE_KEY) | frontmatter `name` + `# {name}` H1 |
 | (environment URL) | frontmatter `url` — from intake/guide or `--url`; if unknown, a `REPLACE_ME` placeholder the user must fill |
 
-`url` is **required** by the spec but TC tables often lack it — the exporter takes `--url` and otherwise writes a `REPLACE_ME` placeholder so the gap is visible, never silently wrong. `config` is omitted by default (optional).
+`url` is **required** by the spec but TC tables often lack it — the exporter takes `--url` and otherwise writes a `REPLACE_ME` placeholder so the gap is visible, never silently wrong. `config` is omitted by default (the spec does not require it).
 
 ## Rules
 

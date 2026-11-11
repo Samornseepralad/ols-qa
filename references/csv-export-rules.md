@@ -33,7 +33,7 @@ Run these steps on every cell value **before** writing to any file:
    pattern: <br\s*/?>   (matches <br>, <br/>, <BR>, <BR/>, <br >, <BR />, etc.)
    replace with: \n
    ```
-2. Strip the remaining **real HTML tags only** — a whitelist of tag names, case-insensitive, with an optional closing slash and optional attributes:
+2. Strip the remaining **real HTML tags only** — a whitelist of tag names, case-insensitive, with or without a closing slash and attributes:
    ```
    pattern: </?(?:a|b|br|code|div|em|h[1-6]|hr|i|li|ol|p|pre|span|strong|sub|sup|table|tbody|td|th|thead|tr|u|ul)(?=[\s/>])[^>]*>
    replace with: (empty string)

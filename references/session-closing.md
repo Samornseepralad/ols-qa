@@ -26,9 +26,9 @@ List only what was actually created. Use workspace-relative paths.
 
 ## 3 — Next workflow (mandatory one line)
 
-Offer **exactly one** logical next step from [skill-routing.md](skill-routing.md) when relevant — user may decline.
+Offer **exactly one** next step: the row below for the finished workflow ([skill-routing.md](skill-routing.md)); when no row matches, write `Next: none`. The user decides whether to start it.
 
-| Finished | Suggest (one line) |
+| Finished | Next step (one line) |
 |----------|-------------------|
 | TC FE prep | “Run **/testing-ticket** on the same story?” |
 | TC API prep | “Run **/testing-ticket** or export-only — your call.” |

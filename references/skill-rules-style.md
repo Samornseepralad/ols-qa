@@ -17,10 +17,10 @@ When you catch yourself rationalizing past a gate, use [agent-rationalizations.m
 
 1. **Assume the first output is wrong** until a checklist passes.
 2. Run a **closing QA** section at the end of the workflow (skill-specific items + shared items from [qa-closing-shared.md](qa-closing-shared.md)).
-3. **MUST complete at least one fix-verify round** after any **side effect** (Jira comment/post, issue create, CSV write, Sheet/Confluence update): re-read the destination → if mismatch, fix → re-read again. **Maximum 2 rounds** — then report what remains blocked. NEVER declare complete without this round.
+3. **MUST complete at least one fix-verify round** after any **side effect** (Jira comment/post, issue create, CSV write, Sheet/Confluence update): re-read the destination → if mismatch, fix → re-read again. **Maximum 2 rounds** (generic cap; a workflow step that states its own cap — e.g. the posted-comment re-read loop of `jira-comment-post-review.md`, 3 rounds — uses that cap) — then report what remains blocked. NEVER declare complete without this round.
 4. **Fresh-eyes review** (second read or subagent):
    - **MUST** before publish when: TC table or result table **> 15 rows**, OR Jira comment body **> 80 lines** / large embedded tables.
-   - **SHOULD** for any approved draft the user will paste to executives.
+   - **MUST** when the user says the approved draft goes to executives or management.
 
 <a id="qa-closing-doubt-and-fix-verify"></a>
 

@@ -22,7 +22,7 @@ and the defect list / external result write (testing-ticket-workflow Phase F3, P
 
 ## 1. The report answers five questions before they are asked
 
-Write these five, in this order. A FAILED or BLOCKED report missing any one of them is **not ready to
+Write these five, in this order. A FAILED, PWMI or BLOCKED report missing any one of them is **not ready to
 post** — fix the report, do not plan to answer it in chat later.
 
 | # | The question the reader will ask | Section that must already answer it |
@@ -34,6 +34,14 @@ post** — fix the report, do not plan to answer it in chat later.
 | 5 | What must change, and who decides? | **Resolution options** (§4) — each option with a named owner |
 
 Questions 2, 4 and 5 are the ones that get skipped. They are also the first three a dev asks.
+
+**Retest-bug comment format.** The retest comment forbids a separate Repro-matrix or Why-failed block
+(`retest-bug-workflow/comment-and-post.md` § Step 6a),
+so it answers them in its fixed fields: **Q2** — the `Fixture` line names every entry point exercised, each
+backed by its own evidence file in the `Evidence` cell of the row it proves — and every entry point is
+exercised before drafting (`retest-bug-workflow/execute-and-evidence.md` § 4g), so no unexercised path is claimed; **Q4** — the verdict-table row itself, whose `Expected Result` cell quotes the
+expected-result line verbatim and whose `Actual Result` cell names the exact deviation. The §2 rules and
+the §5 checks apply to those lines and rows unchanged.
 
 ---
 
@@ -93,7 +101,7 @@ this run vs. an earlier run — you **MUST NOT draft the report yet**.
 ## 4. Resolution options — REQUIRED when actual ≠ expected but the reported symptom is gone
 
 This is its own failure class: **the fix works but deviates from the written expected result** (blocks
-harder, blocks differently, renders a different screen). It is still FAILED — but the report must
+harder, blocks differently, renders a different screen). It is still not PASSED — PWMI or FAILED per [bug-priority-matrix.md](bug-priority-matrix.md) — but the report must
 hand the reader a decision, not a complaint. There are exactly two resolutions and QA picks neither.
 
 ```text
