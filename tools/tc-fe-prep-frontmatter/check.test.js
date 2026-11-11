@@ -27,13 +27,17 @@ t('R2 pointer line to SKILL.md in retest-bug style', () => {
   assert.ok(/Not a skill entry — the skill name, description and triggers live only in \[SKILL\.md\]\(\.\.\/\.\.\/tc-fe-prep-workflow\/SKILL\.md\)/.test(head), 'pointer missing in first lines');
   assert.ok(fs.existsSync(path.join(root, 'skills/procedures/tc-fe-prep-workflow', '../../tc-fe-prep-workflow/SKILL.md')));
 });
-t('R3 body from "# TC FE Prep Workflow" is byte-identical to origin/main', () => {
+// R3 verifies the frontmatter edit itself (commit e1899775), not every later rule edit to WORKFLOW.md.
+// Amended by docs/sdd/r11-skill-fixes-g1 R13: comparing against origin/main blocked every later edit.
+const R3_COMMIT = 'e1899775b6267cf215929205bec9ff5d92203d80';
+t('R3 body from "# TC FE Prep Workflow" unchanged by the frontmatter edit (e1899775 vs its parent)', () => {
   const { execFileSync } = require('child_process');
-  let base;
-  try { base = execFileSync('git', ['show', `origin/main:${WF_PATH}`], { cwd: root, encoding: 'utf8' }); }
-  catch (e) { console.log('      (origin/main unavailable — skipped)'); return; }
+  const show = (rev) => execFileSync('git', ['show', `${rev}:${WF_PATH}`], { cwd: root, encoding: 'utf8' });
+  let before, after;
+  try { before = show(`${R3_COMMIT}^`); after = show(R3_COMMIT); }
+  catch (e) { console.log('      (commit e1899775 unavailable, e.g. shallow clone — skipped)'); return; }
   const cut = (s) => s.slice(s.indexOf('# TC FE Prep Workflow'));
-  assert.strictEqual(cut(WF), cut(base));
+  assert.strictEqual(cut(after), cut(before));
 });
 t('R4 Contents heading within first 25 lines', () => {
   const i = WF.split('\n').findIndex((l) => /^## Contents/.test(l));

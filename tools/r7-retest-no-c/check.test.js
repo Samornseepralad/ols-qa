@@ -16,7 +16,8 @@ function t(name, fn) {
 const has = (s, re) => assert.ok(re.test(flat(s)), `missing ${re}`);
 
 t('R5 execute-and-evidence: C withheld while a possibly-superseding source is unresolved', () => {
-  has(EE, /never \*\*C confirm defect\*\* while a newer ticket, comment or design that may supersede the expected is still unresolved[^.]*only when the AC\/EC check is confirmed authoritative/i);
+  // Amended by docs/sdd/r11-skill-fixes-g1 R12: the sentence that repeated itself is now one sentence, same meaning.
+  has(EE, /Same while supersession is \*\*unresolved\*\* \(a newer ticket, comment or design that may supersede the expected is not yet confirmed or ruled out\): A · B only — \*\*C confirm defect\*\* is offered only once the AC\/EC check is confirmed authoritative/i);
 });
 t('R5 gate (C): same gating, unresolved supersession counts', () => {
   has(GATE, /\(C\) Confirm the defect[^]*?not offered while a newer source that may supersede the expected is unresolved[^.]*only when the AC\/EC check is confirmed authoritative/i);
