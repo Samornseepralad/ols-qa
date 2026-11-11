@@ -47,13 +47,14 @@ Always call this BEFORE Pattern B/D. Sets the files and the ADF body on `window.
 // One entry per file, in upload order. File n (1-based) fills placeholder __ATT{n}_ID__.
 window.__files = [
   {name: '{FILE1_NAME}', data: {FILE1_CONTENT_JSON}},   // e.g. Draft_Jira_{ISSUE_KEY}.csv
-  {name: '{FILE2_NAME}', data: {FILE2_CONTENT_JSON}}    // e.g. Import_Qase_{ISSUE_KEY}.csv — add one entry per extra file
+  {name: '{FILE2_NAME}', data: {FILE2_CONTENT_JSON}},   // e.g. Import_Qase_{ISSUE_KEY}.csv — add one entry per extra file
+  {name: '{XLSX_NAME}', data: '{XLSX_BASE64}', encoding: 'base64'}  // binary file (e.g. .xlsx): base64 string, no BOM
 ];
 window.__adfBody = '{ADF_JSON_STRING}';  // Pre-built ADF with one __ATT{n}_ID__ placeholder per file
 'data set ok: ' + window.__files.length + ' file(s)';
 ```
 
-**Generating the escaped strings:** Use `JSON.stringify(content)` in the Python/inline script that builds each file. This handles Thai characters, quotes, and newlines. Paste each result directly as a `data:` value above.
+**Generating the escaped strings:** Use `JSON.stringify(content)` in the Python/inline script that builds each text file. This handles Thai characters, quotes, and newlines. Paste each result directly as a `data:` value above. A binary file (`.xlsx`) is never a text string: give its base64 (`base64.b64encode(open(path,'rb').read()).decode()`) with `encoding: 'base64'`; Pattern B decodes it and uploads it with the spreadsheet MIME type and no BOM.
 
 **Legacy form (still accepted by Pattern B):** `window.__csv1Data` / `window.__csv2Data` with filenames passed in Pattern B. Use `window.__files` for anything new, and always when there are more than two files or exactly one.
 
@@ -89,9 +90,17 @@ Runs after Pattern A. Uploads every file in `window.__files` in order, replaces 
     return r.text().then(function(t){ throw new Error('HTTP ' + r.status + ': ' + String(t).slice(0, 300)); });
   }
 
-  function uploadFile(name, content) {
-    var blob = new Blob(['\uFEFF', content], {type: 'text/csv;charset=utf-8'});
-    var file = new File([blob], name, {type: 'text/csv'});
+  var XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+  function uploadFile(name, content, encoding) {
+    var blob;
+    if (encoding === 'base64') {
+      var bin = atob(content), bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+      blob = new Blob([bytes], {type: /\.xlsx$/i.test(name) ? XLSX : 'application/octet-stream'});
+    } else {
+      blob = new Blob(['\uFEFF', content], {type: 'text/csv;charset=utf-8'});
+    }
+    var file = new File([blob], name, {type: blob.type.split(';')[0]});
     var fd = new FormData();
     fd.append('file', file);
     return fetch(baseUrl + '/attachments', {
@@ -109,7 +118,7 @@ Runs after Pattern A. Uploads every file in `window.__files` in order, replaces 
 
   var chain = Promise.resolve();
   files.forEach(function(f, i){
-    chain = chain.then(function(){ return uploadFile(f.name, f.data); })
+    chain = chain.then(function(){ return uploadFile(f.name, f.data, f.encoding); })
       .then(function(r){
         if (!r || !r[0] || !r[0].id) { throw new Error('upload reply has no attachment id (file ' + (i + 1) + ')'); }
         attIds.push(r[0].id); state({status: 'file' + (i + 1) + '_done'}); });
@@ -204,7 +213,7 @@ Build ADF JSON **in the same step as file writing** (not after) — the agent al
 
 ## Large-table handling (> 50 rows)
 
-If CSV content may exceed JS string literal limits, use the standard Pattern A → B → C flow unchanged — Pattern A already separates data-setting from the publish call.
+If CSV content can exceed JS string literal limits, use the standard Pattern A → B → C flow unchanged — Pattern A already separates data-setting from the publish call.
 
 Call sequence:
 1. Navigate to Jira issue page
@@ -219,7 +228,7 @@ Call sequence:
 - **Always use Pattern A** (pre-set window vars) before Pattern B — never inline CSV as JS string literals. Even for small tables. Prevents escaping failures with quotes, Thai characters, newlines.
 - **MUST convert `<br>` before building ADF** — rules in [jira-linebreak-conversion.md](jira-linebreak-conversion.md).
 - **MUST NOT navigate between Pattern A and Pattern B** — clears `window.*`.
-- **UTF-8 BOM** (`﻿`) preserved in Blob constructor in Pattern B.
+- **UTF-8 BOM** (`﻿`) preserved in Blob constructor in Pattern B for text files; a `base64` entry (`.xlsx`) is uploaded as bytes with no BOM.
 - **Use `Control_Chrome__execute_javascript`** — not `Claude_in_Chrome__javascript_tool` (Jira incompatible).
 - **No `async`/`await`** in Control_Chrome JS — use `.then()` chains only.
 
