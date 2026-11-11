@@ -83,6 +83,7 @@ When routing cannot proceed:
 | User ignores or declines a proactive suggestion (replies about something else, or says no) | Do not start that workflow. Show the menu once; do not repeat the same suggestion in this session. |
 | Row 8–11 chosen outside the ols-qa workspace | Say it is not shipped in helix, then offer only that row's named fallback. |
 | The routed `SKILL.md` is missing or cannot be loaded | Say which file is missing, do not imitate the workflow from memory, and show the menu again. |
+| menu-text.md or skill-routing.md cannot be read | Name the file; do not route or show a menu from memory; stop. |
 | One message names workflow A, then workflow B only if A's result calls for it (e.g. retest, then file a bug if still broken) | Route to A; record B as the handoff per [skill-routing.md § Handoffs](../../references/skill-routing.md#handoffs-after-a-workflow-ends); do not ask a clarifying question. Two workflows both matching one goal is a different case — ask one question per intent-shortcuts.md. |
 | Ticket lookup is unavailable (no Atlassian MCP or token) | Route anyway and ask the user to paste the ticket text or link; the child workflow handles its own intake. |
 
@@ -93,7 +94,7 @@ Handoffs after a workflow ends: [skill-routing.md § Handoffs](../../references/
 Follow [qa-closing-shared.md](../../references/qa-closing-shared.md) + router-specific:
 
 - [ ] User selected a workflow (1–13 or named skill).
-- [ ] Child workflow skill is loaded (not just described).
+- [ ] Child workflow skill is loaded (not just described) — or, when no child was loaded (declined, fallback none, out of scope), the reply says 'not routed' and why.
 - [ ] No Jira post or issue create happened in this router skill.
 
 If routing only, hint the command from the Command column of [skill-routing.md § Primary menu](../../references/skill-routing.md#primary-menu) for the chosen row.
