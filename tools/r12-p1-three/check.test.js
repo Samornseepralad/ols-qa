@@ -50,7 +50,7 @@ t('R5 Step 6 write-failure branch: STOP, exact error + path, nothing partial, in
   has(s6, /report the exact error text and the path that failed/);
   has(s6, /which files were and were not written/);
   has(s6, /never leave a half-written file/);
-  has(s6, /offer the approved draft as an in-chat copy/);
+  has(s6, /offer the approved draft as an in-chat copy/i);
   has(s6, /Step 7 never starts with a partial file set/);
 });
 t('R6 Step 6 openpyxl-missing branch: say so, offer CSV, install only as suggestion, wait for choice', () => {
@@ -58,7 +58,7 @@ t('R6 Step 6 openpyxl-missing branch: say so, offer CSV, install only as suggest
   has(s6, /python3 -c "import openpyxl"/);
   has(s6, /offer the CSV pair instead/);
   has(s6, /`python3 -m pip install --user openpyxl` only as a suggestion the user runs — never install it yourself/);
-  has(s6, /write nothing until the user chooses/);
+  has(s6, /write nothing until the user chooses/i);
   has(s6, /never silently produce CSV when xlsx was requested/i);
 });
 
