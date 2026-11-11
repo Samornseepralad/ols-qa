@@ -360,6 +360,8 @@ Shared rules: [shared-must-never.md](../../../references/shared-must-never.md). 
 | MUST refuse without API spec + Swagger | No authoritative coverage |
 | MUST order rows: success (2xx) first within each module | Reviewers verify happy path before error paths |
 | MUST NOT invent endpoints not in spec/Swagger | False coverage |
+| MUST NOT guess credentials when the spec or Swagger URL returns 401/403 or a login page — ask for an authenticated export or session | Guessed credentials can lock the account and are a security risk |
+| MUST NOT fall back from xlsx to CSV without warning the user and asking first | The user asked for Excel; a silent CSV is the wrong deliverable |
 | MUST run Phase E review before draft table | Prevents out-of-scope API cases |
 | MUST apply tc-quality-standards on every row | ISTQB / 29119-3 consistency |
 | MUST convert `<br>` to Jira-native line breaks before posting (see [jira-linebreak-conversion.md](../../../references/jira-linebreak-conversion.md)) | `<br>` renders as literal text on Jira |
