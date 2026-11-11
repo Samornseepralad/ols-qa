@@ -1,6 +1,9 @@
 ---
 name: smoke-test-workflow
-description: Run a post-deployment smoke test of the OLS core features on a named environment, triage every non-passing case to a verified root cause, produce a one-page A4-landscape PDF summary plus the Playwright per-case report, and post the result to the QA release channel. Use when asked to smoke test a build, confirm a deployed version is healthy, or decide whether a build can be promoted to the next environment. Do NOT use for testing a single ticket (testing-ticket-workflow), retesting a bug after a dev fix (retest-bug-workflow), preparing test data (test-data-prep-workflow), or a full regression run.
+description: |-
+  Post-deploy smoke test of OLS core features on a named environment: triage failures to a verified root cause, one-page PDF + Playwright report, post to the QA release channel.
+  Use when asked to smoke test a build, confirm a deploy is healthy, or decide on promotion.
+  Do NOT use for single-ticket tests (testing-ticket-workflow), bug retest (retest-bug-workflow), test data (test-data-prep-workflow), or full regression.
 ---
 
 # Smoke Test Workflow (OLS)
