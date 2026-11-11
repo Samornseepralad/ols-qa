@@ -1,0 +1,6 @@
+# Intent — r11 skill fixes, group 1 (create-bug, tc-fe-prep, tc-review, retest-bug)
+
+Owner request (10/Nov/2026, carried to round 9): every Helix skill must pass the frozen exit gate in one round (P0 = 0, P1 = 0, 100% of with-skill exam items).
+Why: the after-9 review and runs (`evals/helix-skill-eval-2026-11-10-after9/` in `ols-qa-evidence`) still show gaps that come from skill text in four skills: a hedged expected side drafted as "Needs Review" (create-bug), a Step 5 approval gate with no 🔴 marker (tc-fe-prep, P1), an untagged TC sheet with no mapping rule (tc-review, P1), soft wording the scorers deducted for, and one retest sentence that repeats itself.
+Method: each fix is one sentence or one table row inside the paragraph that already owns the topic. Every claim was re-read at the cited line before the spec was written; items whose claim did not hold are recorded in the spec, not edited.
+Constraints: exam items and the exit gate stay frozen; skill text only, plus the rule-text tests that pin the changed sentences; no new tool, dependency or cost. Line caps: retest `WORKFLOW.md` ≤ 500 (untouched), `skills/tc-review-workflow/SKILL.md` ≤ 403 lines and < 30,000 bytes, every `SKILL.md`/`WORKFLOW.md` ≤ 500 (`tools/skill-lint/lint.js`). A parallel lane owns catch-ai, testing-ticket, helix and tc-api; none of their files is touched.
