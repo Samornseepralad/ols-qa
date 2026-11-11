@@ -67,8 +67,9 @@ drafting, the expected behavior/label/value MUST be confirmed against the **auth
 file / Figma, PRD, AC, or the PO) — never derived from a transliteration, an English feature name, or
 prose/verb usage, and read **char-exact** on both sides for any wording claim. If the expected side carries
 a hedge ("please confirm with design/PO", "should be…", "probably", "ตามสเปก" unchecked), the spec is
-unconfirmed → it is a **question, not a bug**: resolve it (or mark BLOCKED / ask the owner) first. Do not
-file. (Root cause this prevents: a phantom label bug filed against a transliterated word never in the
+unconfirmed → it is a **question, not a bug**: do not draft or file it, and do not send it to Phase E.
+Report it in chat as a question, **BLOCKED: spec unconfirmed**, that names the hedge and the authoritative
+source needed (design frame, PRD, AC or PO). (Root cause this prevents: a phantom label bug filed against a transliterated word never in the
 design — the real spec matched the app all along.)
 
 **MUST re-check the tracker/board for a prior ticket that already settled this behavior BEFORE filing** —
@@ -179,9 +180,12 @@ re-filing it wastes a full file → retest → close-out round.
    - Jira (`text ~` covers summary, description and comments):
      `project = <KEY> AND text ~ "\"<exact error text>\"" ORDER BY updated DESC` — then repeat with the
      field label or component name.
-   - If the user pastes board-search results instead, accept the pasted results only when they show
-     the query terms, the scope (open and closed, summary and comments) and a result per candidate;
-     otherwise re-run the search yourself or ask the user for the missing part.
+   - If the user pastes board-search results instead, accept the pasted results when they show the
+     query terms, the open and closed state and a result per candidate; otherwise re-run the search
+     yourself or ask the user for the missing part. If the paste does not state whether comments were
+     searched, write `comment scope not stated` on the Phase C Board check line and ask once whether
+     the search covered summary and comments; do not hold the draft. Phase D does not create that
+     candidate until the user says comments were searched or the search is re-run over comments.
    - GitHub: `gh issue list --repo <owner/repo> --state all --search '"<exact error text>" in:title,body,comments'`.
 2. **Read the conclusion of any match**, including resolved/closed ones. A closed ticket can still hold
    the authoritative decision.
@@ -230,10 +234,13 @@ run the check.
 Then give each candidate one label, written on its draft summary line:
 
 - **Confirmed** — every check passed with evidence → goes to Phase C.
-- **Likely** — checks passed but one rests on the reporter's word only → goes to Phase C marked
-  **Likely**; filed only if the user approves it as Likely there.
-- **Needs Review** — a check failed or is still open (design source matches the app, a role/flake
-  question unanswered) → **drafted and shown, never filed.** Draft its body like any other and show it
+- **Likely** — checks passed but one rests on the reporter's word only, or a question only the reporter
+  can answer is still open (another role tried? how often?) and nothing in the evidence argues against
+  the defect → goes to Phase C marked **Likely**, with that open question on its Likely line; filed only
+  if the user approves it as Likely there.
+- **Needs Review** — a check failed, or the evidence argues against the defect (design source matches
+  the app, the reporter's own evidence contradicts the report) → **drafted and shown, never filed**
+  (never a hedged expected side, which stops at Refusal-first). Draft its body like any other and show it
   under the Phase C confirm block labelled **Needs Review — not filed**, with its open question on the
   `Needs Review:` line; it is not counted in Bug count and `confirm` does not create it. It is filed only
   after the user answers the question and it is re-checked here as Confirmed or Likely, and the confirm
@@ -253,13 +260,13 @@ Show:
 ━━━ Create bug — confirm before filing ━━━
 Target:     {Jira PROJ / GitHub owner/repo}
 Format:     {user template name or Helix default}
-Board check: {N candidates searched — M dropped as already-settled/duplicate, K to file}
+Board check: {N candidates searched — M dropped as already-settled/duplicate, K to file}{ · comment scope not stated — when a pasted search does not say}
 Fields:     {GitHub: labels that exist / labels missing + the user's choice · Jira: Priority → field, Severity → field id from the workspace guide, required fields with their values}
 Bug count:  {K}
 Needs Review: {none · or per item: title — open question (draft shown below, labelled Needs Review — not filed; not counted in Bug count)}
 
 Draft summaries:
-  1. [{Severity}] {Module} — {title one line} · Priority {Priority} · {Confirmed | Likely}
+  1. [{Severity}] {Module} — {title one line} · Priority {Priority} · {Confirmed | Likely — open question: {reporter question, if any}}
   2. ...
 
 (Full drafts below — review each body)

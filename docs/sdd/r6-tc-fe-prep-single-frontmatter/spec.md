@@ -36,5 +36,6 @@ Status: draft for owner review · from A-results A2 row 4 (read 2026-11-05) · s
 
 - R1/R2: WORKFLOW.md starts with the pointer line, has no `---` frontmatter, no `description:`.
 - R3: `diff` of the body against origin/main shows only removal of lines 1-7 and the added pointer.
+  Amended by `docs/sdd/r11-skill-fixes-g1` R13 (11/Nov/2026): the test now checks this against the commit that made the edit (`e1899775` vs its parent), not against `origin/main`, so later rule edits to WORKFLOW.md are not blocked.
 - R4: `node tools/skill-lint/lint.js` and `node tools/skill-structure/check.js` exit 0.
 - `bash scripts/run-test-suites.sh` exits 0.

@@ -9,7 +9,8 @@ const root = path.join(__dirname, '..', '..');
 const WF_PATH = 'skills/procedures/tc-api-prep-workflow/WORKFLOW.md';
 const WF = fs.readFileSync(path.join(root, WF_PATH), 'utf8');
 const g1 = WF.slice(WF.indexOf('### G1 '), WF.indexOf('### G2 '));
-const gverify = WF.slice(WF.indexOf('### G-verify'));
+// Owner Q2 (11/Nov/2026, docs/sdd/r11-skill-fixes-g2 R14): the freeze ends at ### G3, so ## MUST / NEVER is editable.
+const gverify = WF.slice(WF.indexOf('### G-verify'), WF.indexOf('### G3'));
 let fail = 0;
 function t(name, fn) {
   try { fn(); console.log(`PASS  ${name}`); } catch (e) { fail += 1; console.log(`FAIL  ${name}\n      ${e.message}`); }
@@ -42,9 +43,10 @@ t('R4 xlsx sentence unchanged', () => {
   const b = base(); if (!b) return console.log('      (origin/main unavailable — skipped)');
   assert.ok(b.includes(s));
 });
-t('R5 G-verify byte-identical to origin/main', () => {
+t('R5 G-verify (up to ### G3) byte-identical to origin/main', () => {
   const b = base(); if (!b) return console.log('      (origin/main unavailable — skipped)');
-  assert.strictEqual(gverify, b.slice(b.indexOf('### G-verify')));
+  assert.ok(WF.indexOf('### G3') > WF.indexOf('### G-verify'), '### G3 must follow ### G-verify');
+  assert.strictEqual(gverify, b.slice(b.indexOf('### G-verify'), b.indexOf('### G3')));
 });
 t('R6 WORKFLOW.md within 370 lines', () => {
   const n = WF.split('\n').length - (WF.endsWith('\n') ? 1 : 0);
