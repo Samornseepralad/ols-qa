@@ -27,7 +27,11 @@
 - R7 — The batched single approval at end of round (Step 6d item 4) must stay.
 - R8 — Shared `references/` files, `skills/retest-bug-workflow/SKILL.md` § Contents, and create-bug / tc-fe-prep / tc-review files must not be edited.
 
+## Blocked (R5–R7 not shipped in this change)
+- `tools/retest-case-plan-rules/check.test.js` test **D2** pins `comment-and-post.md:330` byte-identical to `origin/main` (spec `docs/sdd/r6-retest-bug-case-plan-and-superseded-c` § *Not changed*: owner decision D2, 2026-11-05 — the delegated-round line "stays AS IS"). R5–R6 change exactly that line, so D2 fails (measured: `FAIL  D2 comment-and-post.md line 330 byte-identical to origin/main`).
+- Freeze tests are never edited to get past them (precedent `docs/sdd/r11-t9-uplift-a/intent.md`). Whether the 11/Nov/2026 delegation supersedes D2 — and so whether the D2 guard may be retired — is an **owner decision**. The ready change (comment-and-post.md:328/:330 + R5/R6 assertions) is held on branch `fix/r12-p1-retest-delegation-held`.
+
 ## Done when
-- `node tools/r12-p1-retest/check.test.js` fails on `origin/main` and passes on the branch.
+- `node tools/r12-p1-retest/check.test.js` fails on `origin/main` and passes on the branch (R1–R4, R7; R5–R6 held, see § Blocked).
 - `bash scripts/run-test-suites.sh`, `node tools/skill-lint/lint.js`, `node tools/sdd-gate/check.js --base origin/main`, `git ls-files -z | xargs -0 bash scripts/check-no-secrets.sh`, `node tools/postmortem-guard/check.js` all pass.
 - A clause-by-clause check (T4) is recorded in the PR body.
