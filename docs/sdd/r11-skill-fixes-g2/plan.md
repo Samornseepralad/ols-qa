@@ -1,0 +1,26 @@
+# Plan — r11 skill fixes, group 2
+
+| Rule | File | Change |
+|---|---|---|
+| R1 | `skills/catch-ai-workflow/SKILL.md` Quick reference table (~line 153) | One added row after "Nothing covers it at any level". |
+| R2 | same file, `## Dependencies` (~line 288) | Same-line edit of the `- Node.js` bullet. |
+| R3 | same file, line 3 | `description: |` → `description: |-`. |
+| R4 | `skills/procedures/testing-ticket-workflow/execute-and-summarize.md:63-64` | Replace the last sentence of the *Lane failure* paragraph with the no-wait rule. Rewrapped at about 100 columns. |
+| R7 | `skills/helix/SKILL.md:96` (QA closing, outside the frozen `## Routing` span) | Same-line append. |
+| R8 | `skills/procedures/tc-api-prep-workflow/WORKFLOW.md` Phase C (~lines 125, 133) and G1 | Same-line edits to the B offer and the B row. One G1 step points to `delivery-options.md` § Test.md. |
+| R9 | same file, Phase C after the Choice table | One added line. |
+| R10 | same file, Phase F template (~line 226) | Same-line separator fix. |
+| R11 | same file, Phase A (~line 88) | Same-line edit. |
+| R5, R6 | `skills/helix/SKILL.md:4,84,+1 row`; `references/skill-routing.md:7,19,21`; `references/menu-text.md:24,26`; `references/intent-shortcuts.md:15,17`; `references/agent-entry.md:76-77` | **Blocked on Q1.** Not edited in this round. After the owner answers, every edit is on the same line except the one new R6 row (SKILL.md goes to 155 lines, the r7 test's cap). |
+| R12 | tc-api-prep `WORKFLOW.md` `## MUST / NEVER` | **Blocked on Q2.** Not edited. |
+
+- No new tool, dependency or cost. Text only.
+- Line guards:
+  - tc-api-prep WORKFLOW.md is 366 lines and must stay ≤ 370 (`tools/tc-api-prep-export-branch/check.test.js` R6). R9 adds one line and the R8 G1 step adds one, so the file reaches 368. The R4 xlsx sentence in G1 stays byte-identical.
+  - execute-and-summarize.md has no line cap.
+  - catch-ai SKILL.md grows by one line, to 291 (skill-lint max 500).
+- Frozen spans left untouched: helix `## Routing` and `menu-text.md` (r7 test), and tc-api-prep `### G-verify` through the end of the file (r6 test).
+- Not edited: files owned by the parallel lane (create-bug, tc-fe-prep, tc-review, retest-bug), `references/parallel-test-lanes.md` (shared with retest-bug), and `skills/testing-ticket-workflow/SKILL.md`.
+- Risk 1: R4 reads as a second dead-session rule. It stays in the *Lane failure* paragraph that already owns the `SESSION-DEAD` hand-off, and it points to Phase D and §3 rather than restating them.
+- Risk 2: R8 makes Test.md look like a replacement for CSV/Excel. The wording says "alongside", as S5 does.
+- Sync to helix follows the normal ols-qa → helix sync after merge.
