@@ -21,15 +21,17 @@ When invoked:
 
 1. First, before any other work, follow [session-start-context.md](../../references/session-start-context.md) (caveman lite + context-mode).
 2. Announce once: `Using **create-bug-workflow** to file the bug report.`
-3. Read [WORKFLOW.md](../procedures/create-bug-workflow/WORKFLOW.md) and run its progress checklist in order; open each phase or reference file at the step that names it, not before. Skipping a step or gate is not allowed; a run that stops at an early gate never opens later phase files.
+3. Read [WORKFLOW.md](../procedures/create-bug-workflow/WORKFLOW.md) and run its progress checklist in order; open each phase or reference file at the step that names it, not before. Never skip a step or gate.
 
 Claude Code shortcut: `/create-bug` → [commands/create-bug.md](../../commands/create-bug.md).
 
 ## Contents
 
-All shared references and the trigger that opens each: [skill-reference-index.md](../../references/skill-reference-index.md). At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md), then [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) and [intake-one-pager.md](../../references/intake-one-pager.md) on the first response (WORKFLOW Refusal-first).
+Shared reference index, with the trigger that opens each file (see also): [skill-reference-index.md](../../references/skill-reference-index.md).
 
-Triggers specific to filing bugs (each is a gate at the moment named):
+At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md), then [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) and [intake-one-pager.md](../../references/intake-one-pager.md) on the first response (WORKFLOW Refusal-first).
+
+Bug-filing gates, at the moment named:
 
 - [bug-priority-matrix.md](../../references/bug-priority-matrix.md) — read at Phase A3, before setting any Priority/Severity or a PWMI / FAILED verdict.
 - [figma-design-comparison.md](../../references/figma-design-comparison.md) — read when the expected side cites a design frame (Refusal-first, Phase E).
@@ -40,9 +42,9 @@ Triggers specific to filing bugs (each is a gate at the moment named):
 - [non-pass-challenge-gate.md](../../references/non-pass-challenge-gate.md), [result-quality-gate.md](../../references/result-quality-gate.md) — read before recording a non-PASSED result or letting any verdict leave the round.
 - [qa-evidence-gates.md](../../references/qa-evidence-gates.md) — read at Phase F, before any completion claim, and at the end of a run that files nothing.
 - [qa-closing-shared.md](../../references/qa-closing-shared.md) — read at QA closing, before reporting done, whether or not anything was filed; its cross-ticket conflict check is for testing-ticket and retest-bug only — this workflow's board check is Phase B2.
-- Reproducing in a browser: create-bug never does it on its own (steps come only from the reporter); hand it to testing-ticket-workflow unless the user insists, then use the index's Playwright entries.
+- Reproducing in a browser: never on its own (steps come only from the reporter); hand it to testing-ticket-workflow unless the user insists.
 
-Also read each of these only when its step's trigger fires (the trigger is on the line that links it in WORKFLOW.md or the index): [agent-rationalizations.md](../../references/agent-rationalizations.md), [customer-escape-prevention.md](../../references/customer-escape-prevention.md), [helix-session-constraints.md](../../references/helix-session-constraints.md), [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md), [qa-debug-discipline.md](../../references/qa-debug-discipline.md), [root-cause-investigation.md](../../references/root-cause-investigation.md), [round-time-contract.md](../../references/round-time-contract.md), [session-closing.md](../../references/session-closing.md), [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md), [skill-routing.md](../../references/skill-routing.md), [skill-rules-style.md](../../references/skill-rules-style.md), [phase-b2-board-check.md](../procedures/create-bug-workflow/phase-b2-board-check.md), [phase-c-confirm.md](../procedures/create-bug-workflow/phase-c-confirm.md), [phase-d-create.md](../procedures/create-bug-workflow/phase-d-create.md), [phase-e-falsification.md](../procedures/create-bug-workflow/phase-e-falsification.md), [phase-f-close.md](../procedures/create-bug-workflow/phase-f-close.md).
+Also read each only when its trigger (in WORKFLOW.md or the index) fires: [agent-rationalizations.md](../../references/agent-rationalizations.md), [customer-escape-prevention.md](../../references/customer-escape-prevention.md), [helix-session-constraints.md](../../references/helix-session-constraints.md), [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md), [qa-debug-discipline.md](../../references/qa-debug-discipline.md), [root-cause-investigation.md](../../references/root-cause-investigation.md), [round-time-contract.md](../../references/round-time-contract.md), [session-closing.md](../../references/session-closing.md), [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md), [skill-routing.md](../../references/skill-routing.md), [skill-rules-style.md](../../references/skill-rules-style.md), [phase-b2-board-check.md](../procedures/create-bug-workflow/phase-b2-board-check.md), [phase-c-confirm.md](../procedures/create-bug-workflow/phase-c-confirm.md), [phase-d-create.md](../procedures/create-bug-workflow/phase-d-create.md), [phase-e-falsification.md](../procedures/create-bug-workflow/phase-e-falsification.md), [phase-f-close.md](../procedures/create-bug-workflow/phase-f-close.md).
 
 ## Refusal-first (precondition gate)
 

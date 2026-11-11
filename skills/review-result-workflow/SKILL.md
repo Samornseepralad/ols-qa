@@ -28,13 +28,15 @@ When invoked:
 4. **Judge every case against all ten criteria** (WORKFLOW.md Step 5). All ten must pass for a case to pass; one failure is enough to fail it.
 5. **Only three closing statuses exist** — `PASSED`, `FAILED`, `AWAITING RE-REVIEW`. No interim status may be left on a case: a half-status makes the board read as finished while cases are still open.
 6. **Result quality gate before any verdict** — [result-quality-gate.md](../../references/result-quality-gate.md): all 20 layers on every case before a verdict is reported or written; the main thread re-runs it on the lanes' files.
-7. Read [WORKFLOW.md](../procedures/review-result-workflow/WORKFLOW.md) and run its progress checklist in order; open each reference file at the step that names it, not before. Skipping a step or gate is not allowed.
+7. Read [WORKFLOW.md](../procedures/review-result-workflow/WORKFLOW.md) and run its progress checklist in order; open each reference file at the step that names it, not before. Never skip a step or gate.
 
 Claude Code shortcut: `/review-result` → [commands/review-result.md](../../commands/review-result.md).
 
 ## Contents
 
-All shared references and the trigger that opens each: [skill-reference-index.md](../../references/skill-reference-index.md). At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md).
+Shared reference index, with the trigger that opens each file (see also): [skill-reference-index.md](../../references/skill-reference-index.md).
+
+At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md).
 
 Triggers specific to reviewing results (each is a gate at the moment named):
 
@@ -45,7 +47,7 @@ Triggers specific to reviewing results (each is a gate at the moment named):
 - [shared-must-never.md](../../references/shared-must-never.md) — read before any write or post.
 - [qa-closing-shared.md](../../references/qa-closing-shared.md) — read before saying done.
 
-Also read each of these only when its step's trigger fires (the trigger is on the line that links it in WORKFLOW.md or the index): [customer-escape-prevention.md](../../references/customer-escape-prevention.md), [skill-routing.md](../../references/skill-routing.md), [skill-rules-style.md](../../references/skill-rules-style.md), [test-through-real-steps.md](../../references/test-through-real-steps.md), [agent-rationalizations.md](../../references/agent-rationalizations.md), [helix-session-constraints.md](../../references/helix-session-constraints.md), [jira-comment-post-review.md](../../references/jira-comment-post-review.md), [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md), [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md), [qa-debug-discipline.md](../../references/qa-debug-discipline.md), [root-cause-investigation.md](../../references/root-cause-investigation.md), [round-time-contract.md](../../references/round-time-contract.md), [session-closing.md](../../references/session-closing.md), [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md).
+Also read each only when its trigger (in WORKFLOW.md or the index) fires: [customer-escape-prevention.md](../../references/customer-escape-prevention.md), [skill-routing.md](../../references/skill-routing.md), [skill-rules-style.md](../../references/skill-rules-style.md), [test-through-real-steps.md](../../references/test-through-real-steps.md), [agent-rationalizations.md](../../references/agent-rationalizations.md), [helix-session-constraints.md](../../references/helix-session-constraints.md), [jira-comment-post-review.md](../../references/jira-comment-post-review.md), [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md), [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md), [qa-debug-discipline.md](../../references/qa-debug-discipline.md), [root-cause-investigation.md](../../references/root-cause-investigation.md), [round-time-contract.md](../../references/round-time-contract.md), [session-closing.md](../../references/session-closing.md), [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md).
 
 ## Refusal-first (precondition gate)
 
