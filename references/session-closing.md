@@ -8,7 +8,7 @@ Complete [verify-closing-checklist.md](verify-closing-checklist.md) for this wor
 
 ## 2 — Artifact index (mandatory)
 
-Post paths and links the user may need next:
+Post the paths and links the user needs next:
 
 ```text
 ━━━ Artifacts ━━━
@@ -47,7 +47,7 @@ blocked runs — with the per-round state and source fingerprints the next round
 
 Other workflows: write when **any** applies:
 
-- User may continue in a **new chat**
+- User can continue in a **new chat**
 - Workflow ran **> 30 minutes** or **> 15 TC rows**
 - Session ended **blocked** (VPN, auth, partial Jira post)
 

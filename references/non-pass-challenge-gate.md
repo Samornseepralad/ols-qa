@@ -68,7 +68,7 @@ them verbatim:
    - the ticket the **test case was derived from**.
    A related ticket can (a) **supersede** the expected value you are holding — a later ticket changed the
    intended behavior and the app now follows the newer one, or (b) **clarify** an AC/EC that reads
-   ambiguously on this ticket alone. Either way, the app may be correct and the test-case expected stale.
+   ambiguously on this ticket alone. Either way, the app can be correct and the test-case expected stale.
 3. **The design / spec the ticket points to** — Figma / PRD / AC document. Read the real frame, not a
    transliteration of it.
 
@@ -174,7 +174,7 @@ The verdict for that case is not posted before the user answers in the decisions
 | Rule | Because |
 |------|---------|
 | MUST treat every non-PASS as a hypothesis and re-verify the **expected** side against an authoritative source before recording a verdict, filing a bug, or sending a notify | The expected side is the one that turns a real defect into a phantom one (PM-006) |
-| MUST read the AC/EC of **related / linked tickets** (parent story, linked issues, sibling tickets on the same surface, the TC's source), not only the ticket under test | A later ticket can supersede or clarify the expected value; the app may be following the newer behavior |
+| MUST read the AC/EC of **related / linked tickets** (parent story, linked issues, sibling tickets on the same surface, the TC's source), not only the ticket under test | A later ticket can supersede or clarify the expected value; the app can be following the newer behavior |
 | MUST read the expected value **character-exact from the source**, on both what it says and what it does not | A paraphrase or recollection is how the wrong expected gets tested against |
 | MUST NOT treat a transliteration, an English feature/button name, prose/verb usage, or your own assumption as "the spec" | `Bookmark` ≠ label "บุ๊กมาร์ก"; the design said "บันทึก" (PM-006, phantom bug) |
 | MUST treat a hedge in the expected value ("confirm with PO/Figma", "น่าจะ", "TBD") as an **unverified spec** → a question, not a defect | An unconfirmed expected is not a contract to fail the app against |

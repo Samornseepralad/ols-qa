@@ -104,12 +104,12 @@ whole-flow MP4 + a screenshot for each Expected-Result item **that role's steps 
 that is genuinely role-invariant is captured **once, with the role used stated on the row** — not
 re-shot five times. That keeps 5 roles × 4 ER items from meaning 20 stills when the case really splits
 2 and 2; it is also the only route besides BLOCKED for an ER no single role can reach, so use it
-honestly — "role-invariant" is a claim about the product, and a reviewer may ask which row proves it.
+honestly — "role-invariant" is a claim about the product, and a reviewer can ask which row proves it.
 
 **Steps — the clip follows the written steps, it does not shortcut to the end.** Driving the real
 surface is its own rule (see also [test-through-real-steps.md](test-through-real-steps.md), linked from every test-running skill's SKILL.md); this file adds that the recording
 must *show* it. A step performed off-camera (an API call, another tab, a state set before recording
-started) is **not captured** — re-record with it in frame. Only *pre-existing state* may stand as a
+started) is **not captured** — re-record with it in frame. Only *pre-existing state* can stand as a
 precondition instead: a numbered Test Step is **never** demotable to one, and a step that belongs in
 the precondition must already be written that way in the case, not relabelled at capture time to
 excuse a recording that skipped it.
@@ -146,12 +146,12 @@ Measured by **`capture/verify_shot.py`** (same toolkit as the recorder): `python
 
 Every MP4 (story test **and** retest) MUST clear all 7 layers before the case counts as done. **Miss any layer and the job cannot be finished — no posting, no transition, no "done".** A clip that looks like a recording but skips a step, cuts off before the target, or is too blurry to read is worse than none — it fakes proof. Re-capture; never wave it through.
 
-The run that executes the case may be the recording — no separate capture pass is needed; the clip still clears all 7 layers below unchanged ([round-time-contract.md §8](round-time-contract.md#8-mp4-record-during-execution)).
+The run that executes the case can be the recording — no separate capture pass is needed; the clip still clears all 7 layers below unchanged ([round-time-contract.md §8](round-time-contract.md#8-mp4-record-during-execution)).
 
 | # | Layer | Passes only when |
 |:--:|---|---|
 | **1** | **Max quality** | Recorded to the **capture spec below** — viewport ≥ 1920×1080, `deviceScaleFactor` 2, H.264 **CRF 18 preset slow**, `yuv420p` limited-range, `+faststart`, **no downscale that blurs text**. On-screen labels legible at 100%. |
-| **1b** | **Steady picture** | No frozen frame inside a moving stretch, and no visible flicker / pumping / stutter / blink when watched at 100%. **≤ 5% of moving frames may be repeats** of their predecessor, excluding the still-holds the manifest **declares** — and those may cover **at most 25% of the clip**: past that the exclusion has eaten the rule, and the honest verdict is *a clip this static cannot judder, but nothing was proven either*. Measured by the verifier named below, never from memory. |
+| **1b** | **Steady picture** | No frozen frame inside a moving stretch, and no visible flicker / pumping / stutter / blink when watched at 100%. **≤ 5% of moving frames are allowed to be repeats** of their predecessor, excluding the still-holds the manifest **declares** — and those can cover **at most 25% of the clip**: past that the exclusion has eaten the rule, and the honest verdict is *a clip this static cannot judder, but nothing was proven either*. Measured by the verifier named below, never from memory. |
 | **1c** | **Provenance** | The clip came from the capture pipeline below at the rate it claims — a run manifest exists, names the pipeline `cdp-screencast->x264`, and matches the delivered file (name · resolution · fps). **What cannot be checked has not passed** (ตรวจไม่ได้ = ไม่ผ่าน): no manifest = layer red, not a waiver. A cut made by `freeze_cut.py` carries its own manifest with an `edit` record that verify re-proves against the original ([exception below](#mp4-evidence--7-layer-quality--correctness-defense-gate-mandatory-fail-closed)); a cut beside a copied original manifest is red. |
 | **2** | **Whole flow, no skip** | Drives **every** Test Step from the start, on the **real surface** (UI → clicks, not an API shortcut) — no jump-cut, no starting mid-flow, no fast-forward past a step. |
 | **3** | **Reaches the stated target** | If a step says "scroll to menu XX / open dialog YY / find item ZZ / check value VV", the clip **visibly reaches and shows** it — the element is located, scrolled into view, held in frame long enough to read, and acted on. **Never end the recording before arriving**; a step that could not be reached = that case is BLOCKED with the reason, not a short clip claimed as pass. |
@@ -172,7 +172,7 @@ python3 capture/verify_video.py --strict-motion <clip>_cut.mp4
 
 | Rule | Why |
 |---|---|
-| Only `freeze_cut.py` may make a cut. Never drop frames with ad-hoc ffmpeg, and never copy the original `.capture.json` beside a cut | A copied manifest describes the original, so layer 1c fails (*"manifest describes '<orig>.mp4', not this file"*), and its holds point past the shorter cut (*"still-hold ending at … but the file is only …"*). Both failures are correct and stay |
+| Only `freeze_cut.py` makes a cut. Never drop frames with ad-hoc ffmpeg, and never copy the original `.capture.json` beside a cut | A copied manifest describes the original, so layer 1c fails (*"manifest describes '<orig>.mp4', not this file"*), and its holds point past the shorter cut (*"still-hold ending at … but the file is only …"*). Both failures are correct and stay |
 | The cut removes **only frames that repeat the frame before them**: short stalls inside motion whole, long freezes trimmed to `--max-still` (default 3 s) — never removed whole | Nothing a viewer could read is taken out, so this is not a jump-cut or fast-forward under layer 2. An ER screen that sits still stays on screen |
 | Keep the original `.mp4` and `.capture.json` beside the cut, unchanged | `verify_video.py` re-derives the cut's `edit` record from them (source and manifest sha256, every removed frame re-measured as a frozen repeat, frame count, fps, remapped holds). Source moved or edited ⇒ the cut fails |
 | More than **60 %** removed ⇒ the tool refuses and verify fails | That much frozen picture means the recording itself failed — re-capture |
@@ -284,7 +284,7 @@ automatically provide. The pattern to look for before recording:
 - **Endpoints that accept and do nothing.** The write can answer `204` and still change no state
   (already-counted), or answer `500` for specific records while working for their siblings. **Both
   look identical from the UI.** Watch the response, not the screen.
-- **The same ER on a sibling entity may be routed elsewhere.** A per-entity counter can exist on one
+- **The same ER on a sibling entity can be routed elsewhere.** A per-entity counter can exist on one
   entity type and be broken or absent on another. Verify the exact entity type the case names.
 
 **What to do when the ER is not demonstrable here:** that is a **BLOCKED** with the reason and the
@@ -338,7 +338,7 @@ summary, verdict, post, transition, or "done"**.
 | **1** | **Enumerate the full scope** | Every testable item in the authoritative contract is extracted **char-exact** and given a stable id — the ticket's Acceptance Criteria (`AC1…`), every Expected Condition / Expected Result line (`EC1…` / `ER1…`), and for a **retest** every item of the bug's Expected Result field **plus** each bullet of the bug's detail/steps. **Extract assertions embedded in prose too**, not only bulleted lines — a paragraph "the user can X and the count updates" is two items. **Completeness self-check (the gate is only as strong as this layer):** re-read the AC/EC source **end-to-end** and confirm no testable assertion is missing from the list — under-enumeration here passes layer 6 silently because layer 6 only reconciles against what was enumerated. This numbered list is the coverage baseline: nothing tested-or-reported lives outside it, and no item in it is silently dropped. |
 | **2** | **Map 1:1 to rows — no orphan, no bundling** | Every enumerated id maps to **≥1 row** in the test plan / verdict table (build the coverage matrix `id → row #`). An enumerated id with **no row** = a coverage gap → stop and add the row. A **compound** AC ("does A **and** B **and** C") splits into **one checkable row per clause** — never one row claiming three behaviours it only touched one of. |
 | **3** | **Execute each on its real surface** | Every enumerated id is **actually exercised and observed** — never inferred from a sibling item, never assumed-covered because "the happy path passed". An id you could not reach is an **explicit BLOCKED row** with the reason + who/what is needed — never quietly left off the table. |
-| **4** | **Row, never a remark (anti-footnote)** | Every enumerated id's result is its **own table row** carrying a verdict + evidence cell. It is **forbidden** to record an AC/EC/bug-detail observation **only** in a remark / "หมายเหตุ" / note below-or-beside the table / a trailing paragraph / chat-only. A remark may add context **to** a row; it may **never** be the sole place an AC/EC item is recorded. If it deserves a mention, it deserves a row. |
+| **4** | **Row, never a remark (anti-footnote)** | Every enumerated id's result is its **own table row** carrying a verdict + evidence cell. It is **forbidden** to record an AC/EC/bug-detail observation **only** in a remark / "หมายเหตุ" / note below-or-beside the table / a trailing paragraph / chat-only. A remark can add context **to** a row; it is **never** the sole place an AC/EC item is recorded. If it deserves a mention, it deserves a row. |
 | **5** | **Verdict integrity — partial coverage ≠ PASS** | A case/scenario/retest is **PASSED only when every id it covers met its expected** (char-exact where wording is specified). A covered id **not yet observed / not reached** cannot make the case PASS — its honest status is **BLOCKED** (or go re-test it), **never a product FAILED**: an untested item is a coverage gap, not a defect ([Bug Priority & Severity Matrix](bug-priority-matrix.md)). A covered id **observed to differ** from its expected = a **FAILED / PWMI row for that point**, severity judged only by the [matrix](bug-priority-matrix.md) — never a PASS with the exception hidden in a remark. Either way, "works except one point" is a **row**, not a footnote on a green case. |
 | **6** | **Reconcile the count before "done"** | Before any summary / verdict / post / external write: `enumerated in-scope ids == rows carrying a verdict + evidence (or an explicit BLOCKED reason)`. **Every id appears as a row; no id lives only in a remark; no row is verdict-less; no id is left `NOT TESTED`.** The **only** id allowed off the table is one **explicitly excluded from scope at the confirm gate** — and it is listed in a visible **Out-of-scope** block, never silently dropped. Any other shortfall fails the gate. |
 | **7** | **Fail-closed = not complete** | Layer 6 not green ⇒ the story/retest is **NOT complete**: do **not** report "PASSED" / "100%" / "complete", do **not** proceed to the external results update / Jira transition / notify, do **not** close the session. Return to the first unmet layer — add the missing row, run the untested id, re-verdict the partial case — then re-run from layer 1. Partial AC/EC coverage is a **stop condition**, not a remark. **Unattended / bot mode:** resolve instead of halting — an unrun or unreachable id becomes a **BLOCKED row** with its reason, and the case/story is reported **incomplete / not-all-passed**; a bot **never** silently marks it PASSED or drops the id. |
@@ -418,7 +418,7 @@ Do not use without fresh evidence in the **same** turn:
 
 ## Evidence must be a real FE screen — a raw-data page is never evidence
 
-Every evidence file, whatever the format, may show **only real front-end screens of the system under
+Every evidence file, whatever the format, must show **only real front-end screens of the system under
 test**. One frame that is not a system screen fails the item outright: re-capture it, never trim it
 out, then review the whole file again before delivering.
 

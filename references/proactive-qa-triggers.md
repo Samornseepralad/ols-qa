@@ -32,8 +32,8 @@ Routing source of truth: [skill-routing.md](skill-routing.md).
 
 If linked-ticket type cannot be read (no MCP, offline), infer from **branch name + last commit subject** only:
 
-- `feat/login-*`, commit "add ..." → likely Story → suggest tc-fe-prep
-- `fix/*`, commit "fix ..." → likely Bug → suggest retest-bug
+- `feat/login-*`, commit "add ..." → likely Story → offer tc-fe-prep
+- `fix/*`, commit "fix ..." → likely Bug → offer retest-bug
 
 State the inference so the user can correct it: *"Branch looks like a feature — want TC FE prep? (or pick from /helix)"*.
 
