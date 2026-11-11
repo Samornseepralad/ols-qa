@@ -12,7 +12,8 @@ t('missing Refusal-first is caught (helix 2026-10-25 sync failure)', () => asser
 t('missing QA closing is caught', () => assert.deepStrictEqual(checkText('x', good.replace('## QA closing\n', '')), ['x: missing ## QA closing section']));
 t('top-level proactive_triggers is caught', () => assert.deepStrictEqual(checkText('x', good.replace('metadata:\n  proactive_triggers:\n    - do x', 'proactive_triggers:\n  - do x')), ['x: proactive_triggers must be listed under metadata:']));
 t('no "Do NOT use" in the first 20 lines is caught', () => assert.deepStrictEqual(checkText('x', good.replace('  Do NOT use for y.\n', '')), ['x: description must include Do NOT use (negative case) in the first 20 lines']));
-t('skill-routing.md marks the 4 ols-qa-only skills as not shipped', () => { const s = require('./check').localOnly(path.resolve(__dirname, '..', '..')); ['content-takedown-workflow', 'review-result-workflow', 'smoke-test-workflow', 'test-data-prep-workflow'].forEach((n) => assert.ok(s.has(n), n)); assert.ok(!s.has('helix')); });
+// Owner Q3 (11/Nov/2026, docs/sdd/r11-skill-fixes-g2 R15): review-result and test-data-prep ship in helix, so only 2 stay local.
+t('skill-routing.md marks only content-takedown and smoke-test as ols-qa-only; review-result and test-data-prep ship', () => { const s = require('./check').localOnly(path.resolve(__dirname, '..', '..')); ['content-takedown-workflow', 'smoke-test-workflow'].forEach((n) => assert.ok(s.has(n), `${n} must be ols-qa-only`)); ['review-result-workflow', 'test-data-prep-workflow', 'helix'].forEach((n) => assert.ok(!s.has(n), `${n} must not be ols-qa-only`)); });
 t('repo skills pass the helix structure rules', () => { const v = run(path.resolve(__dirname, '..', '..')); assert.strictEqual(v.length, 0, v.join('\n')); });
 console.log(`\n${pass}/${pass + fail} passed`);
 process.exit(fail ? 1 : 0);
