@@ -8,7 +8,7 @@
 | R4 | `skills/procedures/testing-ticket-workflow/execute-and-summarize.md:63-64` | Replace the last sentence of the *Lane failure* paragraph with the no-wait rule. Rewrapped at about 100 columns. |
 | R7 | `skills/helix/SKILL.md:96` (QA closing, outside the frozen `## Routing` span) | Same-line append. |
 | R8 | `skills/procedures/tc-api-prep-workflow/WORKFLOW.md` Phase C (~lines 125, 133) and G1 | Same-line edits to the B offer and the B row. One G1 step points to `delivery-options.md` § Test.md. |
-| R9 | same file, Phase C after the Choice table | One added line. |
+| R9 | same file, Phase C after the Choice table | One added rule line, after a blank line. |
 | R10 | same file, Phase F template (~line 226) | Same-line separator fix. |
 | R11 | same file, Phase A (~line 88) | Same-line edit. |
 | R5, R6 | `skills/helix/SKILL.md:4,84,+1 row`; `references/skill-routing.md:7,19,21`; `references/menu-text.md:24,26`; `references/intent-shortcuts.md:15,17`; `references/agent-entry.md:76-77` | **Blocked on Q1.** Not edited in this round. After the owner answers, every edit is on the same line except the one new R6 row (SKILL.md goes to 155 lines, the r7 test's cap). |
@@ -16,7 +16,7 @@
 
 - No new tool, dependency or cost. Text only.
 - Line guards:
-  - tc-api-prep WORKFLOW.md is 366 lines and must stay ≤ 370 (`tools/tc-api-prep-export-branch/check.test.js` R6). R9 adds one line and the R8 G1 step adds one, so the file reaches 368. The R4 xlsx sentence in G1 stays byte-identical.
+  - tc-api-prep WORKFLOW.md is 366 lines and must stay ≤ 370 (`tools/tc-api-prep-export-branch/check.test.js` R6). R9 adds two lines (a blank line and the rule). The R8 G1 step takes the blank line between steps 3 and 4, so it adds none, and the file reaches 368. The R4 xlsx sentence in G1 stays byte-identical. Step 4 stays "4. **Write failure**" (pinned by `tools/r7-tc-api-prep-matrix/check.test.js` R4g), so the Test.md step is step 5.
   - execute-and-summarize.md has no line cap.
   - catch-ai SKILL.md grows by one line, to 291 (skill-lint max 500).
 - Frozen spans left untouched: helix `## Routing` and `menu-text.md` (r7 test), and tc-api-prep `### G-verify` through the end of the file (r6 test).
