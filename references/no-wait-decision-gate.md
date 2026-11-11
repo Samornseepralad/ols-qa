@@ -90,10 +90,12 @@ Fail-closed: if any layer is skipped, the case is not written as BLOCKED, EVIDEN
 
 ## E. Act, don't hold (layers 19–20)
 
-19. **No holding finished work.** When the owner has delegated the round ("don't ask", "don't wait",
-    "handle it"), finished drafts are posted and transitions done per the workflow's own gates
-    (format, syntax, readback) without an approval wait. Opening new bugs/issues still needs a live
-    yes — that hard limit never relaxes.
+19. **No holding finished work.** The approval wait is skipped only for an outward action — post,
+    transition, or notify — that the owner explicitly delegated by name, in this session, for this
+    round; that action then runs per the workflow's own gates (format, syntax, readback), after the
+    bundle list is printed in chat. General cues ("handle it", "don't ask", "don't wait") never skip a
+    write approval; an action not named still waits for the workflow's approval step. Opening new
+    bugs/issues still needs a live yes — that hard limit never relaxes.
 20. **Self-check before reporting.** Before the round report, scan every row for the words
     "pending decision", "needs PO", "waiting", "ask", "later", "no data". Each hit must point to its
     layer-17 cause and layer-18 record; otherwise reopen the case at layer 1.
