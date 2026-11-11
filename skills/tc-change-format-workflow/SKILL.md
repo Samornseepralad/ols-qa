@@ -208,6 +208,7 @@ Retyping non-ASCII text risks changing it. Copy inside Google Sheets instead. In
 
 Report as numbers: `rows N/N`, `cells X/Y`, `tags X/N`, `borders X/Y` — and say what each was measured from.
 Borders and wrapping are what people **see**; API values are not proof of that. Ask the user to open the file and confirm before calling the job done.
+See also: [qa-evidence-gates.md — Gate function](../../references/qa-evidence-gates.md#gate-function) for the evidence-before-claim rule behind these numbers and the "done" claim.
 
 ### 11. Report
 
