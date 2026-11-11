@@ -56,7 +56,7 @@ TC review progress:
 - [ ] Step 3b — Source sweep before "ask the PO / reporter" (mandatory; result-quality-gate.md layer 14)
 - [ ] Step 4 — Report Good vs Need Improve
 - [ ] Step 5 — Notify the project's TC-review channel (ask only the thread)
-- [ ] QA closing (mandatory before "done") — qa-closing-shared.md + qa-evidence-gates.md core, then session-closing.md
+- [ ] QA closing (mandatory before "done") — qa-closing-shared.md + qa-evidence-gates.md core + qa-evidence-coverage.md, then session-closing.md
 ```
 
 ## Discipline
@@ -360,7 +360,7 @@ All shared references: [skill-reference-index.md](../../references/skill-referen
 
 - At start: [helix-session-constraints.md](../../references/helix-session-constraints.md) once per session; [long-workflow-todos.md](../../references/long-workflow-todos.md) when the run has many steps (keep the todo list).
 - Before invoking or switching skills: [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md); choosing which skill handles a request: [skill-routing.md](../../references/skill-routing.md).
-- At QA closing, before saying done: [qa-closing-shared.md](../../references/qa-closing-shared.md) and [qa-evidence-gates.md](../../references/qa-evidence-gates.md) (core only — this workflow records no capture, MP4 or re-record evidence); at session end [session-closing.md](../../references/session-closing.md).
+- At QA closing, before saying done: [qa-closing-shared.md](../../references/qa-closing-shared.md) and [qa-evidence-gates.md](../../references/qa-evidence-gates.md) (core) and [qa-evidence-coverage.md](../../references/qa-evidence-coverage.md) (AC/EC coverage and pre-delivery gates, applied to the review before it is handed over; capture and re-record parts never apply — this workflow records no evidence); at session end [session-closing.md](../../references/session-closing.md).
 
 ### Only if triggered (exact condition on each line)
 
