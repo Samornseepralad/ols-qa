@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// Rule-text test (spec docs/sdd/r12-p1-retest R1–R7): after-9 P1 retest-bug-workflow#0 and #1.
+// Rule-text test (spec docs/sdd/r12-p1-retest R1–R4, R7): after-9 P1 retest-bug-workflow#0 and #1.
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -82,16 +82,9 @@ t('R2 clauses moved into kept places', () => {
   assert.ok(/<a id="design-comparison"><\/a>/.test(rd(EX)), '4d anchor missing');
 });
 // R5–R7 — #1 delegated rounds.
-t('R5 loose cues no longer skip a write approval', () => {
-  const s = flat(rd(CP));
-  assert.ok(!/delegated the round \("don't ask", "don't wait", "handle it"\)/.test(s), 'loose-cue skip text still present');
-  assert.ok(/explicitly delegated by name, in this session, for this round/.test(s), 'explicit named-action delegation wording missing');
-  assert.ok(/"handle it", "don't ask", "don't wait"\) never skip a write approval/.test(s), 'loose cues are not ruled out');
-});
-t('R6 delegated action still prints the bundle list first', () => {
-  assert.ok(/print the item 4 bundle list in chat before executing/.test(flat(rd(CP))), 'bundle print missing');
-  assert.ok(/Opening new bugs still needs a live yes/.test(flat(rd(CP))), 'new-bug hard limit missing');
-});
+// R5–R6 (#1 named-action delegation) are held: comment-and-post.md:330 is frozen by owner decision D2
+// (tools/retest-case-plan-rules/check.test.js D2). See spec § Blocked. Their assertions live on
+// branch fix/r12-p1-retest-delegation-held until the owner decides.
 t('R7 batched single approval at end of round stays', () => {
   assert.ok(/nothing is posted, transitioned or notified until item 4's approval is in/.test(flat(rd(CP))), 'Step 6d gate changed');
 });
