@@ -15,6 +15,7 @@ const has = (p, re) => assert.ok(re.test(flat(rd(p))), `${p}: missing ${re}`);
 const lacks = (p, re) => assert.ok(!re.test(flat(rd(p))), `${p}: still has ${re}`);
 const R = 'references/';
 const CBW = 'skills/procedures/create-bug-workflow/WORKFLOW.md';
+const CBF = 'skills/procedures/create-bug-workflow/phase-f-close.md';
 const FE = 'skills/procedures/tc-fe-prep-workflow/references/';
 const TT = 'skills/procedures/testing-ticket-workflow/';
 
@@ -35,7 +36,7 @@ t('R4 each fix-verify cap names its loop (numbers unchanged)', () => {
   has(`${R}jira-comment-post-review.md`, /max 3 rounds — the cap of this posted-comment re-read loop/);
   has(`${R}skill-rules-style.md`, /\*\*Maximum 2 rounds\*\* \(generic cap; a workflow step that states its own cap/);
   has(`${R}agent-rationalizations.md`, /fix-verify max 2 rounds unless the workflow step states its own cap/);
-  has(CBW, /\*\*Maximum 2 fix-verify rounds\*\*/);
+  has(CBF, /\*\*Maximum 2 fix-verify rounds\*\*/);
 });
 t('R5 linebreak fix edits in place', () => {
   lacks(`${R}jira-linebreak-conversion.md`, /delete comment, re-convert, re-post/);
@@ -93,15 +94,15 @@ t('R17/R21 stubs scope the cross-ticket check', () => {
   lacks('skills/tc-fe-prep-workflow/SKILL.md', /including the cross-ticket conflict check/);
 });
 t('R18 Phase F fetch-fail branch', () => {
-  has(CBW, /\*\*Fetch fails\*\* \(permission, 404, MCP down\) → report that key\/URL from the tool output as \*\*created-unverified\*\*/);
-  has(CBW, /`Verdict: CREATED \{N\}\/\{N\} — \{m\} unverified`/);
+  has(CBF, /\*\*Fetch fails\*\* \(permission, 404, MCP down\) → report that key\/URL from the tool output as \*\*created-unverified\*\*/);
+  has(CBF, /`Verdict: CREATED \{N\}\/\{N\} — \{m\} unverified`/);
 });
 t('R19 A3 hold and A1–A3 wait are marked', () => {
   has(CBW, /🔴 STOP — Ask, never decide/);
   has(CBW, /🔴 STOP — Wait\*\* until A1–A3/);
 });
 t('R20 verdict line mapped to session-closing §5', () => {
-  has(CBW, /`Verdict: CREATED` line below is create-bug's form of the `Verdict:` line/);
+  has(CBF, /`Verdict: CREATED` line below is create-bug's form of the `Verdict:` line/);
 });
 t('R22 tc-fe-prep skill refs without soft wording', () => {
   lacks(`${FE}ac-ec-coverage-review.md`, /TCs? may cover/);

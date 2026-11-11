@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const P = 'skills/procedures/create-bug-workflow/WORKFLOW.md';
-const S = fs.readFileSync(path.join(root, P), 'utf8');
+const S = ['phase-b2-board-check.md', 'phase-e-falsification.md'].map((f) => fs.readFileSync(path.join(root, P.replace('WORKFLOW.md', f)), 'utf8')).join('\n');
 const start = S.indexOf('## 🔴 GATE: Phase B2');
 const end = S.indexOf('## Phase E — Falsification');
 const b2 = S.slice(start, end).replace(/\s+/g, ' ');

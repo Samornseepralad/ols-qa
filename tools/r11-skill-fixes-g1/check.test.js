@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const rd = (p) => fs.readFileSync(path.join(root, p), 'utf8');
-const CB = rd('skills/procedures/create-bug-workflow/WORKFLOW.md');
+const CB = ['phase-b2-board-check.md', 'phase-e-falsification.md', 'phase-c-confirm.md', 'phase-d-create.md', 'phase-f-close.md', 'WORKFLOW.md'].map((f) => rd(`skills/procedures/create-bug-workflow/${f}`)).join('\n');
 const FE = 'skills/procedures/tc-fe-prep-workflow/';
 const FE_WF = rd(`${FE}WORKFLOW.md`);
 const RG = rd(`${FE}requirement-gates.md`);
