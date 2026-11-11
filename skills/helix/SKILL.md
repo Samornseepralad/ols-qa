@@ -126,6 +126,26 @@ Read while routing (open each file at the step that names it):
 - Read [skill-routing.md](../../references/skill-routing.md) when choosing which skill handles a request.
 - Read [skill-rules-style.md](../../references/skill-rules-style.md) for refusal wording only; its multi-item Missing list never overrides the one-item rule in Opening.
 
+Read only when the routed workflow reaches that step (the router never opens these; each stays one hop from here because the shared rules above name it):
+
+- Read [bug-priority-matrix.md](../../references/bug-priority-matrix.md) only when the routed workflow reaches this step: before setting any priority or a PWMI / FAILED verdict.
+- Read [customer-escape-prevention.md](../../references/customer-escape-prevention.md) only when the routed workflow reaches this step: before any QA run; the gates that stop shipped defects.
+- Read [defect-report-completeness.md](../../references/defect-report-completeness.md) only when the routed workflow reaches this step: before writing up any defect or non-pass.
+- Read [figma-design-comparison.md](../../references/figma-design-comparison.md) only when the routed workflow reaches this step: before judging any UI or visual result against the design.
+- Read [jira-comment-post-review.md](../../references/jira-comment-post-review.md) only when the routed workflow reaches this step: after posting a Jira comment, before saying done.
+- Read [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md) only when the routed workflow reaches this step: before posting a Jira table with multi-line cells.
+- Read [long-workflow-todos.md](../../references/long-workflow-todos.md) only when the routed workflow reaches this step: when the workflow has many steps; keep the todo list.
+- Read [non-pass-challenge-gate.md](../../references/non-pass-challenge-gate.md) only when the routed workflow reaches this step: before recording any result that is not PASSED.
+- Read [playwright-preflight.md](../../references/playwright-preflight.md) only when the routed workflow reaches this step: before any Playwright run.
+- Read [qa-debug-discipline.md](../../references/qa-debug-discipline.md) only when the routed workflow reaches this step: when a test is flaky or a tool errors.
+- Read [qa-evidence-gates.md](../../references/qa-evidence-gates.md) only when the routed workflow reaches this step: before any completion claim.
+- Read [resilient-selectors.md](../../references/resilient-selectors.md) only when the routed workflow reaches this step: when writing or fixing Playwright selectors.
+- Read [result-quality-gate.md](../../references/result-quality-gate.md) only when the routed workflow reaches this step: before any verdict leaves the round.
+- Read [root-cause-investigation.md](../../references/root-cause-investigation.md) only when the routed workflow reaches this step: before naming a cause for any failure.
+- Read [round-time-contract.md](../../references/round-time-contract.md) only when the routed workflow reaches this step: when a round starts and before reporting times.
+- Read [test-through-real-steps.md](../../references/test-through-real-steps.md) only when the routed workflow reaches this step: before testing an action; no API shortcut for the action under test.
+- Read [verify-closing-checklist.md](../../references/verify-closing-checklist.md) only when the routed workflow reaches this step: before reporting a verify or retest done.
+
 ## Dependencies
 
 Check these before routing — check commands and install hints are in [dependencies.md](../../references/dependencies.md):
