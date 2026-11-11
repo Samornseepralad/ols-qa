@@ -14,7 +14,7 @@
 | R15–R19 | `skills/catch-ai-workflow/SKILL.md` :96-99, :203, :244-258 | Step 5 sub-items (+~4 lines), gate scope sentence, step 7 pointer, new conditional must-read group, "cleared to send". Description untouched. |
 | R20–R22 | `skills/tc-api-prep-workflow/SKILL.md` :4-5, :40, :54, :67 | Description triggers; API mapping on two must-read lines; "owns it". `WORKFLOW.md` not touched. |
 | R23–R27 | `skills/tc-review-workflow/SKILL.md` :208, :230, :236-239, :359, :390; `commands/tc-review.md` :16-19 | In-place rewrites; net line change ≤ +1 (cap 403). |
-| R29–R32 | the 58 bundle files listed in spec R29; `references/jira-fast-publish.md` Pattern A/B; tc-api `WORKFLOW.md:270` | One-word rewrites; base64 branch in `uploadFile`. |
+| R29–R32 | the 58 bundle files listed in spec R29 (incl. `references/user-communication.md`, `references/intake-one-pager.md`, `references/swagger-diff-phase.md`, `references/test-md-format.md`, `references/qa-evidence-gates.md`, `references/non-pass-challenge-gate.md`, `references/figma-design-comparison.md`, `references/defect-report-completeness.md`, `references/test-through-real-steps.md`, `references/proactive-qa-triggers.md`, `skills/procedures/tc-api-prep-workflow/references/markdown-template.md`); `references/jira-fast-publish.md` Pattern A/B; tc-api `WORKFLOW.md:270` | One-word rewrites; base64 branch in `uploadFile`. |
 | R28 | `tools/r11-t9-uplift-b/check.test.js` (new) | Rule-text test, picked up by `scripts/run-test-suites.sh`. |
 
 Data: none. Library: none (Node built-ins only). Cost: none.
