@@ -31,11 +31,18 @@ t('R6 (amended 10/Nov/2026, r10-exam-items R4) the one question asks for one ite
 t('R6 routing section does not contradict (child intake is the child\'s, not the router\'s)', () => {
   assert.ok(/child workflow handles its own intake/.test(routing));
 });
-t('routing section and menu text unchanged vs origin/main', () => {
-  const b = base(P); if (!b) return console.log('      (origin/main unavailable — skipped)');
-  assert.strictEqual(routing, b.slice(b.indexOf('## Routing'), b.indexOf('## QA closing')));
+// Owner Q1 (11/Nov/2026, docs/sdd/r11-skill-fixes-g2 R13): the byte-equality freeze on Routing and
+// menu-text.md is replaced by the r7 rule it protected — the router asks one question only.
+t('R6 routing section and menu text keep the one-question rule (replaces the origin/main byte freeze)', () => {
+  const r = flat(routing);
+  assert.ok(/\bask one question\b/i.test(r), 'Routing has no "ask one question" rule');
+  assert.ok(!/\bask (two|several|multiple|more than one|\d+) (clarifying )?questions\b/i.test(r), 'Routing asks more than one question');
   const m = fs.readFileSync(path.join(root, 'references/menu-text.md'), 'utf8');
-  assert.strictEqual(m, base('references/menu-text.md'));
+  const block = (m.split('```text')[1] || '').split('```')[0];
+  assert.ok(block, 'menu-text.md has no ```text opening block');
+  const asks = block.split('\n').filter((l) => /\?\s*$/.test(l));
+  assert.strictEqual(asks.length, 1, `opening block asks ${asks.length} questions, expected 1`);
+  assert.strictEqual((block.match(/^Reply with /gm) || []).length, 1, 'opening block must have exactly one "Reply with" line');
 });
 t('menu range 1-13 consistent in SKILL.md and menu-text.md', () => {
   const m = fs.readFileSync(path.join(root, 'references/menu-text.md'), 'utf8');
