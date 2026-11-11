@@ -95,7 +95,7 @@ print(f"Saved {len(rows)} rows to {ISSUE_KEY}_FE_TC.csv")
 
 ### Optional CSV script (user-provided install root only)
 
-Running the script below is allowed if and only if the user states where Helix is installed (e.g. they paste a directory path):
+If and only if the user states where Helix is installed (e.g. they paste a directory path), run:
 
 ```bash
 python3 "{HELIX_INSTALL_ROOT}/scripts/export-markdown-table-to-csv.py" \

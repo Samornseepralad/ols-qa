@@ -9,7 +9,7 @@ Agent-facing rules for running workflows. Contributor/authoring rules → [docs/
 | MUST refuse | MUST refuse to post until the user approves the draft — because premature posts cannot be recalled cleanly. |
 | NEVER | NEVER claim Jira post success without re-opening the issue in the UI — because MCP can return OK while the body is truncated. |
 
-Write safety gates as MUST / NEVER with their condition — never as soft-only wording ("might want to").
+Write every safety gate as MUST / NEVER with its condition — never as softened advice.
 
 When you catch yourself rationalizing past a gate, use [agent-rationalizations.md](agent-rationalizations.md). Evidence before claims: [qa-evidence-gates.md](qa-evidence-gates.md).
 

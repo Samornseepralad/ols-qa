@@ -44,7 +44,7 @@ url: https://example.com/login
 - Steps are a **numbered or bulleted Markdown list** in plain English; **one action or assertion per step**.
 - **Actions:** `Click ...`, `Type ... in ...`, `Navigate to ...`
 - **Assertions:** `Verify ...`, `Expect ...`, `Check that ...`
-- Grouping related steps under **H2 section headings** (`## Setup`, `## Purchase`) is allowed — these are readability groups, not required.
+- **H2 section headings** (`## Setup`, `## Purchase`) group related steps for readability; they are not required.
 - **Data capture/reuse:** `Store the order number as orderId` … later `Verify the confirmation shows orderId`.
 - **Imports:** `@import ./flows/login.test.md` reuses a shared flow.
 

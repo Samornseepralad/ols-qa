@@ -92,7 +92,7 @@ at it:
 | 5 | **No overflow / no overlap** at the agreed widths | an element's box crosses the viewport edge or another text box (measure it — §4 of [customer-escape-prevention.md](customer-escape-prevention.md)) |
 
 A difference found here is **not automatically a defect** — it goes through the non-pass challenge
-gate ([non-pass-challenge-gate.md](non-pass-challenge-gate.md)) first, because the design itself can
+gate ([non-pass-challenge-gate.md](non-pass-challenge-gate.md)) first, because the design can itself
 be stale (§5).
 
 ---
@@ -137,7 +137,7 @@ Do this, in order:
 ## 6. Accepted limitation — an AC changed to match the build must be recorded, not absorbed
 
 When an acceptance criterion is edited **after** the ticket reached QA so that it matches what the
-build does (a dev-stated constraint, a PO saying "pass it as tested"), the verdict is legitimately
+build does (a dev-stated constraint, a PO saying "pass it as tested"), the verdict can legitimately be
 PASSED against the revised AC — but a silent PASSED is how the highest-severity escaped defect in the review reached the
 customer.
 

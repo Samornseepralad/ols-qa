@@ -61,7 +61,7 @@ Every way a user can reach the broken surface gets its own row. No row = no clai
 - **One row per entry point you actually exercised.** An entry point you did not exercise is written
   as `not tested` — never inferred from another row, never omitted.
 - **"Happens everywhere" / "happens both ways" is a claim about N paths and needs N rows**, each with
-  its own evidence file. One screenshot supports a claim about one path only.
+  its own evidence file. If you have one screenshot, state that one path.
 - A scope word in the verdict (`always`, `any entry point`, `only when …`) must be traceable to the
   matrix. If the matrix does not support the word, the word comes out.
 - The matrix goes **in the report**, not only in the local result file.

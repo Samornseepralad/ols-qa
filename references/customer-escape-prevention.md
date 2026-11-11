@@ -109,7 +109,7 @@ the harness captured at one desktop width. Seven escaped defects were on other w
 - **Settle scope in writing before the run:** which widths are in scope this round, and which are
   explicitly not delivered yet. A width that is out of scope is stated out of scope to the customer —
   not silently untested (a "not yet delivered" scope is a change request, never our defect).
-- **In-scope widths are exercised as their own lane** (typically a mobile and a tablet width beside
+- **In-scope widths are exercised as their own lane** (the mobile and tablet widths the project guide names, beside
   desktop), and every in-scope page carries a result per width.
 - **Judge by measurement, not by eye** — these two checks caught the real defects and are cheap:
   - overflow: any element with `rect.right > window.innerWidth`, or
