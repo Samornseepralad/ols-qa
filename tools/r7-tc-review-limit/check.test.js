@@ -6,8 +6,9 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const S = fs.readFileSync(path.join(root, 'skills/tc-review-workflow/SKILL.md'), 'utf8');
-const start = S.indexOf("5. **Fit the platform's message limit");
-const end = S.indexOf('6. **Revising a review');
+// r12-p1-three R9: the limit item is now item 3 (execution order); its text is unchanged.
+const start = S.indexOf("3. **Fit the platform's message limit");
+const end = S.indexOf('4. A thread is reached through a webhook');
 const item5 = S.slice(start, end).replace(/\s+/g, ' ');
 let fail = 0;
 function t(name, fn) {
