@@ -95,7 +95,8 @@ t('R10 untagged sheet → map by Expected Result vs AC text, inferred, report mi
   has(TR, /no row carries an AC\/EC tag → map by Expected Result vs AC text, mark each `inferred`[^)]*report the missing tags once under Need Improve/);
 });
 t('R11 notify run order stated and consistent with items 2 and 7', () => {
-  has(TR, /Then \(run order 1 → 8 → 5 → 7 → 2 → 3; items 4 and 6 only when correcting a sent message\):/);
+  // r12-p1-three R7/R9: items renumbered into execution order (old 1→8→5→7→2→3 is now 1→6).
+  has(TR, /Then, in this order \(items 1–6 every send; items 7 and 8 only when correcting a sent message\):/);
 });
 t('R11 size: tc-review SKILL.md ≤ 403 lines and < 30000 bytes', () => {
   assert.ok(lines(TR).length <= 403, `${lines(TR).length} lines`);

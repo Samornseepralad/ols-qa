@@ -10,8 +10,9 @@ const P = 'skills/tc-review-workflow/SKILL.md';
 const S = fs.readFileSync(path.join(root, P), 'utf8');
 const sec = S.slice(S.indexOf('- **Project has a channel in config'));
 const bullet = sec.slice(0, sec.indexOf('- **Project has no channel in config'));
-const item1 = S.slice(S.indexOf('1. **Identity for a mention:**'), S.indexOf('2. 🔴 **GATE — before the external send'));
-const item3 = S.slice(S.indexOf('3. **Send, then read the response back**'), S.indexOf('4. **Wrong destination'));
+// r12-p1-three R9: Step 5 items renumbered into execution order (old 2 → 5, old 3 → 6, old 4 → 7).
+const item1 = S.slice(S.indexOf('1. **Identity for a mention:**'), S.indexOf('2. Use the wording conventions'));
+const item3 = S.slice(S.indexOf('**Send, then read the response back**'), S.indexOf('7. **Wrong destination'));
 let fail = 0;
 function t(name, fn) {
   try { fn(); console.log(`PASS  ${name}`); } catch (e) { fail += 1; console.log(`FAIL  ${name}\n      ${e.message}`); }
@@ -40,12 +41,15 @@ t('R3 one-question bullet names the missing-mention-id exception', () => {
 });
 t('R4 thread question + go-ahead unchanged', () => {
   assert.ok(/Offer the threads already used for this ticket or\s+recorded in the config as options\. The answer is the go-ahead to send\./.test(bullet));
-  const g = S.slice(S.indexOf('2. 🔴 **GATE — before the external send'), S.indexOf('3. **Send, then read'));
+  const g = S.slice(S.indexOf('5. 🔴 **GATE — before the external send'), S.indexOf('6. **Send, then read'));
   assert.ok(/counts as the go-ahead only once that preview is visible/.test(g));
 });
 t('R5 item 3 byte-identical to origin/main', () => {
   const b = base(); if (!b) return console.log('      (origin/main unavailable — skipped)');
-  assert.strictEqual(item3, b.slice(b.indexOf('3. **Send, then read the response back**'), b.indexOf('4. **Wrong destination')));
+  // Body of the send item (number stripped) must match its origin/main body, under either numbering.
+  const bs = b.indexOf('**Send, then read the response back**');
+  const be = Math.max(b.indexOf('4. **Wrong destination'), b.indexOf('7. **Wrong destination'));
+  assert.strictEqual(item3, b.slice(bs, be));
   assert.ok(/a requested mention actually resolved/.test(item3));
 });
 t('R6 wrong-id reasoning kept', () => {
