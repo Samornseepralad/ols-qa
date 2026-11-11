@@ -1,0 +1,74 @@
+# Spec — r11 T9 rubric-driven uplift, lane B
+
+## Sources
+- S1 Pre-flight locked-bundle scorings of the current text (helix `d1616ba`): `ols-qa-evidence` `.worktrees/r11-preflight/evals/helix-preflight-2026-11-11/{catch-ai-workflow,helix,tc-api-prep-workflow,tc-review-workflow}/score-1.json` and `score-1.interrupted-1.json` (files with dims only).
+- S2 Best-earlier locked-bundle re-score: `ols-qa-evidence` main `evals/helix-skill-best-rescore-2026-11-11-bundle/<skill>/score-{1,2,3}.json`.
+- S3 Rubric: darwin-skill `SKILL.md` lines 30–107 as cited by `evals/helix-skill-eval-2026-11-10-after9/BRIEF.md` — d5: soft wording ("consider", "if appropriate", "as needed", "may", "suggest", "depending on" …) ≥ 3 instances → −3; d7: −1 per redundant or contradictory passage; d2: ordered steps with explicit input/output; d3: explicit "if X fails → Y".
+- S4 Frozen exam `evals/helix-skill-eval-2026-11-10-after9/exam/<skill>.json`; no rule below removes a behaviour an exam item expects.
+- Every quoted line was re-read on `origin/main` (`42088dc8`) before this spec. Line numbers are that commit's.
+
+## Rules
+
+### Shared references — bundle-wide soft wording and contradictions (lifts d5 / d7 for every skill whose bundle carries the file; cannot be fixed in a skill file)
+- **R1–R5 — covered by lane A, not edited here** (main-thread review of #137, 11/Nov/2026). Lane A's merged spec `docs/sdd/r11-t9-uplift-a/spec.md` owns these lines; this lane's code PR leaves them untouched to avoid conflicting edits:
+  - R1 `references/jira-comment-post-review.md:83` "consider ADF" → lane A **R1**.
+  - R2 fix-verify caps `jira-comment-post-review.md:18` / `skill-rules-style.md:20` / `agent-rationalizations.md:56` → lane A **R4** (two loops, both exam-pinned).
+  - R3 `skill-rules-style.md:23` SHOULD → lane A **R7**. This lane keeps only `skill-rules-style.md:12` (the meta line that quotes "should consider" / "might want to"), which lane A does not list: it must say the same thing without quoting soft phrases.
+  - R4 `session-closing.md:29-31` → lane A **R6**. This lane keeps only `:11` and `:50` (outside A's range).
+  - R5 `verify-closing-checklist.md:10` → lane A **R8**.
+  - Also lane A: `non-pass-challenge-gate.md:132,137` (removed from R29 here; this lane keeps `:71` and `:177`).
+- **R6** — `references/skill-invocation-discipline.md:37` "if the platform supports it" (S1 helix d5) must give both branches: a todo tool exists → todos per phase; none → list the phases in chat. `:21-29` a second command table with 7 of 13 workflows contradicts helix `SKILL.md:70` "Do not keep a routing table anywhere else" (S1 helix d7 −1, P1 finding); it must be replaced by a link to `skill-routing.md § Primary menu`.
+- **R7** — `references/long-workflow-todos.md:11` "## Suggested items (examples)" (S2 catch-ai d5) must read "## Example items".
+- **R8** — `references/customer-escape-prevention.md:112` "(typically a mobile and a tablet width beside desktop)" (S2 helix d5) must name the source: the mobile and tablet widths the project guide names.
+- **R9** — `references/csv-export-rules.md:98` "you MAY run:" (S1/S2 tc-api soft hit) must read "run:" (the "If and only if" condition already bounds it).
+- **R10** — `references/intent-shortcuts.md:3` "**skip the menu** when confidence is high" (S1 helix interrupted d2 −2, d5) must state the test: exactly one row below matches the message → skip the menu; two rows match → ask one question.
+- **R11** — `references/agent-rationalizations.md:41` "Refuse Phase D until spec + Swagger per skill" contradicts tc-api `WORKFLOW.md:78` "user says spec is only in Swagger → treat Swagger as both" (S1 tc-api d7 (a)). Must carry the WORKFLOW exception; the `WORKFLOW.md:360` MUST row "refuse without API spec + Swagger" (S1 tc-api P1) must carry it too (outside the frozen block).
+
+### helix (`skills/helix/SKILL.md`, 154 lines, cap 155)
+- **R12** — `:125` "Read skill-rules-style.md before asking the user or stopping on a missing input" sends the router to a multi-item Missing template while `:39` allows one item per question (S1 d2 −2, P1 finding). The line must say the router uses that file for refusal wording only and that `:39`'s one-item rule wins over its Missing list.
+- **R13** — `:86` covers only menu-text.md and skill-routing.md (S1 d3 P2 finding). The row must also cover helix-session-constraints.md (stop, same as the routing files) and intent-shortcuts.md / proactive-qa-triggers.md (name the file, skip Opening step 1 or 3, show the menu). Same row, no new line.
+- **R14** — `:4` the WHAT list omits menu option 12 TC Change Format (`references/menu-text.md:27`) (S1 interrupted d1 −1). The description must name it; ≤ 1024 chars.
+
+### catch-ai-workflow (`skills/catch-ai-workflow/SKILL.md`)
+- **R15** — `:97` step 5 packs classification, tally line, unsourced-claim rule and red-flag interplay into one line (S1 d2 −2). It must split into lettered sub-items under step 5 with the same text.
+- **R16** — `:96` the read-only gate is scoped to step 4 "during inspection", while step 7 and Hedged rule 3 order reproduction and confirming checks (S1 d4 −2). Step 4's gate must state it covers every later step that runs a check (7, Hedged rule 3).
+- **R17** — `:99` step 7 restates the `Suspected` rule that Hedged rule 4 (`:129-133`) owns (S1 d7 −1 of the "restated in five places" deduction). Step 7 keeps the label list and points to Hedged rules 3–4 for the dig-until-Confirmed rule. The MUST/NEVER, Red flags and Rationalizations rows stay (they are the d9 blacklist).
+- **R18** — `:244-258` 13 files marked "Read for every audit", ~1,100 lines (S1 d7). bug-priority-matrix, defect-report-completeness, non-pass-challenge-gate and qa-debug-discipline move to a conditional group "*Defect or non-pass verdict in scope*" (each line keeps its own trigger).
+- **R19** — `:203` "the gate answers 'may this verdict be sent on now?'" counted as soft "may" (S1 d5). Must read "is this verdict cleared to send now?".
+
+### tc-api-prep-workflow (`skills/tc-api-prep-workflow/SKILL.md`; `WORKFLOW.md` untouched — 370/370 and the G-verify→G3 freeze)
+- **R20** — `:4-5` description has no informal/Thai trigger and no "even when the user does not say Swagger" push (S1 d1 −2; S2 d1). Must add both; ≤ 1024 chars.
+- **R21** — `:67` "another skill may own it" (S1/S2 soft hit) must read "another skill owns it".
+- **R22** — `:40` and `:54` load shared files with FE values an API run must translate (S1 d5 −2): `csv-export-rules.md:87` `{ISSUE_KEY}_FE_TC.csv`, `tc-quality-standards.md:32` "Every row has Test Steps". The two must-read lines must state the API mapping: file names follow `WORKFLOW.md:249-255` (`{SCOPE}_API_TC`), and the Test Steps rule applies only when Test Steps is a chosen column (`references/default-columns.md`).
+
+### tc-review-workflow (`skills/tc-review-workflow/SKILL.md`, 402 lines, cap 403; `commands/tc-review.md`)
+- **R23** — `:236-239` "Helix menus and intake questions stay English per user-communication.md" contradicts `references/user-communication.md:18` "follow the user's language" (S1 d5 −2; S2 d7). Must read: Helix menus and intake questions follow the user's language per user-communication.md; the review content follows the destination document's language.
+- **R24** — `:230` "Keep each bullet tight" has no measure (S1 d5). Must give one: one finding per bullet, at most two lines plus its Suggest line.
+- **R25** — `:208` Step 4 shows only the two lists (S1 d2 −2: "unstated whether the Step 2 matrix is part of the delivered review"). Must state the delivered review is the Step 2 matrix followed by the two lists.
+- **R26** — `:359` the MUST row restates the whole Step 5 rule list while saying restating caused drift; `commands/tc-review.md:16-19` restates the list again (S1 d7 −2). The MUST row keeps "run Step 5 exactly as written — single source for the notify rules" without the list; the command keeps one line pointing to SKILL.md.
+- **R27** — `:390` the Execution-only paragraph links 7 files only to forbid loading them (S1 d7 −1). The names stay as plain code text, not links.
+
+### Rule-text test
+- **R28** — `tools/r11-t9-uplift-b/check.test.js` must fail on the unchanged text and pass after R1–R27, asserting each removed phrase is gone and each new phrase is present, plus the line caps (helix ≤ 155, tc-review ≤ 403, tc-api `WORKFLOW.md` = 370 and unchanged, catch-ai description ≤ 1024).
+
+### Amendment 11/Nov/2026 (main-thread direction: +4 structural target, close real P0/P1 and failed exam items, literal soft-phrase sweep)
+- **R29** — Literal sweep of the rubric soft phrases ("consider", "if appropriate", "as needed", "may", "suggest", "flexibly", "depending on", "optional") over every bundle file of this lane's four skills (`ols-qa-evidence` `.worktrees/r11-preflight/evals/helix-preflight-2026-11-11/bundle/{catch-ai-workflow,helix,tc-api-prep-workflow,tc-review-workflow}.txt`, 58 files): every hit in an instruction to the agent must be rewritten with the same meaning (a bounded permission → "can"; a prohibition → "must not"; an optional step → the condition that triggers it). Lines: `defect-report-completeness.md:56`, `intake-one-pager.md:44`, `figma-design-comparison.md:90`, `:135`, `customer-escape-prevention.md:93`, `jira-fast-publish.md:207`, `non-pass-challenge-gate.md:71`, `:177`, `qa-evidence-gates.md:107`, `:112`, `:149`, `:154` (×2), `:175`, `:287`, `:341` (×2), `:421`, `session-closing.md:11`, `:50`, `user-communication.md:28`, `test-through-real-steps.md:20`, `swagger-diff-phase.md:30`, `:51`, `:52`, `test-md-format.md:47`, `proactive-qa-triggers.md:35`, `:36`, tc-api `WORKFLOW.md:162`, `references/markdown-template.md:8`, tc-review `SKILL.md:228`, `:370`. Hits that are not instructions stay and are listed in the PR: user-facing template text (`menu-text.md:12`, `:16`, `:19`, `proactive-qa-triggers.md:43`), the proactive-suggestion feature name and the `→ Suggest:` output label, property uses of "optional" (an optional dependency, column, phase or input), and `WORKFLOW.md:252` "Delivery A may then continue", pinned verbatim by `tools/r7-tc-api-prep-matrix/check.test.js:52`.
+- **R30** — after-9 exam catch-ai p2 run 1 (with skill) failed "AC-4 listed as a Coverage gap (no check at any level), separate from defects". `SKILL.md:101` step 6 must say each requirement or AC with no check at any level is a Coverage gap, listed apart from defects and never counted as one.
+- **R31** — catch-ai description is exactly 1024 chars (S1 d1 −1, "zero headroom"). Trim to ≤ 1000 chars with no trigger, use-when or Do-NOT item removed.
+- **R32** — tc-api P1 (S1): `references/jira-fast-publish.md:93` Pattern B wraps every file as a text/csv Blob with a BOM, so the `.xlsx` that `WORKFLOW.md:271` sends to Pattern B cannot be attached. A `window.__files` entry must accept `encoding: 'base64'` for a binary file; Pattern B decodes it to bytes and uploads it with the spreadsheet MIME type and no BOM; `WORKFLOW.md:270` (G2, outside the frozen block) must tell Pattern A to set one `window.__files` entry per generated file, an `.xlsx` as base64.
+- **R33** — the rule-text test (R28) also covers R29–R32.
+- **R34 (withdrawn items, found by the gates)** — R27 is withdrawn: `tools/skill-lint` must-read-depth needs those seven links one hop from tc-review `SKILL.md` (removing them made 3 must-reads 2–3 hops deep). `non-pass-challenge-gate.md:131` "may supersede the expected is unresolved" stays: `tools/r7-retest-no-c/check.test.js` R5 pins it. The R2 pointers to `jira-comment-post-review.md` from `skill-rules-style.md` and `agent-rationalizations.md` are code text, not links, for the same must-read-depth reason (content-takedown and test-data-prep reach those files).
+- Recorded, not fixed this round: tc-review P2 Step 5 run order (blocked, see above); tc-review P2 round-time-contract must-read, Sheets reader dependency, rows with no TC id; tc-api P2 csv-template-types FE-only line, Test.md `{ISSUE_KEY}` name, Phase F Out-of-scope line, openpyxl install line, Control_Chrome-only wording; catch-ai P2 dependency rows, closing-gate items, session-closing Verdict vocabulary, non-pass §2 at step 3. None is P0/P1.
+
+## Not fixed — recorded
+- tc-review `:270` Step 5 run order "1 → 8 → 5 → 7 → 2 → 3" (S1 d2 −2) — real, but the order string is pinned by `tools/r11-skill-fixes-g1/check.test.js` (spec r11-skill-fixes-g1 R11); renumbering the list means editing that test. **Blocked — owner decides.**
+- tc-api `WORKFLOW.md:122` "how should I deliver the test cases?" — a user-facing question template, not an instruction (false positive).
+- catch-ai hedge restatements in MUST/NEVER (`:235-236`), Red flags (`:180`), Rationalizations (`:172`) — kept: they are the rubric's d9 "don't" list; removing them trades d7 for d9.
+- catch-ai d2 "20-layer Result quality gate has no mapping for audits" — needs new text, not a rewrite; out of this round's in-place budget.
+- helix d7 three overlapping closing checklists and round-time-contract §6/§7 restating jira-comment-post-review / figma dedupe — a cross-file merge that also touches T9-A bundles; deferred to the main thread.
+- tc-api d7 (c) QA-closing restated in SKILL/WORKFLOW/qa-closing-shared/verify-closing-checklist — WORKFLOW is frozen at 370; deferred.
+
+## Done when
+- R3 (`:12` only), R6–R32 text is on the branch (R1, R2, R4, R5 owned by lane A) and `node tools/r11-t9-uplift-b/check.test.js` passes; it failed before the edits.
+- `bash scripts/run-test-suites.sh` green; `node tools/skill-lint/lint.js` 0 errors; `bash scripts/check-no-secrets.sh <changed files>` clean; `node tools/sdd-gate/check.js --base origin/main` OK.
+- Line caps hold; no exam behaviour removed; no file of create-bug, tc-fe-prep, retest-bug or testing-ticket changed.
