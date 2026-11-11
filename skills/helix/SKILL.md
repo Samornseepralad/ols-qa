@@ -114,7 +114,7 @@ Shared rules: [shared-must-never.md](../../references/shared-must-never.md). Rou
 
 ## Must-read files
 
-The router reads only what it needs to pick and hand off a workflow. Every gate a workflow runs (evidence, escape prevention, result quality, priority, defect write-up, Playwright, Jira posting, closing) is loaded by that workflow at the step that uses it — never by the router. All shared references are listed once in [skill-reference-index.md](../../references/skill-reference-index.md); open one only when a step names it.
+The router reads only what it needs to pick and hand off a workflow. Every gate a workflow runs (evidence, escape prevention, result quality, priority, defect write-up, Playwright, Jira posting, closing) is loaded by that workflow at the step that uses it — never by the router. See also [skill-reference-index.md](../../references/skill-reference-index.md) — optional lookup list of every shared reference; a step names the file to use.
 
 Read while routing (open each file at the step that names it):
 - Read [agent-rationalizations.md](../../references/agent-rationalizations.md) when tempted to skip a step; each excuse has its correct action.
