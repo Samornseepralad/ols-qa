@@ -20,7 +20,7 @@
 ## Rules
 - R1 — When a rule in the inventory is stated, its full statement must appear only at its kept place(s); every pointer place must be one line that names the rule and links to the kept place with the words "stated once at".
 - R2 — When a pointer place is shortened, every clause that appeared only there must first exist at the kept place (no clause lost, no rule weakened). Known moves: "node link actually opened" and "per-case mapping stays in the Step 2c plan" into 4d; "Expected Result field id from the project guide" into `#verdict-rule`.
-- R3 — When a MUST/NEVER row becomes a pointer, it must keep its *Because* text unchanged.
+- R3 — When a MUST/NEVER row becomes a pointer, it must keep its *Because* text unchanged — except a *Because* clause that itself restates the rule (row :445 "no 'minor wording' or 'cosmetic' exceptions; its verdict … from the matrix"), which is dropped because the kept place states it; the row keeps "Any text difference is **never PASSED**".
 - R4 — The *QA closing* design item must be one line: checkbox, gate name, link.
 - R5 — When the owner has not, in this session, explicitly delegated a named outward action (post / transition / notify) for this round, the system must wait for the Step 6d item 4 approval before that action; general cues ("handle it", "don't ask", "don't wait") must not skip a write approval.
 - R6 — When a named action is delegated, the system must still print the approval bundle list in chat before executing it, and every format, syntax and readback gate must still run; opening new bugs still needs a live yes.
