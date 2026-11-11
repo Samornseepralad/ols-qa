@@ -7,7 +7,7 @@ const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const dir = 'skills/procedures/tc-api-prep-workflow';
 const rd = (p) => fs.readFileSync(path.join(root, dir, p), 'utf8');
-const WF = rd('WORKFLOW.md');
+const WF = ['phase-d-scope-design.md', 'phase-e-review.md', 'phase-f-draft.md', 'phase-g-deliver.md', 'WORKFLOW.md'].map(rd).join('\n');
 const REV = rd('references/spec-coverage-review.md');
 const EX = rd('references/worked-example.md');
 const g1 = WF.slice(WF.indexOf('### G1 '), WF.indexOf('### G2 '));
@@ -52,7 +52,7 @@ t('R4g PR #95 G1 write-failure step unchanged', () => {
   assert.ok(/Delivery A may then continue without the attachment: the comment does not mention one and uses no `__ATT1_ID__` placeholder\./.test(g1));
 });
 t('R4h WORKFLOW.md within 370 lines', () => {
-  const n = WF.split('\n').length - (WF.endsWith('\n') ? 1 : 0);
+  const W0 = rd('WORKFLOW.md'); const n = W0.split('\n').length - (W0.endsWith('\n') ? 1 : 0);
   assert.ok(n <= 370, `${n} lines`);
 });
 console.log(fail ? `\n${fail} FAILED` : '\nall passed');

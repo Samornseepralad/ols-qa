@@ -7,7 +7,7 @@ const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const rd = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const SKILL = rd('skills/create-bug-workflow/SKILL.md');
-const WF = rd('skills/procedures/create-bug-workflow/WORKFLOW.md');
+const WF = ['phase-b2-board-check.md', 'phase-e-falsification.md', 'phase-c-confirm.md', 'phase-d-create.md', 'phase-f-close.md', 'WORKFLOW.md'].map((f) => rd(`skills/procedures/create-bug-workflow/${f}`)).join('\n');
 const WE = rd('skills/procedures/create-bug-workflow/references/worked-example.md');
 const TPL = rd('skills/procedures/create-bug-workflow/references/bug-draft-template.md');
 const flat = (s) => s.replace(/\s+/g, ' ');

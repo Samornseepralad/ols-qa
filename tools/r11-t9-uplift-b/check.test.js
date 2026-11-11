@@ -18,6 +18,7 @@ const H = 'skills/helix/SKILL.md';
 const C = 'skills/catch-ai-workflow/SKILL.md';
 const A = 'skills/tc-api-prep-workflow/SKILL.md';
 const W = 'skills/procedures/tc-api-prep-workflow/WORKFLOW.md';
+const WG = 'skills/procedures/tc-api-prep-workflow/phase-g-deliver.md';
 const T = 'skills/tc-review-workflow/SKILL.md';
 const desc = (p) => flat(rd(p).split('---')[1].split(/description: \|-?/)[1].split('metadata:')[0]).trim();
 const nlines = (p) => rd(p).replace(/\n$/, '').split('\n').length;
@@ -82,7 +83,7 @@ t('R32 Pattern B uploads a base64 .xlsx as bytes; G2 sets window.__files', () =>
   has(R + 'jira-fast-publish.md', /encoding: 'base64'/);
   has(R + 'jira-fast-publish.md', /function uploadFile\(name, content, encoding\)/);
   has(R + 'jira-fast-publish.md', /uploadFile\(f\.name, f\.data, f\.encoding\)/);
-  has(W, /one `window\.__files` entry per file this run generated \(an `\.xlsx` as base64/);
+  has(WG, /one `window\.__files` entry per file this run generated \(an `\.xlsx` as base64/);
 });
 if (fail) { console.log(`\n${fail} failed`); process.exit(1); }
 console.log('\nall passed');
