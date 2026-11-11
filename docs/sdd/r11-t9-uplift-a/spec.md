@@ -50,6 +50,20 @@ Retest gains come from R1–R5, R7, R9–R11, R13 (all in its bundle; S1 soft li
 ### Test
 - **R26** A rule-text test `tools/r11-t9-uplift-a/check.test.js` must fail on the unchanged text and pass after R1–R25: each removed soft phrase or contradicting sentence is absent at its file, and each new sentence is present.
 
+### Amendment 1 (11/Nov/2026, coordinator target change: every P0/P1 real on re-read, soft-phrase instruction hits = 0 over every bundle file)
+- **R27 retest-bug P1/P2 contradictions** — S1 retest-bug `score-1.json` (structural 55.1) findings, each re-read and resolved toward the retest WORKFLOW or the stricter rule:
+  (a) compound ER one row (`WORKFLOW.md:218`) vs `qa-evidence-gates.md:339` one row per clause → qa-evidence-gates layer 2 gets a retest-bug numbering sentence; `worked-example.md` example 2 matches it.
+  (b) `defect-report-completeness.md:40` repro matrix / why-failed REQUIRED vs retest comment ban (`comment-and-post.md:255`, `WORKFLOW.md:470`) → a retest-bug comment-format paragraph (Q2 = Fixture line + one Evidence row per entry point, Q4 = verdict-table row).
+  (c) `no-wait-decision-gate.md:71` layer 17 three causes vs BLOCKED causes the retest already routes → layer 17 lists the retest's five sanctioned causes, each only after layers 1–16; layer 16 unchanged.
+  (d) `jira-fast-publish.md:236` re-executes Pattern B while in flight (double post) → never re-POST in flight; poll Pattern C ≤ 120 s, then GET comments/attachments before any retry; REST fallback named.
+  (e) `debug-discipline.md:26` auto-file and "Mixed → FAILED" → Defect candidates (NOT filed) + owner question; per-row verdict, worst-first summary.
+  (f)–(m) P2: still-size derivative vs ≥1920 px original (`qa-evidence-gates.md:137`); reviewer waiver accepts the result line only, delivered clip still clears the MP4 gate (`result-quality-gate.md:130`); Bug ER precedence over design (`figma-design-comparison.md:36`) and over parent AC (`no-wait-decision-gate.md:44`); defect-candidates example PWMI (`:46`); "still FAILED" → "not PASSED — PWMI or FAILED" (`defect-report-completeness.md:96`); stale Step 7b pointer (`gotchas.md`); runtime-neutral "Use with" (`jira-fast-publish.md:5`).
+  Lifts retest dim3, dim7, dim5, dim6.
+- **R28 soft-phrase sweep** — rubric dim5 counts (S3, plus "optional", "should", "when relevant", "if applicable", "where applicable", "if needed"). Over the union of the four bundle lists (`evals/helix-preflight-2026-11-11/bundle/*.txt`, 98 files), every instruction-context hit must be rewritten as its deterministic condition with the same meaning (permission stays permission, e.g. "is allowed"; restriction becomes an imperative). Kept: headings and linked anchors, user-facing question templates, quoted hedge examples and banned-word lists, severity-matrix vocabulary, code/HTML data, frontmatter `description`, and sentences pinned by a test (`tools/r7-retest-no-c`, `tools/r11-skill-fixes-g1`, `tools/portability`). Lifts dim5 in all four skills.
+- **R29 parallel-test-lanes OTP pre-login** — S1 retest P1 "`parallel-test-lanes.md:104` says the parent logs OTP accounts in itself" vs login-by-command (testing-ticket `WORKFLOW.md:270`). The row must restore those accounts by the relink/mint command block, one account per iteration. Lifts dim3, dim7.
+- R26 covers R27–R29 by the suites already pinning them plus the new rule-text test rows.
+- Failed after-9 exam items for these skills (create-bug p1r3/p2r3, tc-fe-prep p1r3/p2r3) were fixed by `docs/sdd/r11-skill-fixes-g1` R1, R5, R6 (merged); no item here reverts them.
+
 ## Rejected or deferred (re-read, not edited)
 - create-bug dim1 "WORKFLOW.md repeats the SKILL.md description" — deferred: frontmatter of WORKFLOW.md may be read by tooling (`tools/skill-structure`); changing it is outside a text-only uplift.
 - create-bug P2 `bug-draft-template.md:3` (Why-failed line / §5 gate), worked-example `:12`, `:17`, posting-discipline `:6` module label — deferred: each changes a draft template or example and needs its own spec.
