@@ -118,7 +118,7 @@ a cloud id, never fall back to a browser login to read it.
 
 ## Step 2 — Build the traceability matrix [medium freedom]
 
-For every AC and EC on the ticket, list which TC row(s) claim to cover it:
+For every AC and EC on the ticket, list which TC row(s) claim to cover it (no row carries an AC/EC tag → map by Expected Result vs AC text, mark each `inferred` in Claimed by, and report the missing tags once under Need Improve):
 
 | AC/EC | Claimed by | Status |
 |-------|-----------|--------|
@@ -141,7 +141,7 @@ mention it, not even as "correctly not covered".
 means, and use them to judge whether a TC tests the right thing. Report a business-rule or comment item
 **only when it conflicts with an AC/EC**, and name the AC/EC it contradicts. A rule or comment that has
 no TC but does not contradict any AC/EC is not a finding. Leave it out of Need Improve, add no "spec notes"
-section, and do not name it in any closing or self-check line, not even as "not reported".
+section, and do not name it anywhere else — no Sources/inputs line, closing or self-check line, not even as "not reported".
 
 Flag, with the row/AC ids named:
 
@@ -267,7 +267,7 @@ named there (one webhook file per thread, e.g. `discord_webhook_tc_review_<threa
   complete. Record `notify not sent — user declined` in the QA closing checklist and in the final report,
   then stop. Never skip the step silently, and never report the run as done-and-notified.
 
-Then:
+Then (run order 1 → 8 → 5 → 7 → 2 → 3; items 4 and 6 only when correcting a sent message):
 
 1. **Identity for a mention:** take the exact id (Discord user id, Jira account id, etc.) from the project
    config § *TC review notify* — never ask the user for it. Only when the config has none for the person to
