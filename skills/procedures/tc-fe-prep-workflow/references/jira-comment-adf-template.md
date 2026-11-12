@@ -51,17 +51,18 @@ Top-level nodes, in this order:
   `hardBreak`, `bulletList`, `orderedList`, `listItem`.
 - The last top-level node's text starts with `⚠️ Disclaimer:`.
 - Table data rows = the approved TC count.
+- A Type is absent, a Figma/PRD link is missing, or a BLOCKED case has no sheet row → the Remark (strong `Remark — Type coverage:` paragraph + `bulletList`, lines per `design-and-review.md` § 3d) sits right before the Disclaimer; none applies → no Remark.
 
 ## Example — approved rows in, ADF out
 
-Input — approved TC rows (2 shown) and the request "draft only, do not post":
+Input — approved TC rows (2 shown), Figma and PRD linked, no BLOCKED case, and the request "draft only, do not post":
 
 ```text
 1 | AC_01 | <SERVICE_A> | <TITLE_A> | High | Integration Test
 2 | EC_01 | <SERVICE_A> | <TITLE_B> | Medium | System Test
 ```
 
-Output — `Jira_comment_{ISSUE_KEY}.adf.json` (complete; no Unit Test rows, so one skip-note):
+Output — `Jira_comment_{ISSUE_KEY}.adf.json` (complete; no Unit Test rows, so one skip-note and a Remark):
 
 ```json
 {"type":"doc","version":1,"content":[
@@ -74,6 +75,8 @@ Output — `Jira_comment_{ISSUE_KEY}.adf.json` (complete; no Unit Test rows, so 
  {"type":"paragraph","content":[{"type":"text","text":"Draft_Jira_{ISSUE_KEY}.csv","marks":[{"type":"link","attrs":{"href":"__ATT1_ID__"}}]}]},
  {"type":"paragraph","content":[{"type":"text","text":"Import_Qase_{ISSUE_KEY}.csv","marks":[{"type":"link","attrs":{"href":"__ATT2_ID__"}}]}]},
  {"type":"paragraph","content":[{"type":"text","text":"ไม่มี TC ประเภท Unit Test สำหรับ ticket นี้"}]},
+ {"type":"paragraph","content":[{"type":"text","text":"Remark — Type coverage:","marks":[{"type":"strong"}]}]},
+ {"type":"bulletList","content":[{"type":"listItem","content":[{"type":"paragraph","content":[{"type":"text","text":"No "},{"type":"text","text":"Unit Test","marks":[{"type":"em"}]},{"type":"text","text":" cases for this ticket."}]}]}]},
  {"type":"paragraph","content":[{"type":"text","text":"⚠️ Disclaimer: ข้อมูลนี้เป็นเพียง Draft Version ที่ได้จากการใช้ Skill เท่านั้น (TC ครบตาม AC & EC) เนื้อหาทั้งหมดจำเป็นต้องได้รับการรีวิวและอัปเดตโดยทีม QA ก่อนนำไปใส่ในไฟล์เอกสารส่งมอบ และทำการนำ TC ไป Import เข้าสู่ Qase.io"}]}
 ]}
 ```
