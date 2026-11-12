@@ -17,7 +17,7 @@
 ## กฎ
 
 - **R12-1** เมื่อรีวิว TC และ Expected Result ของแถวใดไม่มีแหล่งยืนยันของ ticket นั้น (AC/EC, Figma node, PRD/Confluence, คอมเมนต์ PO/dev ระบุผู้เขียนและวันที่) สกิลต้องไม่ติดแถวนั้นเป็น Good และต้องไม่ผ่านเอกสาร · ต้องไม่ยืม expected จาก ticket อื่น/ฟีเจอร์คล้าย/ความจำ · ถ้อยคำมี hedge ("น่าจะ", "should be") นับเป็นไม่มีแหล่ง · แหล่ง: global ข้อ 10; plan R12
-- **R12-2** แถวเช่นนั้นต้องขึ้น Need Improve เป็น "unverified expected" พร้อม → Suggest ที่อ้างแหล่ง/ระบุคนยืนยัน และเอกสารได้ verdict **Unverified** จนกว่าจะมีแหล่ง · ข้อความอยู่ในแถว MUST/NEVER เดิมของ `tc-review-workflow/SKILL.md` (ไม่เพิ่มบรรทัด เพราะ `tools/tc-review-one-question` จำกัด ≤403 บรรทัด)
+- **R12-2** แถวเช่นนั้นต้องขึ้น Need Improve เป็น "unverified expected" พร้อม → Suggest ที่อ้างแหล่ง/ระบุคนยืนยัน และเอกสารได้ verdict **Unverified** จนกว่าจะมีแหล่ง · ข้อความเป็นแถว NEVER ใหม่ต่อจากแถว design-source เดิมของ `tc-review-workflow/SKILL.md` (แถวเดิมต้องคงข้อความเดิมทุกตัวอักษร เพราะ Helix gate `rule-lines` นับการต่อข้อความเป็นการตัดบรรทัดกฎ · เจ้าของงานเลือก "Restore the line (แนะนำ)" 12 Nov 2026 · `tools/tc-review-one-question` จำกัด ≤403 บรรทัด ไฟล์มี 389)
 - **R14-1** เมื่อ workflow test-data-prep สร้าง record ต้องลงทะเบียนทันทีใน `data-register.md`: id, type, env, created_by, ticket, created_at, deletable (yes/no/unknown), cleanup · แหล่ง: plan R14 (ticket ตัวอย่างในสกิลใช้ placeholder `{TICKET_KEY}` เพราะ `skill-text-guard` ห้ามมี ticket key)
 - **R14-2** เมื่อรอบเทสจบ (ผ่าน/ไม่ผ่าน/ติด) ต้องลบ record ที่ `deletable: yes` ตามลำดับย้อน, อ่านกลับยืนยันว่าหายแล้ว · ที่เก็บไว้ต้องมีเหตุผลและผู้อนุมัติ
 - **R14-3** ต้องไม่ลบ record ที่ไม่ได้สร้างในรอบนี้ และต้องไม่ลบแบบ bulk/ตามแพตเทิร์นชื่อ · record ที่ reuse (Step 1) = `deletable: no`

@@ -344,7 +344,8 @@ Shared rules: [shared-must-never.md](../../references/shared-must-never.md). Ski
 |------|
 | MUST read the ticket's own AC/EC/business-rules text this session before writing any finding |
 | MUST anchor every finding to a TC/AC id or a quoted source |
-| NEVER claim a design-source (Figma/PRD) match without having opened that source this session. NEVER mark a row **Good**, or pass the document, when its Expected Result is interpreted or borrowed from another ticket, a similar feature or memory: each expected needs a quote from THIS ticket (AC/EC, design node, PRD section, or a PO/dev comment with author and date). List the rest under Need Improve as "unverified expected" and give the document the verdict **Unverified** |
+| NEVER claim a design-source (Figma/PRD) match without having opened that source this session |
+| NEVER mark a row **Good**, or pass the document, when its Expected Result is interpreted or borrowed from another ticket, a similar feature or memory: each expected needs a quote from THIS ticket (AC/EC, design node, PRD section, or a PO/dev comment with author and date). List the rest under Need Improve as "unverified expected" and give the document the verdict **Unverified** |
 | MUST distinguish a spec-level gap (missing from the ticket's own AC list) from a TC-authoring defect |
 | NEVER count or mention a struck-through AC/EC |
 | NEVER report a business rule or comment that does not conflict with an AC/EC |
