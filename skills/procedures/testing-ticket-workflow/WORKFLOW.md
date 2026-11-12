@@ -29,8 +29,8 @@ Run **Playwright-based** testing for a **single ticket** after intake (the intak
 
 ## Progress checklist
 
-Copy this block into your response when the run starts and tick each line as it completes. A
-failed gate sends you back to the step its **Go back:** line names — untick from there.
+Copy this block when the run starts; tick each line as it completes. A failed gate's **Go back:**
+line names the step to untick from.
 
 ```text
 Testing ticket progress:
@@ -100,7 +100,7 @@ the fix is the write-up, not a chat reply.
 
 **Test deeply — the gates a shipped-defect review put in writing** ([customer-escape-prevention.md](../../../references/customer-escape-prevention.md) §1–§9), each run at: plan at **Phase B step 5** · session at **Phase D** *Session preflight* · checks at **E0** · reconciliation at **Phase F** (*Design + depth reconciliation*).
 
-**Long sessions:** keep a todo list whenever a trigger in [long-workflow-todos.md](../../../references/long-workflow-todos.md) *When to create todos* applies — this workflow has 3+ phases with user gates, so a full run always meets the first trigger.
+**Long sessions:** keep a todo list whenever a trigger in [long-workflow-todos.md](../../../references/long-workflow-todos.md) *When to create todos* applies — a full run always meets the first trigger.
 
 ## Refusal-first (precondition gate)
 
