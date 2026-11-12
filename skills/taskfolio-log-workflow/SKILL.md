@@ -172,7 +172,7 @@ Follow [skill-rules-style.md — doubt and fix-verify](../../references/skill-ru
    - [ ] Evidence lines not logged are listed with the user-approved reason.
    - [ ] Submit week was **not** clicked.
    - [ ] Close-out includes `Verified:` with counts — entries saved / deleted per day, per-day totals, week total vs 40 h.
-3. Shared checklist: [skill-rules-style.md#shared-closing-checklist-every-workflow](../../references/skill-rules-style.md#shared-closing-checklist-every-workflow).
+3. Shared checklist: [qa-closing-shared.md#shared-checklist](../../references/qa-closing-shared.md#shared-checklist).
 
 End with a reminder that the user submits the week themselves when ready.
 
