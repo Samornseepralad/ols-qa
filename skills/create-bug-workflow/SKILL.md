@@ -35,7 +35,7 @@ Bug-filing gates, at the moment named:
 
 - [bug-priority-matrix.md](../../references/bug-priority-matrix.md) — read at Phase A3, before setting any Priority/Severity or a PWMI / FAILED verdict.
 - [figma-design-comparison.md](../../references/figma-design-comparison.md) — read when the expected side cites a design frame (Refusal-first, Phase B3).
-- [defect-report-completeness.md](../../references/defect-report-completeness.md) — read at Phase C, before the first draft body; a run where every candidate is Dropped writes no draft; a Needs Review candidate is drafted and shown labelled "Needs Review — not filed".
+- [defect-report-completeness.md](../../references/defect-report-completeness.md) — read at Phase C, before the first draft body (a run where every candidate is Dropped writes no draft).
 - [bug-draft-template.md](../procedures/create-bug-workflow/references/bug-draft-template.md) — read when drafting; [posting-discipline.md](../procedures/create-bug-workflow/references/posting-discipline.md) — at Phase D, before posting.
 - [shared-must-never.md](../../references/shared-must-never.md) — read at Phase D, before the first write (create call, attachment upload or comment).
 - [jira-wiki-vs-markdown.md](../../references/jira-wiki-vs-markdown.md), [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md), [jira-comment-post-review.md](../../references/jira-comment-post-review.md) — read when the target is Jira: before and after posting any body.

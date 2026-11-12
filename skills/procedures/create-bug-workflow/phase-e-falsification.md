@@ -44,18 +44,18 @@ the candidate stays **Needs Review** until the answer comes.
 
 ### Result-quality-gate layer map (filing)
 
-[result-quality-gate.md](../../../references/result-quality-gate.md) is written for test rounds. Filing
-runs no case and writes no `results.jsonl`, so `check.js` is not run; the layers that apply are checked
-here by hand, at the step named, before any label, BLOCKED line or `Verdict:` leaves the run.
+[result-quality-gate.md](../../../references/result-quality-gate.md) is written for test rounds. Filing runs no
+case and writes no `results.jsonl`, so `check.js` is not run; apply these rows by hand, at the step named,
+before any label, BLOCKED line or `Verdict:` leaves the run.
 
 | Layer | When filing |
 |-------|-------------|
-| 1–5, 8–10, 12, 19 | Do not apply: no case, environment, account, fixture, clip, PASSED row or result line exists. A request to reproduce goes to testing-ticket, where all 20 run. |
-| 6, 7 | Refusal-first: expected side quoted char-exact from its source; hedged or contradictory spec → `BLOCKED: spec unconfirmed`. |
-| 11, 13 | Evidence and What happens come from the reporter (no evidence → `BLOCKED (no evidence)`); a cause sentence carries its root-cause label. |
-| 14 | Phase B2 (main, linked and earlier tickets) + the Intentional-design check (design / AC); product code and regression results when the workspace holds them — a source not read is named with the reason. |
-| 15 | [non-pass-challenge-gate.md](../../../references/non-pass-challenge-gate.md) per candidate, before its label. |
-| 16 | The Flake check above: occurrence count from the evidence; one occurrence → never Confirmed. |
-| 17 | A3 matrix cell cited + verified source quoted + evidence; filed only after Phase C **confirm**. |
-| 18 | Each BLOCKED names what is missing and who can supply it (reporter, PO, design). |
-| 20 | Phase F: every created issue re-fetched before the `Verdict:` line. |
+| 1–5, 8–10, 12, 19 | n/a: no case, environment, account, fixture, clip, PASSED row or result line; reproducing goes to testing-ticket (all 20 layers) |
+| 6, 7 | Refusal-first: char-exact source; hedged or contradictory → `BLOCKED: spec unconfirmed` |
+| 11, 13 | Reporter's evidence and What happens (none → `BLOCKED (no evidence)`); a cause sentence carries its label |
+| 14 | B2 tickets + Intentional-design check; product code and regression results when the workspace holds them, else named as not read |
+| 15 | [non-pass-challenge-gate.md](../../../references/non-pass-challenge-gate.md) per candidate, before its label |
+| 16 | Flake check; one occurrence → never Confirmed |
+| 17 | Matrix cell, verified quote, evidence; filed only after Phase C **confirm** |
+| 18 | Each BLOCKED names what is missing and who supplies it |
+| 20 | Phase F re-fetch before the `Verdict:` line |
