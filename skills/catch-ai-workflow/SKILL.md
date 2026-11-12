@@ -54,7 +54,7 @@ Catch AI progress:
 - [ ] Procedure 7 — Find the root cause of each defect (open root-cause-investigation.md)
 - [ ] Procedure 8 — Propose the fix and the prevention
 - [ ] Procedure 9 — Report and give the verdict (open qa-evidence-gates.md core first)
-- [ ] Result quality gate — result-quality-gate.md (mandatory before an audited verdict is confirmed; N/A only when no test verdict is in scope — say so in the report)
+- [ ] Result quality gate — result-quality-gate.md (N/A only when no test verdict is in scope — say so in the report)
 - [ ] QA closing (mandatory before "done") — qa-closing-shared.md, then session-closing.md
 ```
 
@@ -195,10 +195,10 @@ is a claim — the main thread re-runs the gate itself (layer 20).
 
 **Two answers per case, never merged.** The classification (Procedure step 5) answers "does the audited work match its source?"; the gate answers "is this verdict cleared to send now?". A gate hold never rewrites the classification, and the classification never skips the gate:
 
-- **Flaky case** (the run log shows a different result between identical runs — [Quick reference](#quick-reference)): the verdict the source supports is FAILED, labelled intermittent with its counts (layer 16), and an earlier PASSED for that case is a Defect in the audited work. Write that verdict in the correction and in the case line as `FAILED (intermittent, {failed_attempts} of {attempts})` — never "not confirmable", never BLOCKED alone. The gate runs on that FAILED line like on any other; a red layer adds its hold beside the verdict, named: `TC-n — FAILED (intermittent, 1 of 2) per run log · BLOCKED for sending: layer 17, no accepted clip`. It never becomes PASSED.
-- **Claim matches its source, evidence not in the audit input** (the audited work says PASSED and the run log line says PASS): the claim is checked-clean — report it as checked, no issue found in the audited work, and count it as Clean. Evidence the audit input does not include is not proof that none exists: list `evidence not provided for TC-n` once under coverage gaps as a Question, not as a Defect — unless the audited work itself states evidence it does not have. The gate's red layer (for example layer 9) still holds that case BLOCKED for sending, with its reason, in the gate record. Same for a layer whose evidence the audited run never recorded.
+- **Flaky case** (the run log shows a different result between identical runs — [Quick reference](#quick-reference)): the verdict the source supports is FAILED (layer 16), and an earlier PASSED for that case is a Defect in the audited work. Write that verdict in the correction and in the case line as `FAILED (intermittent, {failed_attempts} of {attempts})` — never "not confirmable", never BLOCKED alone. The gate runs on that FAILED line like on any other; a red layer adds its hold beside the verdict, named: `TC-n — FAILED (intermittent, 1 of 2) per run log · BLOCKED for sending: layer 17, no accepted clip`. It never becomes PASSED.
+- **Claim matches its source, evidence not in the audit input** (the audited work says PASSED and the run log line says PASS): the claim is checked-clean: count it as Clean. Evidence the audit input does not include is not proof that none exists: list `evidence not provided for TC-n` once under coverage gaps as a Question, not as a Defect — unless the audited work itself states evidence it does not have. The gate's red layer (for example layer 9) still holds that case BLOCKED for sending, with its reason, in the gate record. Same for a layer whose evidence the audited run never recorded.
 
-**No test verdict in scope** (no PASSED / PWMI / FAILED / BLOCKED result for any case, e.g. a release note or a document) → mark this gate `N/A — no test verdict in scope` in the report, with that reason, and tick it. If even one case verdict is in scope, the gate runs in full for every case.
+**No test verdict in scope** (no PASSED / PWMI / FAILED / BLOCKED result for any case, e.g. a release note or a document) → mark this gate `N/A — no test verdict in scope` in the report and tick it. If even one case verdict is in scope, the gate runs in full for every case.
 
 **Go back:** A red layer returns that case to Procedure step 4 — Inspect the actual side directly; if it still cannot be confirmed, the case is BLOCKED with the reason.
 
