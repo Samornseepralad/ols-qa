@@ -29,10 +29,10 @@ const section = (s, from, to) => {
 };
 
 // create-bug
-t('R1 hedged expected side: not drafted, not sent to Phase E, reported as BLOCKED question', () => {
+t('R1 hedged expected side: not drafted, not sent to Phase B3, reported as BLOCKED question', () => {
   const rf = section(CB, '## Refusal-first', '**MUST re-check the tracker');
   has(rf, /do not draft or file it/i);
-  has(rf, /do not send it to Phase E/i);
+  has(rf, /do not send it to Phase B3/i);
   has(rf, /BLOCKED: spec unconfirmed/);
   has(rf, /names the hedge and the (authoritative )?source needed/i);
 });
@@ -47,7 +47,7 @@ t('R3 reporter-only question with nothing against the defect → Likely, questio
   has(CB, /\{Confirmed \| Likely — open question: /);
 });
 t('R4 pasted search: terms, open and closed, result per candidate; comment scope note; draft kept; create held', () => {
-  const b2 = section(CB, '## 🔴 GATE: Phase B2', '## Phase E — Falsification');
+  const b2 = section(CB, '## 🔴 GATE: Phase B2', '## Phase B3 — Falsification');
   has(b2, /pasted[^.]*query terms[^.]*open and closed[^.]*result per candidate/i);
   has(b2, /comment scope not stated[^.]*Board check/);
   has(b2, /ask once[^.]*do not hold the draft/i);
