@@ -37,8 +37,9 @@ t('R2 offers workspace root or user-named path, writes only after the pick', () 
   assert.ok(/only after the user picks/i.test(g1), 'no "only after the user picks"');
   assert.ok(/before G2/.test(g1), 'Q1 decision (ask before G2) missing');
 });
-t('R3 delivery A may continue without attachment, no placeholder', () => {
-  assert.ok(/without the attachment/i.test(g1), 'no "without the attachment"');
+t('R3 delivery A continues without attachment, no placeholder', () => {
+  assert.ok(/Delivery A then continues without the attachment/.test(g1), 'no definite "Delivery A then continues without the attachment"');
+  assert.ok(!/Delivery A may/.test(g1), 'soft "Delivery A may" is back');
   assert.ok(/__ATT1_ID__/.test(g1), 'placeholder rule missing');
 });
 t('R4 xlsx sentence unchanged', () => {
