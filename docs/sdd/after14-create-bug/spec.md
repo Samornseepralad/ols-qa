@@ -20,7 +20,7 @@ Evidence (ols-qa-evidence `origin/main`): `evals/helix-skill-eval-2026-11-11-aft
 - **R7** `SKILL.md:47` gives every listed reference a trigger, and says that customer-escape-prevention and round-time-contract are test-round files not applied when filing (the links stay — skill-lint `must-read-depth`, `tools/skill-lint/lint.js:8-9`). Source: A13 s1/s2/s3 dim5/6.
 - **R8** Specific commands: GitHub repo check `gh repo view <owner/repo> --json name`; Phase F reads `gh issue view` / `getJiraIssue`; the JXA fallback names its endpoint and post-create read; the template's root-cause line carries its confidence label (`references/root-cause-investigation.md` §4); contradictory observations go to the reporter or testing-ticket, never a self re-run. Source: A13 s2/s3 dim5.
 - **R9** The duplicate confirm-gate sentence at `WORKFLOW.md:31` goes (the gate stays at `:160`, `:197` and `phase-c-confirm.md`). Source: A13 s1–s3 dim7.
-- **R10** No gate, STOP, approval step, evidence rule or link is removed; own-file bytes ≤ 46,418 and graph_v2 `mandatory_total` ≤ 6,563 tokens. Source: owner rules (T9 brief); before values measured at `9eb14076`.
+- **R10** No gate, STOP, approval step, evidence rule or link is removed. Net bytes a filing run must read stay ≤ before: the create-bug files every run opens (all own files except `worked-example.md`: 43,650 bytes at `9eb14076`) plus `result-quality-gate.md` (17,677 bytes), which `SKILL.md:42` required before any verdict — 61,327 bytes; graph_v2 `mandatory_total` ≤ 6,563 tokens. Added text is offset where the bundle repeats itself. Source: owner rule "keep net tokens per invocation the same or lower" (T9 brief).
 
 ## Out of scope (shared files — reported to the coordinator, not edited)
 
@@ -32,4 +32,4 @@ Evidence (ols-qa-evidence `origin/main`): `evals/helix-skill-eval-2026-11-11-aft
 - R2: `phase-d-create.md` has one failure branch covering MCP, JXA and REST with search-before-retry.
 - R3, R4, R5, R6, R8, R9: the named lines exist / are gone (grep).
 - R7: no "per the index" in `SKILL.md`; skill-lint 0 new violations.
-- R10: `wc -c` total ≤ 46,418; graph_v2 ≤ 6,563; every ols-qa CI check passes.
+- R10: per-run read bytes ≤ 61,327 (own files opened + any shared gate the stub requires in full); graph_v2 ≤ 6,563; every ols-qa CI check passes.

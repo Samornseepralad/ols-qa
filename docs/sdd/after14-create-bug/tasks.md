@@ -7,5 +7,5 @@
 | 3 | One question list, cancel branch, B3 count | R3, R5 | `grep -c 'cancel' phase-c-confirm.md` = 0 | lines present |
 | 4 | Link rule, root-cause label, contradiction branch | R4, R8 | `grep -c 'Confirmed \| Suspected' bug-draft-template.md` = 0 | lines present |
 | 5 | Markers, Dependencies order, triggers, duplicate sentence, commands | R6–R9 | `grep -c 'per the index' SKILL.md` = 1 | count 0; markers present |
-| 6 | Bytes and tokens | R10 | — | total ≤ 46,418; graph_v2 ≤ 6,563 |
+| 6 | Bytes and tokens | R10 | — | per-run read bytes ≤ 61,327; graph_v2 ≤ 6,563 |
 | 7 | Full CI mirror | R10 | — | suites, skill-lint, routing, check-no-secrets, postmortem guard, sdd-gate pass |
