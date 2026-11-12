@@ -1,0 +1,28 @@
+# Spec — after-14 testing-ticket fixes
+
+Evidence (ols-qa-evidence `origin/main`, folder `evals/helix-skill-eval-2026-11-12-after13/`): `GATE.md:20,39,51`, `verify/testing-ticket-workflow.json` (2 P1 CONFIRMED), `baseline/testing-ticket-workflow{,-s2,-s3}.json` (scorer findings), `grade/testing-ticket-workflow.json` (p1r2). Line numbers below are ols-qa `origin/main` ade53c10.
+
+## Rules
+
+- **R1 BLOCKED causes in one list.** When testing-ticket records a BLOCKED row for a cause its own text requires, that cause must be on the layer-17 list of `references/no-wait-decision-gate.md`, each only after layers 1–16 ran, with the section that requires it. The causes are: visual points of a screen with no design node after the report-back (`WORKFLOW.md:178`, `execute-and-summarize.md:116-117`); an account whose session is not restored after relink → mint → probe (`execute-and-summarize.md:64-66`); a unit whose lane did not return after its one re-dispatch (`execute-and-summarize.md:59-62`); a dependent cross-lane case whose precondition case did not PASS (`execute-and-summarize.md:44-46`); two of the tester's own observations that still disagree after one clean re-run (`execute-and-summarize.md:133-136`); an expected side that is absent or unconfirmed after layers 1–12 (`WORKFLOW.md:170-172`). The list must not change the three generic causes, retest-bug's five causes, or any other workflow. (verify fid #0; `no-wait-decision-gate.md:73-86`; `execute-and-summarize.md:182-183`)
+- **R2 Hedge rule, one copy.** The banned hedge words must be listed once, in `references/root-cause-investigation.md` §4 *Banned unless a label + artifact is attached*. `shared-must-never.md:16`, `root-cause-investigation.md:193`, `WORKFLOW.md:398` and `execute-and-summarize.md:329-330` must keep their MUST NOT / check box and link to that list. They must not repeat the words. Every file still forbids a hedge as a cause, inferring a cause, and restating the symptom as the cause. (verify fid #s2-0; s2 P1)
+- **R3 Figma dedupe, one copy.** The per-round dedupe rule must be stated once, in `references/round-time-contract.md` §7. That copy must keep every clause the three copies hold today: one compare per screen × width per round; one fresh app capture and one design read shared; each case still records the node link; the design-side export cached by `lastModified`; the app-side capture always fresh and never reused from an earlier round or run; the compare still covers all five points. `figma-design-comparison.md:71-77` and `execute-and-summarize.md:95-99` must link to it. (verify fid #s2-0 evidence 5-7)
+- **R4 Guest scenarios count as a unit.** When a testing-ticket plan has a guest or logged-out scenario, Phase B step 7 must count it as its own unit and lease no account for it. The §2 one-screen grouping covers one account's widths and states, so it does not pull the guest into that unit. The guest unit goes in the lane with the shortest expected duration. With a one-screen learner chain, one guest scenario and two leasable learner accounts, the plan gets 2 lanes. (grade p1r2 B FAIL "Execution: 1 lane … L2 · no scenarios"; `WORKFLOW.md:194-195`; `parallel-test-lanes.md:58,65-71`)
+- **R5 One start order.** The start sequence must be written once, as a numbered list in WORKFLOW *Run order before Phase C*: session-start context skills, then settle and strategize, then the Dependencies check, then the first reply, then Phase A. `SKILL.md:20`, `SKILL.md:25`, `SKILL.md:116` and WORKFLOW *Discipline* must point to it, not restate the order. The strategize step must say that "before any other tool call" counts from after the session-start skills. (s3 P2 `SKILL.md:25`; s2 P2; s1 P3 `SKILL.md:20`)
+- **R6 MUST/NEVER rows that copy root-cause-investigation.** The WORKFLOW MUST/NEVER rows that restate `root-cause-investigation.md` § MUST / NEVER (the boundary sweep, artifact + label, hedge / inferred cause / symptom as cause, no product patch; `WORKFLOW.md:396-398,400`) must become one row that links to that section and names each rule. Testing-ticket-only rows stay. (s1 P3, s3 P3)
+- **R7 Figma opening, one copy.** Phase B step 4a must link to `figma-design-comparison.md` §2 for how to open a node. It must not copy the Dev Mode / fallback / modal steps. It keeps the instruction to collect a node per screen and record the links. (s1 P3, s3 P3 `WORKFLOW.md:177`)
+- **R8 Bytes.** The total bytes of the eight edited files must be lower after the change than before. For retest-bug-workflow, the bytes of the edited files it loads must also be the same or lower.
+
+## Edge cases
+
+- A shared reference edit must keep every rule the other skills that link it rely on. Grep every linking file, and check each link still lands on a heading that exists.
+- If a test pins text this spec changes, the lane stops and reports. It does not edit the test (tools/ is out of scope).
+- `references/settle-and-strategize.md:3` ("before any other tool call") and `parallel-test-lanes.md` are outside the editable set. R4 and R5 resolve the conflict inside testing-ticket's own text, and the report names the rest.
+
+## Done when
+
+- `node tools/sdd-gate/check.js --base origin/main` exits 0 once this folder is on main.
+- Every suite from `bash scripts/list-test-suites.sh .` passes, and `scripts/check-no-secrets.sh` passes on the tracked files.
+- `grep` finds the hedge word list only in `root-cause-investigation.md` §4, and "One compare per screen × width" only in `round-time-contract.md` §7.
+- `no-wait-decision-gate.md` layer 17 names testing-ticket and every cause listed in R1.
+- R8 byte totals are reported before → after.
