@@ -33,7 +33,6 @@ metadata:
 - [Step 5 — Notify the project's TC-review channel \[low freedom\]](#step-5--notify-the-projects-tc-review-channel-low-freedom)
 - [QA closing (mandatory before "done") \[low freedom\]](#qa-closing-mandatory-before-done-low-freedom)
 - [Skill composition](#skill-composition)
-- [Out of scope](#out-of-scope)
 - [MUST / NEVER](#must--never)
 - [Must-read files](#must-read-files)
 - [Dependencies](#dependencies)
@@ -334,12 +333,6 @@ Then, in this order (items 1–6 every send; items 7 and 8 only when correcting 
 | Something breaks mid-review (source won't load, tool errors, unexplained mismatch) | `superpowers:systematic-debugging` |
 | The user wants these TCs actually run next | `testing-ticket-workflow` |
 | The user wants a fresh TC table designed instead of a review of an existing one | `tc-fe-prep-workflow` / `tc-api-prep-workflow` |
-
-## Out of scope
-
-- Designing or editing test cases — this workflow only judges what is already written.
-- Deciding the product's pass/fail verdict — this workflow judges whether the *document* would prove
-  that verdict, not whether the product itself is correct.
 
 ## MUST / NEVER
 
