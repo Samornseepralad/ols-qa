@@ -1,6 +1,6 @@
-# Shared QA closing checklist (all Helix workflows)
+# Shared QA closing checklist (all workflows)
 
-Every skill's QA closing section MUST include these items.
+Every skill's QA closing section MUST include these items **plus** skill-specific checks.
 
 ## Doubt and fix-verify
 
@@ -54,7 +54,7 @@ that deserves a new ticket is proposed in chat and waits for an explicit go-ahea
    | Open dependency | a ticket this one depends on, or blocks, is not Done or was reopened |
    | Regression risk | an open or recently shipped ticket changes the same surface after this verification |
 
-   A spec that is unclear is a question for its owner, never a defect.
+   An unclear spec is a question for its owner, never a defect.
 3. **Report in chat — mandatory, also when nothing is found.** One table:
    `# · Ticket · Type · Status · Conflict kind · What conflicts (quote the field or comment) · Effect on this verdict`.
    Every ticket cell is a clickable link `[{ISSUE_KEY}](https://{JIRA_DOMAIN}/browse/{ISSUE_KEY})` —
@@ -62,7 +62,7 @@ that deserves a new ticket is proposed in chat and waits for an explicit go-ahea
    tested ticket (link + verdict). Nothing found → say so with numbers: one row per search layer with
    its query and hit count, plus how many candidates were opened. A "no conflict" line without counts
    is not allowed.
-4. **Ask, then wait.** One question, through the host's question UI when it has one: **Investigate
+4. **Ask, then wait.** One question, through the host's question UI if any: **Investigate
    further** or **Close out now**. In attended retest / testing-ticket rounds, apply the step 5
    default first and **queue this question in the end decisions popup** (batched with the other
    queued questions), shown before the approval popup
