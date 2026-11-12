@@ -7,3 +7,4 @@
 | T3 | Narrow-width rows branch | R3 | `grep -c -i narrow references/qa-evidence-capture.md` = 0 | the paragraph exists with its anchor; layer 1 and Size row point to it |
 | T4 | Layer 17 narrow cause | R4 | layer 17 testing-ticket sentence has no (c) | it names (c) for narrow rows; file ≤ 100 lines |
 | T5 | Verify | R5 | — | all suites green; sdd-gate green; byte table before → after; WORKFLOW not larger |
+| T6 | Token offset in WORKFLOW.md | R6 | measure = 16420 / 23967 (> 16409 / 23957) | measure ≤ 16409 / 23957; 0 rule lines changed |
