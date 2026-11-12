@@ -3,14 +3,7 @@
 The output shape of the Step 7 Jira comment as an ADF document, and the files to write when the user
 asks for a draft without posting ("draft only", "do not post", "save the comment, don't publish").
 The content rules (intro text, 6-column slim table, attachment links, skip-notes, Remark, Disclaimer)
-stay in Steps 6–7 of the workflow; this file is the one copy of the file form and an example.
-
-## Contents
-
-- [Draft only — files to write](#draft-only--files-to-write)
-- [ADF document order](#adf-document-order)
-- [Self-check before reporting](#self-check-before-reporting)
-- [Example — approved rows in, ADF out](#example--approved-rows-in-adf-out)
+stay in WORKFLOW Steps 6–7; this file is the one copy of the file form and an example.
 
 ## Draft only — files to write
 
@@ -51,7 +44,7 @@ Top-level nodes, in this order:
   `hardBreak`, `bulletList`, `orderedList`, `listItem`.
 - The last top-level node's text starts with `⚠️ Disclaimer:`.
 - Table data rows = the approved TC count.
-- A Type is absent, a Figma/PRD link is missing, or a BLOCKED case has no sheet row → the Remark (strong `Remark — Type coverage:` paragraph + `bulletList`, lines per `design-and-review.md` § 3d) sits right before the Disclaimer; none applies → no Remark.
+- Remark (Step 7 item 6 applies: absent Type, missing Figma/PRD link, unsheeted BLOCKED case) = the paragraph + `bulletList` right before the Disclaimer; else none.
 
 ## Example — approved rows in, ADF out
 
