@@ -7,6 +7,7 @@
 - `skills/procedures/create-bug-workflow/references/posting-discipline.md` — R3: drop `module:<name> when supported`.
 - `skills/procedures/create-bug-workflow/phase-d-create.md` — R4: JQL + exact-title match in item 4.
 - `skills/procedures/create-bug-workflow/phase-e-falsification.md` — R6: extend the contradiction paragraph (`:39-41`) to cover the shared §3 re-runs.
+- `skills/procedures/create-bug-workflow/WORKFLOW.md` — R7 byte offsets, only in lines with no MUST / NEVER / STOP / GATE / 🔴 word (helix `check-rule-lines.sh` counts a reworded rule line as cut): the intro history, checklist lead-in, the B2 / C / F pointer tails, the A1 one-target line, the A3 prior-run line, the Refusal-first root-cause aside, and the A3 repro-steps paragraph that repeats the `MUST NOT invent reproduction steps` row.
 - `tools/a14-create-bug/check.test.js` — rule-text test, written first and failing.
 
 ## Data / libraries
