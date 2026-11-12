@@ -1,0 +1,5 @@
+# Intent — after-14: helix router keeps after-10 results on the token-diet check
+
+Owner request (12/Nov/2026, T9 fix lane): helix passed the after-13 Exit gate but failed the token-diet "same results" check against after-10 — `darwin_total` 83.9 → 82.3 and median output bytes 3,524 → 3,735 (ols-qa-evidence `evals/helix-skill-eval-2026-11-12-after13/GATE.md:34`). Find which dimensions lost points and why answers got longer; fix the router only where the evidence names a specific defect, otherwise report noise and change nothing.
+Why: two of three after-13 scorings cut Workflow clarity 9 → 8 and the third named the same blur, each quoting text that changed between after-10 (helix `3986651`) and after-13 (helix `2662068`). The output-byte rise is a pooled-median artifact, not longer router output.
+Constraints: edit only `skills/helix/**`, `commands/helix.md`, `references/menu-text.md`, `references/skill-routing.md`; never remove or weaken a gate, evidence rule, approval step or must-read link; router bytes same or lower.
