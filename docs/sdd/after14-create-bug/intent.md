@@ -1,0 +1,5 @@
+# Intent — after-14: create-bug passes the Exit gate and keeps after-10 results
+
+Owner request (12/Nov/2026, T9 fix lane): create-bug failed the after-13 Exit gate — 2 verified P1 and `darwin_total` 81.5 below best-earlier 84.1 and after-10 83.8 (ols-qa-evidence `evals/helix-skill-eval-2026-11-12-after13/GATE.md:14`, `:33`, `:46`). Fix the root cause of each P1 and of the score drop in create-bug's own files.
+Why: `SKILL.md:42` sends a bug filer into a 20-layer test-round gate with no map of what applies, and the JXA/REST create fallbacks can file an issue twice after a timeout. The score drop is dim8 only: the structural median is equal (63.5 → 63.5) and the with-skill runs lost one grader point each for extra or repeated questions and a link built from a key.
+Constraints: edit only `skills/create-bug-workflow/**` and `skills/procedures/create-bug-workflow/**`; never remove or weaken a gate, approval step or evidence rule; own-file bytes and mandatory-read tokens same or lower; shared files that need a change are reported, not edited.
