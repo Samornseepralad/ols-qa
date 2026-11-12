@@ -1,6 +1,6 @@
 # Retest bug — close out and notify (Steps 8–10)
 
-Part of [WORKFLOW.md](WORKFLOW.md). read right after the comment is posted.
+Part of [WORKFLOW.md](WORKFLOW.md). Read right after the comment is posted.
 
 ## Contents
 

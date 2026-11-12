@@ -1,6 +1,6 @@
 # Retest bug — execute and evidence (Steps 4–5, result quality gate)
 
-Part of [WORKFLOW.md](WORKFLOW.md). read in run order after Step 3.
+Part of [WORKFLOW.md](WORKFLOW.md). Read in run order after Step 3.
 
 ## Contents
 
@@ -35,7 +35,7 @@ accounts sharing one OTP inbox (§3), one subagent per lane, all in a single mes
 own cases with **only its leased account** and records the authenticated user id at login; barrier
 cases run alone after the lanes return. The parent then runs the §6 merge (isolation · coverage ·
 evidence) and does 4i on every non-PASS itself before Step 5. Lanes never post, transition, assign,
-or notify. A host that cannot start subagents runs the same lanes one after another (lanes §4 note).
+or notify. A host that cannot start subagents runs the same lanes one after another (parallel-test-lanes §4).
 **Session lease per lane.** If the workspace provides a session-lease tool (see project guide), each
 lane acquires the lease on its account before loading the login file, renews it on long runs, and
 releases it in `finally` — the §5 lane prompt carries those lines (or `LEASE-HELD-BY-PARENT` when the

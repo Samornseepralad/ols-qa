@@ -1,6 +1,6 @@
 # Retest bug — comment and post (Steps 6–7)
 
-Part of [WORKFLOW.md](WORKFLOW.md). read before drafting the comment.
+Part of [WORKFLOW.md](WORKFLOW.md). Read before drafting the comment.
 
 ## Contents
 
