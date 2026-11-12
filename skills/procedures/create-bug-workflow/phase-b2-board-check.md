@@ -1,6 +1,6 @@
 # Create bug — Phase B2
 
-Part of [WORKFLOW.md](WORKFLOW.md), opened at Phase B2 as its progress-checklist line names. Every rule here is a full gate of the workflow.
+Part of [WORKFLOW.md](WORKFLOW.md), opened at Phase B2; every rule here is a full gate.
 
 ## 🔴 GATE: Phase B2 — Board-conflict re-check (hard gate, before drafting/confirm) [low freedom]
 
