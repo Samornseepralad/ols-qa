@@ -7,6 +7,7 @@
 | 3 | Trigger-based loading in 6 stubs + phase checklist (lane L25) | R2, R6 | `graph.py` counts phase files as mandatory | retest, testing-ticket, tc-fe phase files no longer mandatory; each named at its checklist step |
 | 4 | Split `qa-evidence-gates.md` (lane L26) | R3, R6 | a diff of rule lines (original vs union of parts) is empty only when nothing was dropped; link check | rule-line diff empty; all anchors resolve; catch-ai, tc-review link core only |
 | 5 | Shared reference index + single copies of repeated blocks (lane L26) | R4 | `dup.py` lists the blocks; structure CI | `dup.py` shows none of the listed blocks repeated; CI green |
+| 5a | testing-ticket `WORKFLOW.md`: drop the frontmatter that repeated the stub description (lane T9-testing-ticket) | R4 | `dup.py` co-loaded duplicates: testing-ticket-workflow = 114 | `dup.py` testing-ticket-workflow = 0, other skills unchanged; CI green |
 | 6 | Re-measure and eval round (lane L28) | Done when | — | every skill direct and routed ≤ 50% of the spec table; eval per skill not worse than after-10 |
 | 7 | Release helix and sync ols-qa (lane L29) | Done when | — | GitHub Release on helix; ols-qa sync PR merged with parity files |
 
