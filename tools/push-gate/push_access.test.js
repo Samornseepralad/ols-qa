@@ -16,6 +16,12 @@ const { execFileSync, spawnSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..', '..');
 const SCRIPT = path.join(ROOT, 'scripts', 'check-push-access.sh');
+/** Absolute path of `cmd` on the caller's PATH; the stub PATH above cannot resolve it. */
+function which(cmd) {
+  return execFileSync('bash', ['-c', `command -v ${cmd}`], { encoding: 'utf8' }).trim();
+}
+const GIT = which('git');
+const BASH = which('bash');
 
 let failed = 0;
 function check(name, fn) {
@@ -39,9 +45,12 @@ function run({ url = 'https://github.com/demo-owner/demo-repo.git', login = 'dem
       'exit 1',
     ].join('\n'), { mode: 0o755 });
   }
-  // PATH keeps git/bash/sed but drops any real gh, so the stub (or its absence) decides.
-  const sysPath = ['/usr/bin', '/bin'].join(':');
-  const r = spawnSync('bash', [SCRIPT], { cwd: dir, env: { ...env, PATH: `${bin}:${sysPath}` }, encoding: 'utf8' });
+  // PATH holds only the stub dir and a dir linking the one external tool the script needs (git), so a
+  // real gh never answers: GitHub's ubuntu runners ship gh in /usr/bin, which a /usr/bin:/bin PATH reached.
+  const tools = path.join(dir, 'tools');
+  fs.mkdirSync(tools);
+  fs.symlinkSync(GIT, path.join(tools, 'git'));
+  const r = spawnSync(BASH, [SCRIPT], { cwd: dir, env: { ...env, PATH: `${bin}:${tools}` }, encoding: 'utf8' });
   fs.rmSync(dir, { recursive: true, force: true });
   return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
 }
