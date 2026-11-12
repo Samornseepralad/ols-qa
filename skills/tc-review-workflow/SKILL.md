@@ -355,6 +355,7 @@ Shared rules: [shared-must-never.md](../../references/shared-must-never.md). Ski
 | NEVER report a business rule or comment that does not conflict with an AC/EC |
 | MUST give every Need Improve item a sourced "→ Suggest:" fix, and NEVER invent a value for it |
 | MUST NOT post to Jira/Confluence/GitHub or send an external message before the user has seen the review in chat |
+| MUST run Step 5 exactly as written — it is the single source for the notify rules |
 
 ## Must-read files
 
