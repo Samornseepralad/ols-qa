@@ -28,6 +28,7 @@ Time row is out of scope (environment issue this round, per the fix-lane brief).
 - **R9.** The count-survives rule is stated once in the Iron Law; other places link to it. The MUST row and the Rationalizations row stay. (Source: finding 8.)
 - **R10.** Bytes of `SKILL.md` + `reference.md` + `commands/catch-ai.md` after ≤ before (40,154). No gate, approval step, or MUST / NEVER / 🔴 / STOP / GATE line removed.
 - **R11.** Every ols-qa CI suite passes.
+- **R12. Token offset: net mandatory tokens not higher than before the a14 fix.** The catch-ai mandatory read set, measured by helix `scripts/token-measure.py measure` (direct and routed), must be ≤ its value before the a14 fix (helix `token-budget.json` v1.5.192: 9283 direct / 14036 routed). The offset cuts only repeated wording; no rule, gate, evidence or approval step, and no MUST / NEVER / 🔴 / STOP / GATE line, is removed or edited. (Source: helix sync dry run at ols-qa `4ffd262`: 9309 / 14062; precedent ols-qa #203.)
 
 ## Edge cases
 

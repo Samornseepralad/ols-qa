@@ -11,3 +11,4 @@
 | 7 | defect-report-completeness parts | R8 | — | § 2 / § 4 named |
 | 8 | Dedupe count rule; offset bytes | R9 R10 | — | bytes ≤ 40,154 |
 | 9 | Run CI suites, sdd-gate, skill lint | R11 | — | all green |
+| 10 | Token offset in SKILL.md | R12 | measure = 9309 / 14062 (> 9283 / 14036) | measure ≤ 9283 / 14036; 0 rule lines changed |
