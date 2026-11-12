@@ -14,7 +14,7 @@ Evidence (ols-qa-evidence `origin/main`, `evals/helix-skill-eval-2026-11-12-afte
 ## Rules
 
 - **R1** When create-bug shows the Phase C block, its open questions, the B3 record or any note, the system must write their prose in the user's language per `user-communication.md`, keeping field names, labels (`Confirmed`, `Likely`, `Needs Review`), keys and the reply word **confirm** as written. Source: grade p2r3; `user-communication.md:9-10,18`.
-- **R2** `SKILL.md` must not link files it declares not applied when filing (`customer-escape-prevention.md`, `round-time-contract.md`). Source: dim7 s1–s3, `SKILL.md:47`.
+- **R2** Withdrawn. Dropping the `SKILL.md:47` links to `customer-escape-prevention.md` and `round-time-contract.md` makes skill-lint `must-read-depth` fail (shared must-reads link both, so they must sit 1 hop from `SKILL.md`). The links stay; the line is shortened. Fixing the bundle needs a shared-reference change (see Out of scope).
 - **R3** The GitHub label list in `posting-discipline.md` must equal the labels the Phase B pre-flight checks and Phase D passes (`bug`, `severity:<Severity>`). Source: P2 s1, s2.
 - **R4** After a non-field create failure, the duplicate search must give its query: Jira JQL `project = <KEY> AND summary ~ "\"<approved title>\"" ORDER BY created DESC` (no status filter), counted as a match only when the summary equals the approved title. Source: P2 s1.
 - **R5** `SKILL.md` must say which `jira-comment-post-review.md` checks apply to an issue body (pre-post render check, §3 stray markup, §4 numbering) and that Phase F's 2-round cap applies. Source: P2 s2, s3.
@@ -24,14 +24,13 @@ Evidence (ols-qa-evidence `origin/main`, `evals/helix-skill-eval-2026-11-12-afte
 ## Out of scope (reported to the coordinator, not edited)
 
 - Rule restatements cited for dim7 (`SKILL.md:51`/`WORKFLOW.md:51`/`:200` board check; `SKILL.md:55`/`WORKFLOW.md:31`/`:202` URL verify): each is a MUST line; removing one needs an owner-approved `rule-line-register.json` entry in helix.
-- Shared files: `references/agent-rationalizations.md:12` (attach-before-embed), `references/helix-session-constraints.md:10` waiver wording, `references/workspace-guide-discovery.md:53`.
+- Shared files: the MUST links from shared must-reads to `customer-escape-prevention.md` / `round-time-contract.md` (R2), `references/agent-rationalizations.md:12` (attach-before-embed), `references/helix-session-constraints.md:10` waiver wording, `references/workspace-guide-discovery.md:53`.
 - `phase-e-falsification.md` holds Phase B3 (file rename needs owner approval, global Rule 5).
 - Grader dim8 notes "over-gates on comment scope" (`phase-b2-board-check.md:24-27`, a Phase D hold) and "cites a priority-matrix line" (`WORKFLOW.md:91`, an evidence rule): both are gates, kept.
 
 ## Done when
 
 - R1: `phase-c-confirm.md` names the user's language and `user-communication.md` (test).
-- R2: no `customer-escape-prevention` / `round-time-contract` in `SKILL.md` (test).
 - R3: no `module:` in `posting-discipline.md` (test).
 - R4: `phase-d-create.md` has the JQL and the exact-title match (test).
 - R5: `SKILL.md` scopes `jira-comment-post-review.md` for issue bodies (test).

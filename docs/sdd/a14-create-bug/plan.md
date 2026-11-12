@@ -3,7 +3,7 @@
 ## Files
 
 - `skills/procedures/create-bug-workflow/phase-c-confirm.md` — R1: one sentence merged into the existing "Ask every open question" line (`:29`).
-- `skills/create-bug-workflow/SKILL.md` — R2 (drop the two test-round links at `:47`), R5 (scope note on `:41`).
+- `skills/create-bug-workflow/SKILL.md` — R2 withdrawn (skill-lint must-read-depth), R5 (scope note on `:41`).
 - `skills/procedures/create-bug-workflow/references/posting-discipline.md` — R3: drop `module:<name> when supported`.
 - `skills/procedures/create-bug-workflow/phase-d-create.md` — R4: JQL + exact-title match in item 4.
 - `skills/procedures/create-bug-workflow/phase-e-falsification.md` — R6: extend the contradiction paragraph (`:39-41`) to cover the shared §3 re-runs.
