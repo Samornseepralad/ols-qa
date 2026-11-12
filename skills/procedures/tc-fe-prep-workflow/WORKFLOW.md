@@ -317,7 +317,7 @@ ADF is already built from Step 6 — proceed directly to fast publish. Full JS p
    ⚠️ Disclaimer: ข้อมูลนี้เป็นเพียง Draft Version ที่ได้จากการใช้ Skill เท่านั้น (TC ครบตาม AC & EC) เนื้อหาทั้งหมดจำเป็นต้องได้รับการรีวิวและอัปเดตโดยทีม QA ก่อนนำไปใส่ในไฟล์เอกสารส่งมอบ และทำการนำ TC ไป Import เข้าสู่ Qase.io
    ```
 
-**Pre-publish re-check (MANDATORY before every post or re-post):**
+**Pre-publish re-check (MANDATORY before every POST or PUT):**
 
 Verify ALL of the following are present in the ADF body before calling the Jira comment API. If any item is missing → add it → then publish.
 
@@ -359,9 +359,7 @@ Run the **full review checklist** from [jira-comment-post-review.md](../../../re
 - [ ] **Both** `Draft_Jira_{ISSUE_KEY}.csv` and `Import_Qase_{ISSUE_KEY}.csv` attached to the same issue (not just in workspace) and **both** footer links work.
 - [ ] Comment is on the **story**, not a sub-task.
 
-If any check fails → fix and re-post → re-verify on Jira UI (max 3 rounds). After 3 failed rounds → report the failing checks verbatim and stop; do not claim success.
-
-**Go back:** If a post-publish check fails, fix and return to *Publish method* item 1 to re-post, then run this checklist again — max 3 rounds. Step 7.5 waits.
+**Go back:** if any check fails → fix per [jira-comment-post-review.md § Fix procedure](../../../references/jira-comment-post-review.md#fix-procedure-when-any-check-fails): PUT the full corrected ADF to the same comment id (`commentId` from Pattern C), never POST a new comment; a missing CSV is uploaded, then only that comment's footer link is fixed. Re-verify on Jira UI — max 3 rounds; after 3 failed rounds report the failing checks verbatim and stop, no success claim. Step 7.5 waits.
 
 **MUST NOT tell user "commented" or "done" until all checks pass.** See [jira-comment-post-review.md](../../../references/jira-comment-post-review.md) for fix procedures and reporting templates.
 
