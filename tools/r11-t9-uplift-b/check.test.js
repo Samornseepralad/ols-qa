@@ -61,7 +61,7 @@ t('R18 catch-ai defect/non-pass group is conditional', () => {
 t('R19 catch-ai "cleared to send"; description ≤ 1000 chars', () => { lacks(C, /may this verdict be sent/); has(C, /is this verdict cleared to send now\?/); assert.ok(desc(C).length <= 1000, `${desc(C).length} chars`); });
 t('R20 tc-api description: informal/Thai trigger and push; ≤ 1024', () => { const d = desc(A); assert.ok(/even if they do not say Swagger or TC/.test(d) && /เขียนเทสเคส API/.test(d)); assert.ok(d.length <= 1024); });
 t('R21 tc-api "another skill owns it"', () => { lacks(A, /another skill may own it/); has(A, /another skill owns it/); });
-t('R22 tc-api API mapping for Test Steps and CSV names', () => { has(A, /Test Data \(method, path, headers, body\) is the step and Expected Result leads with the status code/); has(A, /`\{ISSUE_KEY\}_FE_TC` file names become `references\/\{SCOPE\}_API_TC\.csv`/); });
+t('R22 tc-api API mapping for Test Steps and CSV names', () => { has(A, /Test Data \(method, path, headers, body\) is the step and Expected Result leads with the status code/); has(A, /its `\{OUT\}` is `references\/\{SCOPE\}_API_TC`/); });
 t('R23 tc-review language follows the user per user-communication.md', () => { lacks(T, /stay English per/); has(T, /Helix menus, intake questions and the thread question follow the user's language per/); });
 t('R24 tc-review bullet measure', () => { lacks(T, /Keep each bullet tight/); has(T, /One finding per bullet, at most two lines plus its Suggest line/); });
 t('R25 tc-review delivered review = matrix + two lists', () => has(T, /The delivered review is the Step 2 matrix, then two short lists/));
