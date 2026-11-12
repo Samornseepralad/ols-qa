@@ -250,6 +250,12 @@ t('a Story tested without testing-ticket-workflow is SKILL_MISMATCH', () => {
   assert.ok(rules([line({ skill: 'retest-bug-workflow' })], { types: { 'DEMO-1': 'Story' } }).includes('SKILL_MISMATCH'));
 });
 
+t('a Story fix retest with retest-bug-workflow passes only with a fix_ref', () => {
+  assert.deepStrictEqual(rules([line({ skill: 'retest-bug-workflow', fix_ref: 'DEMO-1#comment-10' })], { types: { 'DEMO-1': 'Story' } }), []);
+  const r = G.checkResults([line({ skill: 'retest-bug-workflow', fix_ref: '' })], { types: { 'DEMO-1': 'Story' } }).violations;
+  assert.ok(r.some((v) => v.rule === 'SKILL_MISMATCH' && /fix_ref/.test(v.msg)));
+});
+
 t('a Bug must carry retest-bug-workflow', () => {
   assert.deepStrictEqual(rules([line({ skill: 'retest-bug-workflow' })], { types: { 'DEMO-1': 'Bug' } }), []);
   assert.ok(rules([line()], { types: { 'DEMO-1': 'Bug' } }).includes('SKILL_MISMATCH'));

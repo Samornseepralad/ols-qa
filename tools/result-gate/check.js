@@ -17,7 +17,7 @@
  *   remark, contact (BLOCKED), attempts, failed_attempts, intermittent (FAILED),
  *   requirement_source, requirement_quote (FAILED: confirmed spec, char-exact),
  *   code_refs[] (path:line read at origin/main), ticket_refs[] (KEY or KEY#comment) — BLOCKED/FAILED,
- *   role, env, skill, ts, superseded (true = an older line kept for history; not judged by
+ *   role, env, skill, ts, fix_ref (Story fix retest: the fix re-verified), superseded (true = an older line kept for history; not judged by
  *   per-line rules, but it needs a later live line for the same case — SUPERSEDED_ORPHAN).
  *
  * Usage:
@@ -48,6 +48,11 @@ function canonicalVerdict(v) {
 // Mirrors references/skill-routing.md § Jira issue type → skill. Other types: skill must
 // be recorded, no mapping is invented.
 const TYPE_SKILL = { story: 'testing-ticket-workflow', bug: 'retest-bug-workflow' };
+// A Story whose fix is being re-verified may run retest-bug-workflow (its WORKFLOW.md Step 1)
+// when the line names that fix — first-time Story tests still need testing-ticket-workflow (#0174).
+function storyFixRetest(type, l) {
+  return norm(type) === 'story' && norm(l.skill) === 'retest-bug-workflow' && !blank(l.fix_ref);
+}
 
 // customer-escape-prevention.md §3: a passing row that hedges is not a pass.
 const HEDGES = [/caveat/i, /not verifiable/i, /cannot verify/i, /\bassumed\b/i, /ยืนยันไม่ได้/, /ตรวจไม่ได้/];
@@ -241,7 +246,7 @@ function checkResults(lines, opts = {}) {
         if (type === undefined) continue;
         const want = TYPE_SKILL[norm(type)];
         if (blank(l.skill)) add('SKILL_MISSING', l, 'no skill recorded for a ' + type);
-        else if (want && norm(l.skill) !== want) add('SKILL_MISMATCH', l, type + ' must be tested with ' + want + ', line says ' + l.skill);
+        else if (want && norm(l.skill) !== want && !storyFixRetest(type, l)) add('SKILL_MISMATCH', l, type + ' must be tested with ' + want + ', line says ' + l.skill + (norm(type) === 'story' && norm(l.skill) === 'retest-bug-workflow' ? ' (a Story fix retest needs fix_ref)' : ''));
       }
     }
   }
