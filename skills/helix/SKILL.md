@@ -139,7 +139,7 @@ The router reads only what it needs to pick and hand off a workflow. Every gate 
 - Read [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md) before posting a Jira table with multi-line cells.
 - Read [long-workflow-todos.md](../../references/long-workflow-todos.md) when the workflow has many steps; keep the todo list.
 - Read [qa-debug-discipline.md](../../references/qa-debug-discipline.md) when a test is flaky or a tool errors.
-- Read [qa-evidence-gates.md](../../references/qa-evidence-gates.md) before any completion claim.
+- Read [qa-evidence-gates.md](../../references/qa-evidence-gates.md) when the workflow reaches a completion claim.
 - Read [root-cause-investigation.md](../../references/root-cause-investigation.md) before naming a cause for any failure.
 - Read [round-time-contract.md](../../references/round-time-contract.md) when a round starts and before reporting times.
 - Read [verify-closing-checklist.md](../../references/verify-closing-checklist.md) before reporting a verify or retest done.
