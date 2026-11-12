@@ -4,7 +4,7 @@ File **one or more bug reports** on the tracker the user names (Jira, GitHub Iss
 
 ## Contents
 
-Checklist, Refusal-first, Phases A–B and MUST / NEVER live here; each later phase has its own file, opened at its checklist line, not before.
+Checklist, Refusal-first, Phases A–B and MUST / NEVER live here; each later phase has its own file, opened at its checklist line.
 
 ## Progress checklist
 
@@ -145,31 +145,31 @@ If the user references findings from a **prior testing-ticket** run in the same 
 
 ## 🔴 GATE: Phase B2 — Board-conflict re-check (hard gate, before drafting/confirm) [low freedom]
 
-At Phase B2, open [phase-b2-board-check.md](phase-b2-board-check.md) and follow every line of it before you move on. Hard gate: nothing is drafted, confirmed or filed until every candidate has its board-check result.
+At Phase B2, open [phase-b2-board-check.md](phase-b2-board-check.md) and follow every line before moving on. Hard gate: nothing is drafted, confirmed or filed until every candidate has its board-check result.
 
 ---
 
 ## Phase B3 — Falsification (before create) [high freedom]
 
-At Phase B3, open [phase-e-falsification.md](phase-e-falsification.md) and follow every line of it before you move on. 🔴 GATE: no candidate reaches Phase C until it survives falsification.
+At Phase B3, open [phase-e-falsification.md](phase-e-falsification.md) and follow every line before moving on. 🔴 GATE: no candidate reaches Phase C until it survives falsification.
 
 ---
 
 ## 🔴 GATE: Phase C — Confirm before create (hard gate) [low freedom]
 
-At Phase C, open [phase-c-confirm.md](phase-c-confirm.md) and follow every line of it before you move on. Hard gate: no create call before the user replies confirm.
+At Phase C, open [phase-c-confirm.md](phase-c-confirm.md) and follow every line before moving on. Hard gate: no create call before the user replies confirm.
 
 ---
 
 ## Phase D — Create issues [low freedom]
 
-At Phase D, open [phase-d-create.md](phase-d-create.md) and follow every line of it before you move on. Read shared-must-never.md (linked in MUST / NEVER) before the first write.
+At Phase D, open [phase-d-create.md](phase-d-create.md) and follow every line before moving on. Read shared-must-never.md (linked in MUST / NEVER) before the first write.
 
 ---
 
 ## Phase F — Fix-verify and close (mandatory) [low freedom]
 
-At Phase F, open [phase-f-close.md](phase-f-close.md) and follow every line of it before you move on. Mandatory: no done claim before every created URL is verified.
+At Phase F, open [phase-f-close.md](phase-f-close.md) and follow every line before moving on. Mandatory: no done claim before every created URL is verified.
 
 ---
 

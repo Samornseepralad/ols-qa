@@ -27,7 +27,7 @@ Claude Code shortcut: `/create-bug` → [commands/create-bug.md](../../commands/
 
 ## Contents
 
-Shared reference index, with the trigger that opens each file (see also): [skill-reference-index.md](../../references/skill-reference-index.md).
+Shared reference index with triggers (see also): [skill-reference-index.md](../../references/skill-reference-index.md).
 
 At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md), then [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) and [intake-one-pager.md](../../references/intake-one-pager.md) on the first response (WORKFLOW Refusal-first).
 
