@@ -74,11 +74,11 @@ Output — `Jira_comment_{ISSUE_KEY}.adf.json` (complete; no Unit Test rows, so 
 ]}
 ```
 
-Output — first lines of `Jira_comment_{ISSUE_KEY}.preview.md`:
+Output — first lines of `Jira_comment_{ISSUE_KEY}.preview.md` (intro line text: [jira-formatting.md § Comment structure](jira-formatting.md#comment-structure)):
 
 ```text
 PREVIEW — not postable; post the .adf.json
-Draft TC FE as below — ดูรายละเอียด Precondition / Steps / Expected ได้ในไฟล์แนบ
+<intro line — exact text in jira-formatting.md § Comment structure>
 AC_01 · <SERVICE_A> · 1 · <TITLE_A> · High · Integration Test
 EC_01 · <SERVICE_A> · 2 · <TITLE_B> · Medium · System Test
 ```
