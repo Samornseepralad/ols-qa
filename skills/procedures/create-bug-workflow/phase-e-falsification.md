@@ -1,10 +1,10 @@
 # Create bug — Phase B3
 
-Part of [WORKFLOW.md](WORKFLOW.md), opened at Phase B3 as its progress-checklist line names. Every rule here is a full gate of the workflow.
+Part of [WORKFLOW.md](WORKFLOW.md), opened at Phase B3; every rule here is a full gate.
 
 ## Phase B3 — Falsification (before create) [high freedom]
 
-Runs here — after Phase B2, before the Phase C confirm — for every candidate that cleared B2.
+Runs after Phase B2 for every candidate that cleared it. **🔴 GATE:** no candidate reaches Phase C until it survives falsification.
 
 For each bug, run every check below once and record its result (the board-conflict search is Phase B2 —
 do not skip it just because a bug "looks obvious"). A check counts as already done only when a
@@ -36,4 +36,26 @@ Then give each candidate one label, written on its draft summary line:
 - **Dropped** — the check proves it is not a defect (e.g. the design shows the current behavior) →
   report it in chat with the source link, as for a Phase B2 conflict.
 
+Two observations that contradict each other (one shows the defect, one does not) → never re-run it
+yourself: ask the reporter for one clean re-run of that surface, or hand it to testing-ticket-workflow;
+the candidate stays **Needs Review** until the answer comes.
+
 **Go back:** If the disproof attempt finds the item already settled in another ticket, return to Phase B2 — Board-conflict re-check for that candidate. When the user answers a Needs Review question, return to the top of this phase for that candidate. Confirmed and Likely candidates move to Phase C.
+
+### Result-quality-gate layer map (filing)
+
+[result-quality-gate.md](../../../references/result-quality-gate.md) is written for test rounds. Filing
+runs no case and writes no `results.jsonl`, so `check.js` is not run; the layers that apply are checked
+here by hand, at the step named, before any label, BLOCKED line or `Verdict:` leaves the run.
+
+| Layer | When filing |
+|-------|-------------|
+| 1–5, 8–10, 12, 19 | Do not apply: no case, environment, account, fixture, clip, PASSED row or result line exists. A request to reproduce goes to testing-ticket, where all 20 run. |
+| 6, 7 | Refusal-first: expected side quoted char-exact from its source; hedged or contradictory spec → `BLOCKED: spec unconfirmed`. |
+| 11, 13 | Evidence and What happens come from the reporter (no evidence → `BLOCKED (no evidence)`); a cause sentence carries its root-cause label. |
+| 14 | Phase B2 (main, linked and earlier tickets) + the Intentional-design check (design / AC); product code and regression results when the workspace holds them — a source not read is named with the reason. |
+| 15 | [non-pass-challenge-gate.md](../../../references/non-pass-challenge-gate.md) per candidate, before its label. |
+| 16 | The Flake check above: occurrence count from the evidence; one occurrence → never Confirmed. |
+| 17 | A3 matrix cell cited + verified source quoted + evidence; filed only after Phase C **confirm**. |
+| 18 | Each BLOCKED names what is missing and who can supply it (reporter, PO, design). |
+| 20 | Phase F: every created issue re-fetched before the `Verdict:` line. |
