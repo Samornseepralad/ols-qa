@@ -6,3 +6,4 @@
 2. **T2 (R14-1..4)** เพิ่ม Step 8 + checklist + 3 แถว MUST/NEVER (ใช้ `{TICKET_KEY}`) · เทสต์ก่อน: `grep "Step 8"` บนต้นฉบับ = 0 · เสร็จเมื่อ diff apply ได้ ผ่าน link-check/no-secrets — **ทำแล้ว ols-qa#115**
 3. **T3** เจ้าของงานรีวิว+merge #115 → เช็ก diff D11 → รัน `sync-skills-to-helix.sh` — **เจ้าของงานเป็นผู้สั่ง**
 4. **T4 (แยกงาน)** ให้ worker/tick ฝั่งนี้ตรวจว่ามี `data-register.md` และ verdict Unverified ในผลรีวิว — ยังไม่ทำ จนกว่า T3 เสร็จ
+5. **T5 (R12-2)** แยกข้อความ R12 ออกจากแถว design-source เดิมเป็นแถวใหม่ คืนแถวเดิมให้ตรงทุกตัวอักษร (Helix sync PR #37 gate `rule-lines` FAIL) · เทสต์ก่อน: `grep -cxF "| NEVER claim a design-source (Figma/PRD) match without having opened that source this session |"` = 0 · เสร็จเมื่อ = 1 และเทสต์ ols-qa ผ่าน
