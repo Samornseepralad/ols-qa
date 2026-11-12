@@ -49,7 +49,7 @@ t('R4f Row ordering and MUST row still say 2xx first', () => {
 });
 t('R4g PR #95 G1 write-failure step unchanged', () => {
   assert.ok(/4\. \*\*Write failure \(steps 1–2, `\.md` \/ `\.csv`\):\*\*/.test(g1));
-  assert.ok(/Delivery A may then continue without the attachment: the comment does not mention one and uses no `__ATT1_ID__` placeholder\./.test(g1));
+  assert.ok(/Delivery A then continues without the attachment: the comment does not mention one and uses no `__ATT1_ID__` placeholder\./.test(g1));
 });
 t('R4h WORKFLOW.md within 370 lines', () => {
   const W0 = rd('WORKFLOW.md'); const n = W0.split('\n').length - (W0.endsWith('\n') ? 1 : 0);
