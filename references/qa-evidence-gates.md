@@ -6,7 +6,7 @@ Adapted from evidence-before-claims discipline for **QA deliverables**. Use with
 
 - [Gate function](#gate-function)
 - [Claim → evidence map](#claim--evidence-map)
-- [Moved sections (old anchors)](#moved-sections-old-anchors)
+- [Related: moved sections (old anchors)](#related-moved-sections-old-anchors)
 - [Wording red flags](#wording-red-flags)
 - [Workflow pointers](#workflow-pointers)
 - [Evidence must be a real FE screen — a raw-data page is never evidence](#evidence-must-be-a-real-fe-screen--a-raw-data-page-is-never-evidence)
@@ -81,7 +81,7 @@ If what the case needs to prove has no screen that shows it, use the screen that
 value (a count rendered on a detail page, a status chip, a toast). If none exists, the case is
 **BLOCKED and goes to the PO** — a raw-data page is not a substitute.
 
-## Moved sections (old anchors)
+## Related: moved sections (old anchors)
 
 Each old anchor below still resolves; follow the link to the section's home.
 

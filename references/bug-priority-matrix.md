@@ -116,4 +116,4 @@ TC_03 · ER3 — BLOCKED — Priority n/a (BLOCKED: <SHA_FIX> not in <TAG_OLD>, 
 - [testing-ticket-workflow/WORKFLOW.md](../skills/procedures/testing-ticket-workflow/WORKFLOW.md) Phase F3
 - [retest-bug-workflow/WORKFLOW.md](../skills/procedures/retest-bug-workflow/WORKFLOW.md) Step 2
 - [create-bug-workflow/WORKFLOW.md](../skills/procedures/create-bug-workflow/WORKFLOW.md) Phase A3 and [bug-draft-template.md](../skills/procedures/create-bug-workflow/references/bug-draft-template.md) — Priority and Severity of every drafted bug
-- [qa-evidence-capture.md](qa-evidence-capture.md) § Story-testing evidence-completeness gate, step 4
+- [qa-evidence-gates.md](qa-evidence-gates.md) § Story-testing evidence-completeness gate, step 4

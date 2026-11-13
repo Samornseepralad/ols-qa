@@ -28,7 +28,7 @@ Apply [qa-evidence-gates.md](qa-evidence-gates.md) before any pass/post/done cla
 
 - [ ] Pre-flight **Ready to run: YES** was posted before run
 - [ ] F1–F3 summary posted before Phase G
-- [ ] **AC/EC coverage gate reconciled** ([qa-evidence-coverage.md](qa-evidence-coverage.md) § *AC/EC & bug-detail coverage*): `enumerated in-scope AC*/EC* ids == rows carrying a verdict + evidence (or explicit BLOCKED)`; every AC/EC is its own row (none only in a remark/Notes/chat), no case PASSED on partial coverage, no id left `NOT TESTED` unless explicitly out-of-scope at confirm
+- [ ] **AC/EC coverage gate reconciled** ([qa-evidence-gates.md](qa-evidence-gates.md) § *AC/EC & bug-detail coverage*): `enumerated in-scope AC*/EC* ids == rows carrying a verdict + evidence (or explicit BLOCKED)`; every AC/EC is its own row (none only in a remark/Notes/chat), no case PASSED on partial coverage, no id left `NOT TESTED` unless explicitly out-of-scope at confirm
 - [ ] Every scenario has result + evidence reference
 - [ ] Phase G6 re-read completed if external update ran
 - [ ] If Jira/Confluence update: no literal `<br>`/HTML tags, numbered items on separate lines
@@ -36,7 +36,7 @@ Apply [qa-evidence-gates.md](qa-evidence-gates.md) before any pass/post/done cla
 ## Retest bug
 
 - [ ] Retest plan (dev claim vs verify) posted before tests
-- [ ] **AC/EC & bug-detail coverage gate reconciled** ([qa-evidence-coverage.md](qa-evidence-coverage.md) § *AC/EC & bug-detail coverage*): `enumerated ER* ids == verdict-table rows carrying a status + evidence (or explicit BLOCKED)`, `Expected-result coverage: {n}/{total}` with `{n}=={total}`; every expected-result/detail item is its own row (none only in a remark/note/chat), no PASSED over an unverified or differing item
+- [ ] **AC/EC & bug-detail coverage gate reconciled** ([qa-evidence-gates.md](qa-evidence-gates.md) § *AC/EC & bug-detail coverage*): `enumerated ER* ids == verdict-table rows carrying a status + evidence (or explicit BLOCKED)`, `Expected-result coverage: {n}/{total}` with `{n}=={total}`; every expected-result/detail item is its own row (none only in a remark/note/chat), no PASSED over an unverified or differing item
 - [ ] Comment format v2/v3 not switched mid-session
 - [ ] **`node tools/retest-guard/retest_guard.js --body <file> --format v2|v3 --bug-type FE|API` exits 0** — the mechanical rules (syntax, header lines, table headers, Scope, per-row evidence, coverage reconciliation, local paths) are checked by `tools/retest-guard/retest_rules.js`, not from memory. Exit 2 (could not run) is **not** a pass.
 - [ ] **Step 8·0 format-completeness gate PASSED before any status transition** — FE bug: a whole-flow **MP4 per executed case** linked in that row's `Evidence` cell and confirmed to play from Jira, **plus** a bare inline `!file.png!` still on every text-verification row; API bug: full cURL/response per row. A text-only FE comment fails this gate → do NOT transition, resolve or get explicit user waiver first.

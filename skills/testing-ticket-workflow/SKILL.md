@@ -2,8 +2,8 @@
 name: testing-ticket-workflow
 description: |-
   Test one Jira ticket in Playwright: intake + plan, confirm, run, compare to Figma, report, optionally update results.
-  Use to test/QA one story/ticket on an env: /testing-ticket, a pasted key/link + "check this on staging", "run Playwright on {KEY}", "E2E this story" ("เทส ticket นี้ให้หน่อย").
-  Do NOT use for filing bugs (create-bug), retest after a fix (retest-bug), manual TC tables (tc-fe-prep/tc-api-prep), or full regression.
+  Use when one story/ticket needs test/QA on an env: /testing-ticket, pasted key/link + "check this on staging", "run Playwright on {KEY}", "E2E this story" ("เทส ticket นี้ให้หน่อย").
+  Do NOT use for filing bugs (create-bug), fix retests (retest-bug), manual TC tables (tc-fe-prep/tc-api-prep), or full regression.
 metadata:
   proactive_triggers:
     - /testing-ticket
