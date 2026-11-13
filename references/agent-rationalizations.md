@@ -36,7 +36,7 @@ When you notice these thoughts, **stop** and follow the linked reference or skil
 
 | Rationalization | Correct action |
 |-----------------|----------------|
-| “Row count = AC count, good enough” | Run the AC/EC traceability step of [tc-fe-prep-workflow](../skills/tc-fe-prep-workflow/SKILL.md) |
+| “Row count = AC count, good enough” | Run the AC/EC traceability step (Step 4 of the [tc-fe-prep-workflow](../skills/tc-fe-prep-workflow/SKILL.md) procedure, `design-and-review.md`) |
 | “Extra TCs are helpful” | Orphan TCs violate scope — remove or get user sign-off |
 | “Swagger is enough, skip API spec” | Refuse Phase D until spec + Swagger per skill — unless the user says the spec exists only in Swagger; then Swagger is both (tc-api-prep Phase A) |
 
