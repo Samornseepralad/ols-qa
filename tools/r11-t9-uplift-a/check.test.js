@@ -33,7 +33,7 @@ t('R3 escalation rows edit in place and respect the v2/v3 lock', () => {
   has(`${R}jira-comment-post-review.md`, /never delete and re-post\)\. If it still fails and the session has not locked v2\/v3/);
 });
 t('R4 each fix-verify cap names its loop (numbers unchanged)', () => {
-  has(`${R}jira-comment-post-review.md`, /max 3 rounds — the cap of this posted-comment re-read loop/);
+  has(`${R}jira-comment-post-review.md`, /max 3 rounds of this re-read loop; a workflow step with its own cap uses it — create-bug Phase F: 2/);
   has(`${R}skill-rules-style.md`, /\*\*Maximum 2 rounds\*\* \(generic cap; a workflow step that states its own cap/);
   has(`${R}agent-rationalizations.md`, /fix-verify max 2 rounds unless the workflow step states its own cap/);
   has(CBF, /\*\*Maximum 2 fix-verify rounds\*\*/);

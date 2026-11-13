@@ -16,7 +16,7 @@ Create bug progress:
 - [ ] Phase A — Intake (one message, three parts)
 - [ ] Phase B — Parse target
 - [ ] Phase B2 — Board-conflict re-check (hard gate, before drafting/confirm) — open phase-b2-board-check.md
-- [ ] Phase B3 — Falsification (before create) — open phase-e-falsification.md (the file name is historical: it holds B3; there is no Phase E)
+- [ ] Phase B3 — Falsification (before create) — open phase-b3-falsification.md
 - [ ] Phase C — Confirm before create (hard gate) — open phase-c-confirm.md
 - [ ] Phase D — Create issues — open phase-d-create.md
 - [ ] Phase F — Fix-verify and close (mandatory) — open phase-f-close.md
@@ -94,7 +94,7 @@ verbatim). One rule settles the two values; apply the rows in this order:
 | Reporter gave a Severity in a matrix word | Keep it exactly as given — it is the title bracket; never replaced by your own reading |
 | Priority | Its own field: the column of the matrix cell, in the reporter's Severity row, whose example text matches the defect |
 | 🔴 STOP — Ask, never decide: no Severity given, the given word is not a matrix row, the Severity row has only `N/A` or no matching cell, or the reporter's Priority differs from the matrix cell | Show that matrix row (and the cell) and ask the reporter to choose; a reporter-given Priority is never silently replaced by your own pick; draft nothing until they answer |
-| Several plausible cells in the reporter's Severity row | Not a STOP: cite the closest cell, draft the bug, carry the choice to Phase C as a **Likely** open question (phase-e-falsification.md) |
+| Several plausible cells in the reporter's Severity row | Not a STOP: cite the closest cell, draft the bug, carry the choice to Phase C as a **Likely** open question (phase-b3-falsification.md) |
 
 Findings from a **prior testing-ticket** run in this chat: reuse that evidence; do not invent details.
 
@@ -137,9 +137,9 @@ At Phase B2, open [phase-b2-board-check.md](phase-b2-board-check.md) and follow 
 
 ---
 
-## Phase B3 — Falsification (before create) [high freedom]
+## 🔴 GATE: Phase B3 — Falsification (before create) [high freedom]
 
-At Phase B3, open [phase-e-falsification.md](phase-e-falsification.md) and follow every line before moving on. 🔴 GATE: no candidate reaches Phase C until it survives falsification.
+At Phase B3, open [phase-b3-falsification.md](phase-b3-falsification.md) and follow every line before moving on. 🔴 GATE: no candidate reaches Phase C until it survives falsification.
 
 ---
 

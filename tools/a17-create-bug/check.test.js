@@ -24,8 +24,10 @@ t('R2 confirm-block counts reconcile and D is not a count', () => {
   lacks(`${P}phase-c-confirm.md`, /D dropped in B3/);
 });
 t('R3 Phase B3 pointer, B3 gate line, Likely status, cause label', () => {
-  has(`${P}WORKFLOW.md`, /file name is historical: it holds B3; there is no Phase E/);
-  has(`${P}phase-e-falsification.md`, /\*\*Likely\*\* — a defined status here, not a cause hedge/);
+  has(`${P}WORKFLOW.md`, /## 🔴 GATE: Phase B3/);
+  has(`${P}phase-b3-falsification.md`, /## 🔴 GATE: Phase B3/);
+  assert.ok(fs.existsSync(path.join(root, `${P}phase-b3-falsification.md`)) && !fs.existsSync(path.join(root, `${P}phase-e-falsification.md`)), 'B3 file name');
+  has(`${P}phase-b3-falsification.md`, /\*\*Likely\*\* — a defined status here, not a cause hedge/);
   has(`${P}references/bug-draft-template.md`, /not the Confidence line/);
 });
 t('R4 resize names a tool and a width check', () => {
