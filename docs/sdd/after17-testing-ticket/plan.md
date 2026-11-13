@@ -10,9 +10,9 @@
 - `references/dependencies.md` — `:4` (R6), `/plugin` hints (R4).
 - `references/root-cause-investigation.md` — `:42` (R4), `:176` (R7).
 - `references/qa-evidence-coverage.md`, `references/bug-priority-matrix.md`, `skills/procedures/testing-ticket-workflow/references/playwright-discipline.md` (R5).
-- `skills/procedures/testing-ticket-workflow/results-update.md`, `references/jira-linebreak-conversion.md`, `references/session-closing.md`, `references/long-workflow-todos.md`, `references/verify-closing-checklist.md`, `references/user-communication.md`, `references/qa-debug-discipline.md` (R6).
+- `skills/procedures/testing-ticket-workflow/results-update.md`, `references/jira-linebreak-conversion.md`, `references/session-closing.md` (also the helix router's mandatory read: bytes ≤ before), `references/long-workflow-todos.md`, `references/verify-closing-checklist.md`, `references/user-communication.md`, `references/qa-debug-discipline.md` (R6).
 - `references/no-wait-decision-gate.md` layer 14 (R7).
-- `references/resilient-selectors.md` (R8); `references/session-start-context.md` (R9); `references/non-pass-challenge-gate.md` (R10); `references/qa-evidence-gates.md` (R11); `worked-example.md` (R13); `skills/testing-ticket-workflow/SKILL.md` (R14); `references/jira-comment-post-review.md` (R16).
+- `references/resilient-selectors.md` (R8); `references/session-start-context.md` (R9; offset `:3`); `references/non-pass-challenge-gate.md` (R10); `references/qa-evidence-gates.md` and the one inbound link in `references/result-quality-gate.md` (R11); `skills/procedures/testing-ticket-workflow/references/worked-example.md` (R13); `skills/testing-ticket-workflow/SKILL.md` (R14); `references/jira-comment-post-review.md` (R16).
 
 ## Approach
 
