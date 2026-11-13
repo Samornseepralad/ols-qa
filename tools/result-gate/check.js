@@ -60,7 +60,9 @@ const HEDGES = [/caveat/i, /not verifiable/i, /cannot verify/i, /\bassumed\b/i, 
 // Layer 15: a BLOCKED/FAILED line quotes what was read — product code with a line number and a
 // ticket (optionally with a comment id). Shape only; whether the sweep was thorough is judgement.
 const SCREENSHOT = /\.(png|jpe?g|webp)$/i;
-const CODE_REF = /\S+:\d+/;
+// Layer 14: a path:line, or (no read access to the product repo) exactly
+// "not checked — no repo access (<who can grant it>)".
+const CODE_REF = /\S+:\d+|^not checked — no repo access \(\S.*\)$/;
 const TICKET_REF = /\b[A-Z][A-Z0-9]+-\d+\b/;
 
 // Owner rule (25/Sep): a clip that shows every ER point passes even when the video verifier fails
