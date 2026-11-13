@@ -9,6 +9,7 @@
 - [Severity](#severity)
 - [Verdict](#verdict)
 - [Remediation and prevention](#remediation-and-prevention)
+- [Result quality gate in an audit](#result-quality-gate-in-an-audit)
 - [Report template](#report-template)
 
 ## Review targets and their governing source
@@ -73,10 +74,12 @@ An **unsourced claim** is its own class when the deliverable declares where its 
 | Verdict | When |
 |---|---|
 | PASSED | Every checked item matched its governing source, and no coverage gap is Blocker or Major (a gap ranks as its item would if defective) |
-| PWMI (PASSED WITH MINOR ISSUE) | At least one defect confirmed and none reaches FAILED: every product bug's matrix row is Lowest / Low / Medium ([bug-priority-matrix.md](../../references/bug-priority-matrix.md) § PWMI), and every other finding is Minor |
+| PWMI (PASSED WITH MINOR ISSUE) | At least one defect confirmed and none reaches FAILED: every product bug's matrix row is Lowest / Low / Medium ([bug-priority-matrix.md](../../references/bug-priority-matrix.md) § Hard rule), and every other finding is Minor |
 | FAILED | A product bug whose matrix row is High / Highest; a Blocker or Major finding where no matrix row applies; or a result that changes between identical runs |
 | BLOCKED | The expected side could not be confirmed for a material part of the scope (defined below) |
 | No issue found | Checks ran, nothing survived verification — not the same as "did not check" |
+
+A test case with an open coverage gap follows [bug-priority-matrix.md](../../references/bug-priority-matrix.md) § Hard rule: BLOCKED with what is missing, never PASSED with a caveat; the PASSED row's gap test applies to a document or your own prior work.
 
 **Severity → matrix → verdict.** Blocker / Major / Minor rank findings inside this report. When a
 defect is a product bug (a system or feature under test, or a test verdict being audited), its Priority
@@ -161,6 +164,22 @@ Fix (Recommendation | Judgment)
 - Verification: <command or check that proves the fix, and its expected output>
 - Trade-off: <what this costs; required when labelled Judgment>
 ```
+
+## Result quality gate in an audit
+
+How [SKILL.md § Result quality gate](SKILL.md#result-quality-gate-mandatory-before-an-audited-verdict-is-confirmed-low-freedom) runs when the audit does not own the run.
+
+- Result lines: write one final result line per case from the audited run's log (its own words, older lines marked `superseded`) and keep them in the report's record.
+- Mechanical layers: run `node tools/result-gate/check.js` with the arguments in [its step 2](../../references/result-quality-gate.md#how-to-run-it) when it exists; walk the judgement layers; paste the checker's last output line (or the counted hand check) into the round's record.
+- No `tools/result-gate/` in the workspace → walk all 20 layers by hand, count them, and say in the record that the check was by hand ([dependencies.md](../../references/dependencies.md), in-repo guard tools).
+- Checker exits 2 (the audit input has no results.jsonl / cases.json / env-map.json / types.json, so nothing was checked — not a pass) → walk the 20 layers by hand on the audited run's log and record `checker had no input; by hand`.
+- A layer that asks for an action (layer 14 step 6, layer 18) or that a pre-run check decides (account source, session/build preflight, fixture) is judged from what the audited run recorded; the read-only rule wins, so this audit never creates data. Nothing recorded → the layer is red for that case: BLOCKED for sending.
+- **Flaky case** (the run log shows a different result between identical runs): the verdict the source supports is FAILED (layer 16), and an earlier PASSED for that case is a Defect in the audited work.
+  - Write that verdict in the correction and in the case line as `FAILED (intermittent, {failed_attempts} of {attempts})` — never "not confirmable", never BLOCKED alone.
+  - The gate runs on that FAILED line like on any other; a red layer adds its hold beside the verdict, named: `TC-n — FAILED (intermittent, 1 of 2) per run log · BLOCKED for sending: layer 17, no accepted clip`. It never becomes PASSED.
+- **Claim matches its source, evidence not in the audit input** (the audited work says PASSED and the run log line says PASS): the claim is checked-clean: count it as Clean.
+  - Evidence the audit input does not include is not proof that none exists: list `evidence not provided for TC-n` once under coverage gaps as a Question, not as a Defect — unless the audited work itself states evidence it does not have.
+  - The gate's red layer (for example layer 9) still holds that case BLOCKED for sending, with its reason, in the gate record. Same for a layer whose evidence the audited run never recorded.
 
 ## Report template
 
