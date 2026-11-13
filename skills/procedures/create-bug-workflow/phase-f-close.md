@@ -12,7 +12,7 @@ Runs after Phase D create calls. A run that files nothing (every candidate Dropp
    draft-vs-destination difference and the proposed fix (edit in place, or recreate), and **wait for
    approval**. Then fix via the edit API, or recreate — when recreating, also close or link the wrong
    issue as a duplicate (with the same approval) so no stray issue stays behind → **re-fetch** each link.
-4. **Maximum 2 fix-verify rounds** — then report partial success honestly.
+4. **Maximum 2 fix-verify rounds** (this cap replaces the 3 in jira-comment-post-review.md) — then report partial success honestly.
 5. If any create failed → report which succeeded, which failed and which are outcome unknown.
 6. **Fetch fails** (permission, 404, MCP down) → report that key/URL from the tool output as **created-unverified** with the error verbatim, retry the fetch once by another read path (REST, browser or `gh issue view`); still failing → `Verdict: CREATED {N}/{N} — {m} unverified`. Never call it verified.
 

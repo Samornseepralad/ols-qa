@@ -5,7 +5,7 @@
 Own: `skills/create-bug-workflow/SKILL.md`, `commands/create-bug.md`, `skills/procedures/create-bug-workflow/{WORKFLOW,phase-c-confirm,phase-d-create,phase-e-falsification,phase-f-close}.md`, `references/{bug-draft-template,worked-example}.md`.
 Shared (not in PR #250/#251 lists): `references/{helix-session-constraints,skill-invocation-discipline,agent-rationalizations,jira-comment-post-review,workspace-guide-discovery,qa-debug-discipline,jira-wiki-vs-markdown,skill-reference-index}.md`.
 Shared in PR #250/#251 lists, separate commit based on the PR version: `references/{defect-report-completeness,non-pass-challenge-gate,intake-one-pager}.md` (#251), `references/bug-priority-matrix.md` (#250).
-New: `tools/a17-create-bug` (pin test), `docs/sdd/after17-create-bug/findings-ledger.md`.
+New: `tools/a17-create-bug/check.test.js` (pin test), `docs/sdd/after17-create-bug/findings-ledger.md`.
 
 ## Data and libraries
 
