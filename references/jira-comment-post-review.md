@@ -1,6 +1,6 @@
 # Jira comment post-publish review (mandatory before reporting "done")
 
-After posting a TC comment to Jira, the agent MUST review the rendered comment on Jira UI, fix any issues, and re-verify — **before telling the user it's done.** For a create-bug issue body, apply §3 and §4; Phase F's 2-round cap replaces the 3 below.
+After posting a TC comment to Jira, the agent MUST review the rendered comment on Jira UI, fix any issues, and re-verify — **before telling the user it's done.**
 
 ## Contents
 
@@ -15,7 +15,7 @@ After posting a TC comment to Jira, the agent MUST review the rendered comment o
 ```
 Post comment → Review on Jira UI → Pass all checks?
   YES → Report to user: "commented"
-  NO  → Fix → PUT to the same comment id → Re-review (max 3 rounds — the cap of this posted-comment re-read loop; a workflow step that states its own cap uses that cap)
+  NO  → Fix → PUT to the same comment id → Re-review (max 3 rounds; a workflow step with its own cap uses it — create-bug Phase F: 2, and for an issue body only §3, §4 apply)
         Still failing → Report specific failures to user, do NOT claim success
 ```
 

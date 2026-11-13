@@ -40,8 +40,8 @@ nothing runs in Playwright until you reply **confirm**.
 Required:
   • Where to file (Jira project URL/key or GitHub repo)
   • Format (template link, Helix default, or v2/v3 rule)
-  • Bug details (title, steps, every entry point tried, expected and its source link, severity, evidence)
-Findings from a prior testing-ticket run in this chat count as input; cite the run they came from.
+  • Bug details (title, steps, entry points tried, expected + source link, severity, evidence)
+A prior testing-ticket run in this chat counts as input; cite it.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

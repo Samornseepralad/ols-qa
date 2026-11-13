@@ -98,7 +98,7 @@ If two observations of the same surface disagree — two runs, screenshot vs. no
 this run vs. an earlier run — you **MUST NOT draft the report yet**.
 
 1. Name the contradiction explicitly ("run 1 shows the card clickable, run 2 shows it disabled").
-2. Re-run **that surface only**, cleanly, after §3a (create-bug never reproduces: it asks the reporter for the clean re-run or hands it to testing-ticket-workflow, and the item stays Needs Review).
+2. Re-run **that surface only**, cleanly, after §3a (create-bug never reproduces: the reporter or testing-ticket re-runs, the item stays Needs Review).
 3. The clean re-run decides. Record which earlier observation was the artifact **and why**.
 4. **Never resolve a contradiction by picking the observation that supports the verdict you already
    reached.** That is how a wrong repro path gets published.
