@@ -1,6 +1,6 @@
 # Plan — after17-tc-review
 
-Spec: spec.md R1-R11. Files touched: `skills/tc-review-workflow/SKILL.md` (R1-R8, R10), `commands/tc-review.md` (R10), shared refs `references/session-closing.md`, `result-quality-gate.md`, `qa-closing-shared.md`, `qa-debug-discipline.md`, `qa-evidence-coverage.md`, `playwright-preflight.md` (R9, wording only, bytes not up).
+Spec: spec.md R1-R11. Files touched: `skills/tc-review-workflow/SKILL.md` (R1-R8, R10), `commands/tc-review.md` (R10), shared refs `references/session-closing.md`, `references/result-quality-gate.md`, `references/qa-closing-shared.md`, `references/qa-evidence-coverage.md` (R9, wording only, bytes not up; `qa-debug-discipline.md` and `playwright-preflight.md` already generic, no edit).
 
 Data: none. Libraries: none (no new cost).
 
