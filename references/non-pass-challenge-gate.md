@@ -97,7 +97,7 @@ Figma/PO", "น่าจะ", "TBD", or any unconfirmed-spec marker, the spec is
 The expected is verified and the app still differs — before calling it a product defect, run the
 [root-cause-investigation.md](root-cause-investigation.md) sweep. A **test-side** cause — selector
 drift, stale auth/session, a missing or wrong fixture, an un-settled state read before a hard-reload,
-the wrong entry point — is a **test defect**: fix it on our side, re-run, and record it as such. It is
+the wrong entry point — is a **test defect**: fix it on our side, re-run, and record it as such (create-bug never re-runs: see its Phase B3). It is
 never published as a product FAILED, and a real product bug is never filed away as "flaky"
 ([qa-debug-discipline.md](qa-debug-discipline.md)).
 

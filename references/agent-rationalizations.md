@@ -8,8 +8,8 @@ When you notice these thoughts, **stop** and follow the linked reference or skil
 |-----------------|----------------|
 | “MCP addComment returned 200” | Re-open issue in UI or GET — check truncation, ADF/wiki rendering |
 | “Table is small, skip re-read” | Re-read anyway — formatting breaks are common |
-| “User said post, skip draft approval” | Unless they explicitly waive approval, show draft first |
-| “v3 will work for screenshots” | FE bugs: lock v2 wiki + attach before embed |
+| “User said post, skip draft approval” | Unless they explicitly waive approval, show draft first (never create-bug Phase C) |
+| “v3 will work for screenshots” | FE bugs: lock v2 wiki; embed only after attach (new bug: create, attach, update) |
 
 ## Test execution
 

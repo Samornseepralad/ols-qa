@@ -41,7 +41,6 @@ One line per reference: link — when to open it. **Do not read this file at sta
 - [parallel-prep.md](parallel-prep.md) — running independent read-only fetches together.
 - [long-workflow-todos.md](long-workflow-todos.md) — creating the phase todo list.
 - [retest-fix-intake.md](retest-fix-intake.md) — retest: after fetching the ticket, before testing.
-- `references/ols-project-guide.md` *(ols-only)* — OLS project config (envs, accounts, channels).
 
 ## Test case design and quality
 - [tc-quality-standards.md](tc-quality-standards.md) — ISTQB/29119-3 row-quality review.
@@ -59,7 +58,6 @@ One line per reference: link — when to open it. **Do not read this file at sta
 - [test-through-real-steps.md](test-through-real-steps.md) — executing the action under test (no API shortcut).
 - [resilient-selectors.md](resilient-selectors.md) — picking or repairing a Playwright selector.
 - [session-renewal-resilience.md](session-renewal-resilience.md) — keepalive/token-refresh jobs for saved sessions.
-- `references/qa-capture-tooling.md` *(ols-only)* — capture tool contracts the gates rely on.
 
 ## Evidence and verdicts
 - [qa-evidence-gates.md](qa-evidence-gates.md) — before any pass/post/done claim.
@@ -144,3 +142,7 @@ One line per reference: link — when to open it. **Do not read this file at sta
 - [bug-draft-template.md](../skills/procedures/create-bug-workflow/references/bug-draft-template.md) — user picked Helix default format.
 - [posting-discipline.md](../skills/procedures/create-bug-workflow/references/posting-discipline.md) — creating the Jira/GitHub issue.
 - [worked-example.md](../skills/procedures/create-bug-workflow/references/worked-example.md) — unsure what good output looks like.
+
+## Workspace-specific *(ols-only)*
+- `references/ols-project-guide.md` *(ols-only)* — OLS project config (envs, accounts, channels).
+- `references/qa-capture-tooling.md` *(ols-only)* — capture tool contracts the gates rely on.
