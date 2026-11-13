@@ -2,7 +2,7 @@
 description: |
   Review a test case document that already exists — against the AC/EC and business rules on its
   governing ticket. Build a traceability matrix, judge coverage and row quality, report Good vs Need
-  Improve, each finding anchored to a quoted source.
+  Improve, each finding anchored to a quoted source; then notify the project's TC-review channel.
   Do NOT use for drafting new TC tables (tc-fe-prep / tc-api-prep), running a ticket's Playwright pass
   (testing-ticket), reviewing already-recorded execution evidence (review-result), or retesting a bug
   after a dev fix (retest-bug).

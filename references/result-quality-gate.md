@@ -126,7 +126,7 @@ before execution. Proof: a screen or API read showing the fixture on that surfac
 **10. The clip is accepted before PASSED or FAILED is written; stills alone never carry it — M.** Stops: a lane writing
 PASSED while its clip failed the verifier (2026-10-11 round); clips flipped to pass with "verify +
 gate passed" that never ran (#0113); a clip captured with a forbidden recorder and marked PASSED
-before provenance was checked (#0075); lanes marking PASSED with stills only (2026-10-11 round);
+before provenance was checked (#0075); lanes marking PASSED with stills only;
 a pass citing the ER from a PNG (#0115). Check: a clip is **accepted** when EITHER the verifier passed it
 (`clip_verified: true`, set only by reading the verifier's own result file) OR the verifier's
 **only** failures are motion/freeze metrics (too little motion, frozen repeats, still-hold share)
@@ -162,7 +162,7 @@ checker line plus the root-cause note.
 
 **14. Exhaustive source sweep before any BLOCKED, FAILED or "ask the PO / reporter" — M+J.**
 Stops: concluding "cannot be done", "wrong" or "wait for someone" before reading what already
-answers it. Real case (2026-10-11 round): an "unavailable" guard that looked like a defect was
+answers it. Real case: an "unavailable" guard that looked like a defect was
 required by a sibling ticket named in its commit message. Check, in this order, and quote
 each source in the verdict line:
 1. **Product code at the default branch** — the lines that produce the behaviour, with `path:line`,
@@ -259,4 +259,5 @@ case stays BLOCKED until the PO decides — it never appears in the defect table
 - [review-result-workflow/WORKFLOW.md](../skills/procedures/review-result-workflow/WORKFLOW.md) § Result quality gate
 - `smoke-test-workflow` SKILL.md § Result quality gate (ols-qa workspace only)
 - [catch-ai-workflow/SKILL.md](../skills/catch-ai-workflow/SKILL.md) § Result quality gate
+- tc-review-workflow § Step 3b
 - [shared-preamble.md](shared-preamble.md)
