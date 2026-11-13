@@ -86,6 +86,6 @@ Follow [qa-closing-shared.md](../../../references/qa-closing-shared.md) + skill-
 - [ ] G-verify checklist passed for the chosen delivery (A, B or both), with at least one re-read of the destination.
 - [ ] **(A only)** Post-publish review passed per [jira-comment-post-review.md](../../../references/jira-comment-post-review.md).
 - [ ] Close-out includes `Verified:` and test case count.
-- [ ] [verify-closing-checklist.md](../../../references/verify-closing-checklist.md) § *TC FE / TC API prep* — skip its **Final TC review report posted** item (tc-fe-prep only), and skip its attachment item unless a CSV/Excel file was generated in this run **and** the delivery includes A (as in G-verify).
+- [ ] [verify-closing-checklist.md](../../../references/verify-closing-checklist.md) § *TC FE / TC API prep* — skip its **Final TC review report posted** item (tc-fe-prep only), and skip its attachment item unless a CSV/Excel file was generated in this run **and** the delivery includes A (A alone or both — same rule as G-verify and the MUST table).
 
 **Go back:** If any item above is unchecked, return to the phase it names (E or G) and redo from there; do not report done.
