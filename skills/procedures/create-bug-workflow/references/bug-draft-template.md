@@ -20,7 +20,7 @@ Title: [{Severity}] {Module} — {behavioral one line}
 Priority: Lowest | Low | Medium | High | Highest — matrix bug-priority-matrix.md:<LINE> "<cheat-sheet row text, verbatim>"
 Severity: Low | Medium | High | Urgent — the value the reporter gave at intake (A3), kept as given
 Module: {area}
-Confidence: Confirmed | Likely
+Confidence: Confirmed | Likely | Needs Review — not filed
 
 What happens:
 - {observable behavior, one fact per line}
