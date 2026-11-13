@@ -4,7 +4,7 @@ Single-JS publish patterns for Jira comment + CSV upload.
 
 **Use with:** a browser-JS tool that runs in the page context of the logged-in Jira tab, so `fetch()` carries the
 Jira session — for example `Control_Chrome__execute_javascript`. A tool that runs in an isolated extension sandbox
-does not qualify (`Claude_in_Chrome__javascript_tool` cannot access Jira pages). No qualifying tool in the session →
+does not qualify (e.g. `Claude_in_Chrome__javascript_tool`: it cannot access Jira pages). No qualifying tool in the session →
 post the same body through the Jira REST API with curl (`POST /rest/api/3/issue/{KEY}/attachments` with
 `X-Atlassian-Token: no-check`, then `POST /rest/api/3/issue/{KEY}/comment`) and verify the same way.
 tc-fe-prep never curls: WORKFLOW Step 7 failure branch.
@@ -17,7 +17,7 @@ tc-fe-prep never curls: WORKFLOW Step 7 failure branch.
 - [Pattern A — Pre-set data (Call 1)](#pattern-a--pre-set-data-call-1)
 - [Pattern B — Upload files + post comment (Call 2)](#pattern-b--upload-files--post-comment-call-2)
 - [Pattern C — Read result (Call 3)](#pattern-c--read-result-call-3)
-- [Pattern D — Comment-only, no CSVs (retest-bug > 3 table rows)](#pattern-d--comment-only-no-csvs-retest-bug--3-table-rows)
+- [Pattern D — Comment-only, no files (retest-bug, tc-api-prep)](#pattern-d--comment-only-no-files-retest-bug-tc-api-prep)
 - [ADF pre-compute rules](#adf-pre-compute-rules)
 - [Large-table handling (> 50 rows)](#large-table-handling--50-rows)
 - [Constraints](#constraints)
@@ -29,6 +29,7 @@ tc-fe-prep never curls: WORKFLOW Step 7 failure branch.
 |---------|--------|---------|
 | TC table (tc-fe-prep, tc-api-prep) — any table size | ADF-direct via single JS | Pattern A → B → C |
 | Retest comment > 3 table rows | ADF-direct via single JS | Pattern A (ADF only) → Pattern D → C |
+| TC table, no file (tc-api-prep) | ADF-direct via single JS | Pattern A (ADF only) → Pattern D → C |
 | Retest comment ≤ 3 table rows or text-only | MCP `addCommentToJiraIssue` | MCP → verify |
 | FE bug retest with screenshots (any size) | v2 wiki markup via browser JS | v2 path, not ADF |
 
@@ -172,7 +173,7 @@ JSON.stringify(window.__fastPublish || {status: 'pending'});
 
 ---
 
-## Pattern D — Comment-only, no CSVs (retest-bug > 3 table rows)
+## Pattern D — Comment-only, no files (retest-bug, tc-api-prep)
 
 Use when there are no CSV uploads — just a large ADF comment.
 
