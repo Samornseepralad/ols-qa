@@ -290,6 +290,17 @@ t('a ticket ref must look like a ticket key', () => {
   assert.ok(rules([f]).includes('NO_SOURCE_SWEEP'));
 });
 
+t('no repo access: the exact not-checked form stands in for a code ref', () => {
+  const nc = ['not checked — no repo access (dev lead)'];
+  const b = line({ verdict: 'BLOCKED', root_cause: 'x', remark: 'y', contact: 'PO', code_refs: nc, ticket_refs: ['DEMO-1'] });
+  assert.ok(!rules([b]).includes('NO_SOURCE_SWEEP'));
+  assert.ok(!rules([failed({ attempts: 3, failed_attempts: 3, code_refs: nc })]).includes('NO_SOURCE_SWEEP'));
+  for (const bad of ['not checked', 'not checked — no repo access', 'no access to code']) {
+    assert.ok(rules([failed({ attempts: 3, failed_attempts: 3, code_refs: [bad] })]).includes('NO_SOURCE_SWEEP'), bad);
+  }
+  assert.ok(rules([{ ...b, ticket_refs: [] }]).includes('NO_SOURCE_SWEEP'));
+});
+
 t('BLOCKED and FAILED with a code ref and a ticket ref pass the sweep rule', () => {
   assert.ok(!rules([failed({ attempts: 3, failed_attempts: 3 })]).includes('NO_SOURCE_SWEEP'));
   assert.ok(!rules([line({ verdict: 'BLOCKED', root_cause: 'x', remark: 'y', contact: 'PO', ...REFS })]).includes('NO_SOURCE_SWEEP'));
