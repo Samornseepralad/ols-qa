@@ -14,6 +14,9 @@ Spec: [spec.md](spec.md) R1–R11.
 | `skills/retest-bug-workflow/SKILL.md`, `commands/retest-bug.md` | R8 | step 2 order; preflight mapping; deps; description; trigger |
 | Shared `references/`: `parallel-test-lanes`, `qa-evidence-capture`, `qa-evidence-coverage`, `proactive-qa-triggers`, `result-quality-gate`, `non-pass-challenge-gate`, `round-time-contract`, `defect-report-completeness`, `root-cause-investigation`, `customer-escape-prevention`, `figma-design-comparison`, `intake-one-pager`, `skill-routing`, `handoff-file-template`, `retest-fix-intake` | R3, R5, R6 | additive clarifiers or neutral wording; no rule removed |
 
+| `references/handoff-file-template.md`, `references/skill-reference-index.md`, delete `skills/procedures/retest-bug-workflow/references/handoff-template.md` | R12 | one handoff template; links fixed |
+| `skills/procedures/retest-bug-workflow/WORKFLOW.md` | R13 | verdict-rule bullet split, 🔴 on each line |
+
 No code, no test logic, no library. Data shapes unchanged.
 
 ## Readers of shared files (regression check)

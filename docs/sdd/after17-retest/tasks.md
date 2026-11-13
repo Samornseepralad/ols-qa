@@ -12,3 +12,5 @@
 | 8 | SKILL + command | R8 | `grep -c "before any tool call" SKILL.md` = 1 | 0 |
 | 9 | 6c item 0 whole-body checks | R9 | item 0 checks only fix-added sentences | whole body, run count, placeholders, not-tested |
 | 10 | Bytes, token budget, suites, sdd-gate | R11 | — | all pass; rewords listed |
+| 11 | Merge handoff templates, fix links | R12 | `git grep -c references/handoff-template.md` > 0 | 0; skill-lint pass |
+| 12 | Split verdict-rule bullet; exact-duplicate row cut check | R13 | verdict rule is one bullet | 🔴 on each line; duplicates script lists 0 |

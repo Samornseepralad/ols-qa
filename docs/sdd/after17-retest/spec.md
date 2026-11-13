@@ -90,11 +90,22 @@ lines or *Out of scope*. CLEAN gate, no round cap, non-converging exit and unatt
 - MUST/NEVER table restatement and 491-line WORKFLOW (dim7, 12 scorings), SKILL Contents list (8 scorings), verdict-rule
   bullet split (P3): each needs MUST/NEVER/🔴 lines cut or moved — owner approval through `rule-line-register.json`, or a
   file move (global rule 5).
-- `skill-routing.md:36` Task mapping: the table is owner-confirmed; the file forbids inventing a mapping.
-- `handoff-template.md` vs `handoff-file-template.md`: merging deletes a file (rule 5).
+- `skill-routing.md:36` Task mapping: not a defect — the owner keeps the confirmed table (owner 13/Nov/2026, relayed by the main thread).
 - Not defects on re-read: `result-quality-gate.md:236` (sentence completes on :237), `qa-closing-shared.md:19`
   (CSV only "if generated"), `jira-fast-publish.md:6` (tools named as examples, curl fallback :7-8), quick_validate
   (scorer env lacked PyYAML).
+
+## R12 One handoff template (owner 13/Nov/2026: file delete approved)
+The retest keeps one handoff template, `references/handoff-file-template.md` (Step 8e). Its unique retest fields
+(stuck-at, bug type + format, evidence per case) move into the Round state section;
+`skills/procedures/retest-bug-workflow/references/handoff-template.md` is deleted and every link to it (WORKFLOW,
+SKILL, skill-reference-index) points to the kept file. Done when `git grep "references/handoff-template.md"` finds
+nothing outside docs and skill-lint passes.
+
+## R13 Verdict rule split; exact-duplicate rows only (owner 13/Nov/2026: rewords approved)
+The 🔴 verdict-rule bullet becomes one 🔴 rule line plus three 🔴 sub-bullets (differ → matrix, unverified → BLOCKED,
+summary order), same words, anchor kept. A MUST/NEVER table row is cut only when helix `scripts/check-rule-lines.sh`
+finds the identical line elsewhere; on `fix/a17-retest` no retest row has an identical copy, so none is cut.
 
 ## R11 No cost rise
 Per file bytes before → after reported; helix `scripts/ci-token-budget.sh` prints `token-budget: pass`; every reworded
