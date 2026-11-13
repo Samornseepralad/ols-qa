@@ -39,7 +39,7 @@ Priority order — take the first one available in the session:
 | # | Skill | Why |
 |---|-------|-----|
 | 1 | **`superpowers:systematic-debugging`** | Iron law "no fixes without root-cause investigation first"; four phases, boundary-evidence pattern, rationalization table |
-| 2 | `debugging-tools:debugging` · `fullstack-dev-skills:debugging-wizard` | Equivalent systematic process when 1 is unavailable |
+| 2 | a debugging skill the session lists (e.g. `engineering:debug`, as in [dependencies.md](dependencies.md)) | Equivalent systematic process when 1 is unavailable |
 | 3 | [qa-debug-discipline.md](qa-debug-discipline.md) | In-repo fallback — reproduce → bound → falsifiable hypothesis → minimal check |
 
 **QA scope override:** follow that skill's Phases 1–3 (investigate, compare, hypothesise, test).
@@ -117,7 +117,7 @@ Every cause statement carries exactly one label. This is the whole point of the 
 |-------|-------------------|------------------------|
 | **Confirmed** | reproduced, **and** an artifact shows the mechanism, **and** the falsifying check was run and did not falsify | state the cause plainly + cite the artifact |
 | **Suspected** | an artifact is consistent with the cause, but the isolating check was **not** run | state the cause, label it `Suspected`, name **the exact check that would confirm it** and why it was not run |
-| **Unknown — not investigated** | the boundary was not reachable (no access, no VPN, no permission, no log) | say so; name what is needed and from whom |
+| **Unknown — not investigated** | the boundary was not reachable (no access, no VPN, no permission, no log), or the sweep found nothing (§6 stop 3) | say so; name what is needed and from whom |
 
 **Never** publish a `Suspected` cause with `Confirmed` wording. Never drop the label when the text is
 copied into a Jira comment, sheet cell, or notify message — the label travels with the sentence.
@@ -174,7 +174,7 @@ Stop when **one** of these is true, and say which:
 2. **Suspected, blocked** — the isolating check needs access/permission/data QA does not have. Name
    the check and the owner.
 3. **Unknown, bounded** — the sweep is complete, every boundary is recorded, and no artifact points
-   anywhere. Report the sweep; an empty sweep is a real result, an unwritten one is not.
+   anywhere. Label it `Unknown — not investigated` with the note `sweep complete, no artifact`; report the sweep; an empty sweep is a real result, an unwritten one is not.
 
 Running out of patience is not an exit condition. Neither is "the verdict is already FAILED, so the
 cause does not change anything" — the cause is what the reader acts on.

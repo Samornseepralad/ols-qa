@@ -66,7 +66,7 @@ popup, the summary, and every external write (Jira comment, transition, notify, 
    `min(units, accounts that can be leased without collision, lane cap)`.
    Default lane cap is **4** (each lane holds a live browser); the user sets a different cap by saying so.
    **Exception — retest, testing-ticket, and smoke rounds have no fixed cap:** lane count =
-   `min(units, accounts leasable without collision)`, and any round with 2 or more units fans out
+   `min(units, accounts leasable without collision)`, and any round with 2 or more units fans out unless a §4 predicate applies
    ([round-time-contract.md §4](round-time-contract.md#4-fan-out-lanes-own-their-unit)).
    Balance lanes by expected duration, not by scenario count.
 4. **Lease accounts** — write the lease table. One account appears in **one lane only**.
@@ -119,7 +119,7 @@ The parent, like the whole skill, never opens a browser, login window or sign-in
    ```bash
    cd <project-dir> && for a in <failed-account-1> <failed-account-2>; do echo "=== $a"; <mint-command> --env <env> --account "$a" > <log-dir>/mint-$a.log 2>&1 && echo "$a OK" || echo "$a FAILED (log: <log-dir>/mint-$a.log)"; done
    ```
-3. **Probe.** When the user says the commands have run, the main thread calls the session endpoint for each account, expects that account's user id, and reports account → OK / FAILED with the reason. An account still FAILED blocks only its cases, which are reported BLOCKED ("session not restored") and never PASSED.
+3. **Probe.** When the user says the commands have run, the agent calls the session endpoint for each account, expects that account's user id, and reports account → OK / FAILED with the reason. An account still FAILED blocks only its cases, which are reported BLOCKED ("session not restored") and never PASSED.
 
 Once the probe is OK, the parent re-dispatches that lane's remaining cases. Prefer accounts whose sessions are already live when leasing, so the run needs as few commands as possible (zero when enough are live).
 
@@ -190,10 +190,10 @@ Follow: {calling WORKFLOW.md path} — Phase D preflight + Phase E (E0–E2), or
 4. **Session lease:** if a lease tool is given, acquire the lease on the account BEFORE loading the
    login file — with the given holder, TTL longer than the run — renew it before it expires, and
    release it with the same holder in finally (on error too). Never load a login file without a
-   lease. If acquire is refused because another holder has the account, use a different account or
-   wait — never force or delete another lane's lease. With `LEASE-HELD-BY-PARENT`, do not acquire or
+   lease. If acquire is refused because another holder has the account, use a different account; none
+   free → report it to the parent as a lane failure, never an open wait — never force or delete another lane's lease. With `LEASE-HELD-BY-PARENT`, do not acquire or
    release it yourself.
-5. **NO-ADVISOR:** on a host with an advisor tool, do not call it — the parent reviews your work. A cut-off advisor
+5. **NO-ADVISOR:** call no advisor or other reviewer-model tool — the parent reviews your work. A cut-off
    call can stall a lane for minutes with nothing written.
 6. **Time limit:** run every driver or browser script under a hard time limit — `timeout {seconds}
    node …`, or the script's own overall deadline that closes the browser and exits. Never leave a
