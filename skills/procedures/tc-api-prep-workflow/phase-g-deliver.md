@@ -72,7 +72,7 @@ After G1 and/or G2, run the **full review checklist** from [jira-comment-post-re
 
 MUST NOT run G3 close until post-publish review passes — because first export/post is often wrong.
 
-**Go back:** a failed G-verify check returns to G2 (comment) or G1 (file) per step 3; G3 waits.
+**Go back:** If any G-verify check fails, fix and return to G2 (comment) or G1 (file) to re-post, then run G-verify again — max 3 rounds. G3 waits.
 
 ### G3 — Close
 

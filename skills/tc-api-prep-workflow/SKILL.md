@@ -27,7 +27,7 @@ Slash-command shortcut (runtimes that support commands): `/tc-api-prep` → [com
 
 ## Contents
 
-Shared reference index (trigger per file): [skill-reference-index.md](../../references/skill-reference-index.md).
+Shared reference index, with the trigger that opens each file (see also): [skill-reference-index.md](../../references/skill-reference-index.md).
 
 At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md), then [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) and [intake-one-pager.md](../../references/intake-one-pager.md) on the first response (WORKFLOW Refusal-first).
 
@@ -57,5 +57,5 @@ No row is checked at the start of the run: each is checked when Phase C records 
 
 - Python 3 + `openpyxl` — Excel file chosen
 - Atlassian MCP — delivery includes A
-- Jira REST credentials — only at the G2 step 4 REST fallback (browser-tab publish needs no token)
+- Jira REST credentials — only at the G2 step 4 REST fallback
 - `superpowers:systematic-debugging` — delivery includes A (REST failure hand-off)

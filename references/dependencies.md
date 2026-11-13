@@ -56,7 +56,7 @@ workspace under test), or asked once and saved there.
 | Dependency | Check | Install / fallback |
 |------------|-------|--------------------|
 | Atlassian (Jira / Confluence) MCP | call a read-only tool (e.g. list visible Jira projects) and get a result | connect it in the client's connector settings; fallback: Jira REST with the user's own email + API token |
-| Jira REST credentials (REST publish or fallback) | `curl -s -o /dev/null -w '%{http_code}' -u "{JIRA_EMAIL}:{JIRA_TOKEN}" https://{JIRA_DOMAIN}/rest/api/3/myself` returns 200 | the user creates an API token in their Atlassian account; never reuse another person's token; browser-tab publish needs no token: tc-api-prep checks this row only at its REST fallback, tc-fe-prep never |
+| Jira REST credentials (REST publish or fallback) | `curl -s -o /dev/null -w '%{http_code}' -u "{JIRA_EMAIL}:{JIRA_TOKEN}" https://{JIRA_DOMAIN}/rest/api/3/myself` returns 200 | the user creates an API token in their Atlassian account; never reuse another person's token; browser-tab publishers need no token: tc-api-prep checks it only at its REST fallback, tc-fe-prep never |
 | Figma (Dev Mode MCP or browser view) | open the design node and read one frame | enable Dev Mode MCP, or view the file in a browser session; when neither opens, design comparison is "not verified" |
 | Browser automation MCP (Chrome extension or equivalent) | list tabs and get a result | install and connect the extension; else BLOCKED for steps that need a real browser |
 | Qase (TC suite tree, FE prep import) | open the project's suite tree, or the user pastes it | ask the owner for access; still unreadable → tc-fe-prep Step 6 suite gate: no CSV, export **Not exported** |
