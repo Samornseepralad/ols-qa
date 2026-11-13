@@ -70,6 +70,7 @@ after one looks wrong — the first anomaly is often downstream of the real one.
 **Rules**
 
 - Every row is either an artifact or the word `not checked` — never a guess and never blank.
+- Audit of a document or your own prior work (catch-ai): rows 1-4 and 6 have no counterpart — write `n/a — document` with the file:line read; row 5 is the source file or data read directly, row 7 the state of the data file, row 8 the version and date of the files read.
 - Capture the artifact **at the moment of failure**, not reconstructed afterwards.
 - Timing first: after any state-changing step, hard-reload before you record a boundary
   (defect-report completeness §3a — see also [defect-report-completeness.md](defect-report-completeness.md), linked from every defect-writing skill's SKILL.md). A stale client makes rows 1–3
