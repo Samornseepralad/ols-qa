@@ -14,6 +14,7 @@ Sources: ols-qa-evidence `evals/helix-skill-eval-2026-11-1{1,2,3,4,5}-after1{1..
 - **R8 Shared references stay portable and consistent.** No one-product role ids or product names in qa-evidence-capture / qa-evidence-coverage; out-of-repo tool absence has a fallback line; dependencies.md names one debugging fallback and a host-neutral install hint; root-cause-investigation maps the boundary sweep for a document audit; customer-escape-prevention carries one row for "wrong thing observed" (CA-30..CA-35).
 - **R9 Already-fixed items stay fixed.** The items listed `FIXED-BEFORE` in findings.md are pinned by test (hedge grep word-bounded with the 6 banned terms, count line in the template, layer-5 rule, Because column, rationalizations table, Session verdict label) (CA-36..CA-42, CA-44, CA-45).
 - **R10 Pins and size.** Pinned tests stay (`tools/catch-ai-unsourced-wording`, `tools/r11-t9-uplift-b`). helix `token-budget: pass` and `rule-lines: pass` with every reworded rule line registered; no gate, approval, evidence rule or MUST / NEVER / 🔴 / STOP / GATE line removed. Not touched: `metadata.proactive_triggers`.
+- **R11 reference.md size.** When catch-ai audits, `skills/catch-ai-workflow/reference.md` must be no larger than on origin/main (13,683 B) so real audit sessions read no more; only restatement and wordy text are cut, every rule and pinned phrase stays (owner 13/Nov/2026: "หักลดให้ไม่เกินขนาดเดิม").
 
 ## Out of scope (report, do not fix)
 
