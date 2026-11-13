@@ -1,7 +1,7 @@
 # Dependencies — what each skill needs, how to check it, how to get it
 
 Each skill's `## Dependencies` names the rows it uses. Run the **Check** for each
-named row before step 1, or at the later point that section names. A failed check is a stop: install it, use the stated fallback, or report the
+named row at the skill's dependency step (before its first phase), or at the later point that section names. A failed check is a stop: install it, use the stated fallback, or report the
 step as BLOCKED with the missing dependency named. Never skip the step silently, never guess a path.
 
 Paths are never machine paths. A local root is a
@@ -44,12 +44,14 @@ workspace under test), or asked once and saved there.
 
 ## Agent skills and plugins
 
+`/plugin` below is Claude Code's installer; another runtime uses its own.
+
 | Dependency | Check | Install / fallback |
 |------------|-------|--------------------|
-| `superpowers:systematic-debugging` (every skill: any failure, error or mismatch) | the name appears in the session's available-skills list | install the superpowers plugin via `/plugin`; fallback: a debugging skill the session lists (e.g. `engineering:debug`) with the same reproduce → root cause → fix → verify order |
-| `engineering:testing-strategy` (retest, testing ticket, review result) | listed in available skills | install the engineering plugin via `/plugin`; fallback: write the test strategy inline before running |
-| `superpowers-chrome:browsing` (browser fallback) | listed in available skills | install via `/plugin`; fallback: the browser MCP below |
-| `superpowers:writing-skills` (maintainers editing a skill) | listed in available skills | install via `/plugin` |
+| `superpowers:systematic-debugging` (every skill: any failure, error or mismatch) | the name appears in the session's available-skills list | install the superpowers plugin (`/plugin`); fallback: a debugging skill the session lists (e.g. `engineering:debug`) with the same reproduce → root cause → fix → verify order |
+| `engineering:testing-strategy` (retest, testing ticket, review result) | listed in available skills | install the engineering plugin (`/plugin`); fallback: write the test strategy inline before running |
+| `superpowers-chrome:browsing` (browser fallback) | listed in available skills | install (`/plugin`); fallback: the browser MCP below |
+| `superpowers:writing-skills` (maintainers editing a skill) | listed in available skills | install (`/plugin`) |
 
 ## MCP servers and accounts
 

@@ -109,10 +109,10 @@ into §4.
 ## 4. Surface it to the user and let them steer — before the verdict is committed or a bug is filed
 
 In an **interactive / supervised** session, post a short, plain-language flag in the chat **before**
-recording the non-PASS verdict or opening a bug. Keep it readable for a non-developer:
+recording the non-PASS verdict or opening a bug, in the user's language. Keep it readable for a non-developer:
 
 ```text
-⚠️ เอ๊ะ — {case / ticket}: ผลไม่ผ่านตรง ๆ ขอเช็คก่อนบันทึก
+⚠️ Check — {case / ticket}: not a clean pass; verifying before I record it
 • Expected: {X}  (source: {ticket AC / related ticket KEY / Figma frame})
 • Observed: {Y}  (evidence)
 • AC/EC check: {confirmed authoritative | expected looks wrong | superseded by {KEY} | unclear — needs {PO/role}}

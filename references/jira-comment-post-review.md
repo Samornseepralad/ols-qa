@@ -36,6 +36,8 @@ review below — the re-read on Jira UI remains the proof of what was posted.
 
 ## Review checklist (all items must pass)
 
+For a testing-ticket result comment, *TC rows* are its result rows and it has no CSV, so the attachment-name items do not apply.
+
 ### 1. Content completeness
 
 - [ ] **All TC rows present** — count rows on Jira UI, must match approved draft row count

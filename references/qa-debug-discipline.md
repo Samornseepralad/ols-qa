@@ -53,7 +53,7 @@ Blocked on: {user action if any}
 ━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-Link failures to **testing-ticket** Phase F or **retest** comment only after user approves wording.
+Link failures in the **testing-ticket** Phase F chat summary, or in the **retest** comment under its approval popup.
 
 ## Flaky selector diagnosis (Playwright)
 

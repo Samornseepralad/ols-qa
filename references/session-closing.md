@@ -32,7 +32,7 @@ Offer **exactly one** next step: the row below for the finished workflow ([skill
 |----------|-------------------|
 | TC FE prep | “Run **/testing-ticket** on the same story?” |
 | TC API prep | “Run **/testing-ticket** or export-only — your call.” |
-| Testing ticket (failures) | “File bugs with **/create-bug** using the F3 table?” |
+| Testing ticket (failures) | “Next: **/create-bug** for {scenario ids}” |
 | Retest PASSED | “Close or notify PM — no Helix step required.” |
 | Retest FAILED | “**Create bug** or reassign per your process?” |
 | Create bug | “**Retest** after the fix is deployed?” |
