@@ -1,6 +1,6 @@
 # Jira comment post-publish review (mandatory before reporting "done")
 
-After posting a TC comment to Jira, the agent MUST review the rendered comment on Jira UI, fix any issues, and re-verify — **before telling the user it's done.**
+After posting a TC comment to Jira, the agent MUST review the rendered comment on Jira UI, fix any issues, and re-verify — **before telling the user it's done.** For a create-bug issue body, apply §3 and §4; Phase F's 2-round cap replaces the 3 below.
 
 ## Contents
 

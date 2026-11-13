@@ -1,8 +1,8 @@
 ---
 name: create-bug-workflow
 description: |-
-  File bug reports on Jira or GitHub: collect target link, format and details, check the board for an earlier decision, falsify the defect, confirm with the user before creating.
-  Use when the user picks Create bug from Helix, says /create-bug, or wants a found defect logged ("raise a ticket for this", "log this defect", "เปิดบั๊ก").
+  File bug reports on Jira or GitHub: collect target, format and details, check the board, falsify the defect, confirm before creating.
+  Use when the user picks Create bug from Helix, says /create-bug, or wants a defect logged, even without the word bug, including one a test run in this chat found ("raise a ticket for this", "เปิดบั๊ก").
   Do NOT use for Playwright runs (testing-ticket), retest after a fix (retest-bug), TC tables (tc-fe-prep / tc-api-prep), or result-sheet updates.
 metadata:
   proactive_triggers:
@@ -48,7 +48,7 @@ Also read each only when its trigger fires: [agent-rationalizations.md](../../re
 
 ## Refusal-first (precondition gate)
 
-All preconditions and refusal rules are in WORKFLOW.md. MUST NOT create issues until the user approves each draft. MUST re-check the tracker/board first (WORKFLOW Phase B2): a defect a prior/closed ticket already settled as intended behavior is not a bug — report it to the user with the reference link instead of filing.
+All preconditions and refusal rules are in WORKFLOW.md. MUST NOT create issues before the Phase C **confirm**; MUST re-check the board first (Phase B2) — a defect an earlier ticket settled as intended is reported with its link, not filed.
 
 ## QA closing (mandatory before "done")
 
