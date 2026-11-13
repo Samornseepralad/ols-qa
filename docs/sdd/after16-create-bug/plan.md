@@ -6,13 +6,12 @@
 - `skills/procedures/create-bug-workflow/phase-d-create.md` — R2 GitHub gate lines after the 🔴 GATE line (that line unchanged); R4 HEREDOC + screenshots; R5 no-MCP branch in Jira item 2.
 - `skills/procedures/create-bug-workflow/phase-f-close.md` — R2 item 5.
 - `skills/procedures/create-bug-workflow/WORKFLOW.md` — R5 metadata bullet.
-- `skills/procedures/create-bug-workflow/references/{worked-example,bug-draft-template,posting-discipline}.md` — R3; posting-discipline JXA intro shortened to a pointer (offset).
-- `skills/create-bug-workflow/SKILL.md` — R6.
+- `skills/procedures/create-bug-workflow/references/{worked-example,bug-draft-template,posting-discipline}.md` — R3; R6 offsets.
 - `tools/a16-create-bug/check.test.js` — new pin test.
 
 ## Approach
 
-Close each gap by adding the missing branch or making lines agree; offsets come only from links the stub says do not apply, phase links WORKFLOW already gives, and the posting-discipline JXA intro that restates phase-d item 4.
+Close each gap by adding the missing branch or making lines agree; offsets come only from restated text (R6). Removing the SKILL.md phase / test-round links was tried and refused by skill-lint (must-read at 2 hops), so SKILL.md stays.
 
 Rejected: editing the shared waiver lines (shared files, other lanes; the create-bug line is enough because it names them); renaming phase-e (needs owner).
 
