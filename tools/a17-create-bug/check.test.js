@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+'use strict';
+// Rule-text test (spec docs/sdd/after17-create-bug R1–R10).
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const root = path.join(__dirname, '..', '..');
+const rd = (p) => fs.readFileSync(path.join(root, p), 'utf8');
+const flat = (s) => s.replace(/\s+/g, ' ');
+let fail = 0;
+function t(name, fn) {
+  try { fn(); console.log(`PASS  ${name}`); } catch (e) { fail += 1; console.log(`FAIL  ${name}\n      ${e.message}`); }
+}
+const has = (p, re) => assert.ok(re.test(flat(rd(p))), `${p} missing ${re}`);
+const lacks = (p, re) => assert.ok(!re.test(flat(rd(p))), `${p} still has ${re}`);
+const S = 'skills/create-bug-workflow/SKILL.md';
+const P = 'skills/procedures/create-bug-workflow/';
+
+t('R1 a run that files nothing has a Verdict', () => {
+  has(`${P}phase-f-close.md`, /A run that files nothing .* `Verdict: CREATED 0\/\{K\} — \{reason\}`/);
+});
+t('R2 confirm-block counts reconcile and D is not a count', () => {
+  has(`${P}phase-c-confirm.md`, /\{a\} dropped in B2, \{b\} dropped in B3, \{c\} blocked or Needs Review, K to file/);
+  lacks(`${P}phase-c-confirm.md`, /D dropped in B3/);
+});
+t('R3 Phase B3 pointer, GATE heading, Likely status, cause label', () => {
+  has(`${P}WORKFLOW.md`, /file name is historical: it holds B3; there is no Phase E/);
+  has(`${P}WORKFLOW.md`, /## 🔴 GATE: Phase B3/);
+  has(`${P}phase-e-falsification.md`, /## 🔴 GATE: Phase B3/);
+  has(`${P}phase-e-falsification.md`, /\*\*Likely\*\* — a defined status here, not a cause hedge/);
+  has(`${P}references/bug-draft-template.md`, /not the Confidence line/);
+});
+t('R4 resize names a tool and a width check', () => {
+  has(`${P}phase-d-create.md`, /sips -Z 640 <file>.*sips -g pixelWidth <file>/);
+});
+t('R5 waiver and embed lines match the create-bug gates', () => {
+  has('references/helix-session-constraints.md', /hard confirm gate .*create-bug Phase C.* never waived/);
+  has('references/skill-invocation-discipline.md', /except a hard confirm gate \(create-bug Phase C\)/);
+  has('references/agent-rationalizations.md', /create-bug Phase C \*\*confirm\*\* is never waived/);
+  has('references/agent-rationalizations.md', /embed an image only after it is attached \(new bug: create, attach, then update the body\)/);
+  lacks('references/agent-rationalizations.md', /attach before embed/);
+});
+t('R6 shared references say what create-bug uses', () => {
+  has('references/defect-report-completeness.md', /and the create-bug draft \(§1 Create-bug draft format\)/);
+  has('references/defect-report-completeness.md', /create-bug never reproduces/);
+  has('references/non-pass-challenge-gate.md', /create-bug never re-runs/);
+  has('references/jira-comment-post-review.md', /create-bug issue body, apply §3 and §4; Phase F's 2-round cap replaces the 3/);
+});
+t('R7 portability', () => {
+  lacks('references/bug-priority-matrix.md', /ยึดหลักนี้/);
+  has('references/jira-wiki-vs-markdown.md', /!\[alt\]\(https:\/\/example\.com\/a\.png\)/);
+  has('references/skill-reference-index.md', /## Workspace-specific \*\(ols-only\)\*/);
+});
+t('R8 intake and draft slots', () => {
+  has('references/intake-one-pager.md', /every entry point tried, expected and its source link/);
+  has(`${P}references/bug-draft-template.md`, /plain text `link pending from reporter` \(no braces\)/);
+  has(`${P}WORKFLOW.md`, /\| 🔴 STOP — Ask, never decide: no Severity given/);
+});
+t('R9 example and entry text agree', () => {
+  has(`${P}references/worked-example.md`, /gh repo view example-org\/checkout-ui --json name/);
+  has('commands/create-bug.md', /check the board, falsify, confirm, then file/);
+  has('commands/create-bug.md', /TC tables \(tc-fe-prep \/ tc-api-prep\) or result-sheet updates/);
+  has(S, /even without the word bug, including one a test run in this chat found/);
+});
+t('R10 Refusal-first is one statement', () => {
+  has(S, /MUST NOT create issues before the Phase C \*\*confirm\*\*; MUST re-check the board first \(Phase B2\)/);
+});
+
+if (fail) { console.log(`\n${fail} failed`); process.exit(1); }
+console.log('\nall passed');
