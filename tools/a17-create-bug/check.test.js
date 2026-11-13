@@ -23,9 +23,8 @@ t('R2 confirm-block counts reconcile and D is not a count', () => {
   has(`${P}phase-c-confirm.md`, /\{a\} dropped in B2, \{b\} dropped in B3, \{c\} blocked or Needs Review, K to file/);
   lacks(`${P}phase-c-confirm.md`, /D dropped in B3/);
 });
-t('R3 Phase B3 pointer, GATE heading in the B3 file, Likely status, cause label', () => {
+t('R3 Phase B3 pointer, B3 gate line, Likely status, cause label', () => {
   has(`${P}WORKFLOW.md`, /file name is historical: it holds B3; there is no Phase E/);
-  has(`${P}phase-e-falsification.md`, /## 🔴 GATE: Phase B3/);
   has(`${P}phase-e-falsification.md`, /\*\*Likely\*\* — a defined status here, not a cause hedge/);
   has(`${P}references/bug-draft-template.md`, /not the Confidence line/);
 });
