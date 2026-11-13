@@ -32,7 +32,7 @@ t('R5 SKILL.md scopes jira-comment-post-review for an issue body', () => {
   has(S, /jira-comment-post-review\.md\]\([^)]*\) \(issue body: pre-post render check, §3, §4; Phase F's 2-round cap\)/);
 });
 t('R6 shared re-runs go to the reporter or testing-ticket when filing', () => {
-  has(`${P}phase-e-falsification.md`, /Same for re-runs that non-pass-challenge-gate\.md §3 and defect-report-completeness\.md §3a\/§3b ask for/);
+  has(`${P}phase-b3-falsification.md`, /Same for re-runs that non-pass-challenge-gate\.md §3 and defect-report-completeness\.md §3a\/§3b ask for/);
 });
 
 if (fail) { console.log(`\n${fail} failing`); process.exit(1); }

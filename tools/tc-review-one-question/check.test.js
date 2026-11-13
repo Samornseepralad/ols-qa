@@ -7,7 +7,8 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 const root = path.join(__dirname, '..', '..');
 const P = 'skills/tc-review-workflow/SKILL.md';
-const S = fs.readFileSync(path.join(root, P), 'utf8');
+// Step 5 lives in notify.md (owner 13/Nov/2026).
+const S = fs.readFileSync(path.join(root, P), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'skills/tc-review-workflow/notify.md'), 'utf8');
 const sec = S.slice(S.indexOf('- **Project has a channel in config'));
 const bullet = sec.slice(0, sec.indexOf('- **Project has no channel in config'));
 // r12-p1-three R9: Step 5 items renumbered into execution order (old 2 → 5, old 3 → 6, old 4 → 7).

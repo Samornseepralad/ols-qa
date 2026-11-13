@@ -6,13 +6,14 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const rd = (p) => fs.readFileSync(path.join(root, p), 'utf8');
-const CB = ['phase-b2-board-check.md', 'phase-e-falsification.md', 'phase-c-confirm.md', 'phase-d-create.md', 'phase-f-close.md', 'WORKFLOW.md'].map((f) => rd(`skills/procedures/create-bug-workflow/${f}`)).join('\n');
+const CB = ['phase-b2-board-check.md', 'phase-b3-falsification.md', 'phase-c-confirm.md', 'phase-d-create.md', 'phase-f-close.md', 'WORKFLOW.md'].map((f) => rd(`skills/procedures/create-bug-workflow/${f}`)).join('\n');
 const FE = 'skills/procedures/tc-fe-prep-workflow/';
 const FE_WF = rd(`${FE}WORKFLOW.md`);
 const RG = rd(`${FE}requirement-gates.md`);
 const DR = rd(`${FE}design-and-review.md`);
 const FE_SKILL = rd('skills/tc-fe-prep-workflow/SKILL.md');
-const TR = rd('skills/tc-review-workflow/SKILL.md');
+// Step 5 lives in notify.md (owner 13/Nov/2026); SKILL.md + notify.md are checked as one workflow.
+const TR = rd('skills/tc-review-workflow/SKILL.md') + '\n' + rd('skills/tc-review-workflow/notify.md');
 const EE = rd('skills/procedures/retest-bug-workflow/execute-and-evidence.md');
 const flat = (s) => s.replace(/\s+/g, ' ');
 const lines = (s) => s.split('\n');
@@ -47,7 +48,7 @@ t('R3 reporter-only question with nothing against the defect → Likely, questio
   has(CB, /\{Confirmed \| Likely — open question: /);
 });
 t('R4 pasted search: terms, open and closed, result per candidate; comment scope note; draft kept; create held', () => {
-  const b2 = section(CB, '## 🔴 GATE: Phase B2', '## Phase B3 — Falsification');
+  const b2 = section(CB, '## 🔴 GATE: Phase B2', '## 🔴 GATE: Phase B3 — Falsification');
   has(b2, /pasted[^.]*query terms[^.]*open and closed[^.]*result per candidate/i);
   has(b2, /comment scope not stated[^.]*Board check/);
   has(b2, /ask once[^.]*do not hold the draft/i);

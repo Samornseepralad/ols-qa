@@ -16,7 +16,8 @@ const lacks = (s, re, msg) => assert.ok(!re.test(flat(s)), msg || `still has ${r
 const TPL = rd('skills/procedures/create-bug-workflow/references/bug-draft-template.md');
 const DRC = rd('references/defect-report-completeness.md');
 const FE = rd('skills/procedures/tc-fe-prep-workflow/WORKFLOW.md');
-const TR = rd('skills/tc-review-workflow/SKILL.md');
+// Step 5 lives in notify.md (owner 13/Nov/2026); SKILL.md + notify.md are checked as one workflow.
+const TR = rd('skills/tc-review-workflow/SKILL.md') + '\n' + rd('skills/tc-review-workflow/notify.md');
 const CMD = rd('commands/tc-review.md');
 const between = (s, a, b) => { const i = s.indexOf(a); const j = s.indexOf(b, i + 1); return i >= 0 && j > i ? s.slice(i, j) : ''; };
 const draft = between(TPL, '```text', '━━━━━━━━━━━━━━');
@@ -63,7 +64,7 @@ t('R6 Step 6 openpyxl-missing branch: say so, offer CSV, install only as suggest
 });
 
 // tc-review-workflow#1
-const s5 = between(TR, '## Step 5 —', '## QA closing');
+const s5 = rd('skills/tc-review-workflow/notify.md');
 const order = [
   '1. **Identity for a mention:**',
   '2. Use the wording conventions',

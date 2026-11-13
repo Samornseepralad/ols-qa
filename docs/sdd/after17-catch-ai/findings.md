@@ -52,3 +52,48 @@ Columns: id · source (round/scorer, level; `D` = darwin deduction) · state at 
 | CA-46 | quick_validate.py needs PyYAML | a11 s1 P2; a12 s2 P3 | OUT (env; verified with venv) | - |
 | CA-47 | hedge grep matches normative "should be"; a Correction needs a plain form | a14 s2 P2 | OPEN | R4 |
 | CA-48 | proactive_triggers key | owner 13/Nov | OUT (main thread, cross-skill) | - |
+
+## Fix map (code PR `fix/a17-catch-ai`)
+
+Commits: A `e6aa714f` (SKILL.md, reference.md, command), B `372699b4` (shared refs), C `49b2c392` + `955c677b` (bug-priority-matrix, plain Used-by line, lint-clean reads), D `4cf7823b` (tests `tools/catch-ai-a17/check.test.js`). Paths: S = `skills/catch-ai-workflow/SKILL.md`, R = `skills/catch-ai-workflow/reference.md`, C = `commands/catch-ai.md`, X = `references/`.
+
+| id | fixed at | commit |
+|---|---|---|
+| CA-1 | S:6 | A |
+| CA-2 | C:4 | A |
+| CA-3 | C:5 | A |
+| CA-4 | C:10 | A |
+| CA-5 | S:46-47 (Refusal-first before Dependencies) | A |
+| CA-6 | S:47 ("last section") | A |
+| CA-7 | S:41 | A |
+| CA-8 | S:61 (Order line) | A |
+| CA-9 | S:84 (🔴 STOP) | A |
+| CA-10 | S:93 | A |
+| CA-11 | S:112 | A |
+| CA-12 | S:262 | A |
+| CA-13 | S:91 (heading) and the contents list | A |
+| CA-14 | S:96-98 (step 4 split into sub-bullets) | A |
+| CA-15 | S:100 | A |
+| CA-16 | S:189-191 (exit rule), S:197-201 (gate), S:253-270 (read groups), R:168-185 (flaky and evidence cases); test pins no line over 450 chars | A |
+| CA-17 | C:12 (Iron Law link); other copies verified as one-line pointers (S:159, 170, 215-216) | A |
+| CA-18 | S:195 | A |
+| CA-19 | R:175 | A |
+| CA-20 | R:171 | A |
+| CA-21 | R:176 | A |
+| CA-22 | R:172 | A |
+| CA-23 | S:253 | A |
+| CA-24 | S:255 | A |
+| CA-25 | S:256 | A |
+| CA-26 | S:284-285 | A |
+| CA-27 | R:82 | A |
+| CA-28 | X skill-routing.md:65 | B |
+| CA-29 | X bug-priority-matrix.md "Used by" | C |
+| CA-30 | X qa-evidence-capture.md:52 | B |
+| CA-31 | X qa-evidence-coverage.md:69 | B |
+| CA-32 | X dependencies.md:49 | B |
+| CA-33 | X root-cause-investigation.md:73 | B |
+| CA-34 | X customer-escape-prevention.md (row removed; kept row at :217) | B |
+| CA-43 | R:77 | A |
+| CA-47 | S:123 | A |
+| CA-35..CA-42, CA-44, CA-45 | pinned by `R9 FIXED-BEFORE items stay fixed` in the test | D |
+| CA-46 | `quick_validate.py` run with the PyYAML venv: "Skill is valid!" | - |

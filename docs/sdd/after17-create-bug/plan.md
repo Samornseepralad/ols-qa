@@ -2,10 +2,10 @@
 
 ## Files touched
 
-Own: `skills/create-bug-workflow/SKILL.md`, `commands/create-bug.md`, `skills/procedures/create-bug-workflow/{WORKFLOW,phase-c-confirm,phase-d-create,phase-e-falsification,phase-f-close}.md`, `references/{bug-draft-template,worked-example}.md`.
+Own: `skills/create-bug-workflow/SKILL.md`, `commands/create-bug.md`, `skills/procedures/create-bug-workflow/{WORKFLOW,phase-c-confirm,phase-d-create,phase-b3-falsification (renamed from phase-e-falsification),phase-f-close}.md`, pinned tests `tools/{r7-create-bug-pasted,r11-skill-fixes-g1,r11-t9-uplift-a,a14-create-bug,create-bug-draft-rules}`, `references/{bug-draft-template,worked-example}.md`.
 Shared (not in PR #250/#251 lists): `references/{helix-session-constraints,skill-invocation-discipline,agent-rationalizations,jira-comment-post-review,workspace-guide-discovery,qa-debug-discipline,jira-wiki-vs-markdown,skill-reference-index}.md`.
 Shared in PR #250/#251 lists, separate commit based on the PR version: `references/{defect-report-completeness,non-pass-challenge-gate,intake-one-pager}.md` (#251), `references/bug-priority-matrix.md` (#250).
-New: `tools/a17-create-bug` (pin test), `docs/sdd/after17-create-bug/findings-ledger.md`.
+New: `tools/a17-create-bug/check.test.js` (pin test), `docs/sdd/after17-create-bug/findings-ledger.md`.
 
 ## Data and libraries
 
@@ -13,7 +13,7 @@ Markdown and a shell test only. No dependency, no cost.
 
 ## Alternatives weighed
 
-- Rename `phase-e-falsification.md` to `phase-b3-...`: removes nine findings but needs owner approval (rule 5) and updates links in other skills; a one-line pointer in WORKFLOW closes the confusion without a rename.
+- Rename `phase-e-falsification.md` to `phase-b3-...`: removes nine findings owner approved it 13/Nov ("Rename + แก้ลิงก์ทุกที่"); every link and test reference is updated.
 - Drop the two test-round links from SKILL.md: skill-lint would report 6 new violations (a16 evidence); kept.
 - Edit PR #250/#251 files on this branch directly: would conflict with those PRs; a separate commit on their version keeps either merge order clean.
 
