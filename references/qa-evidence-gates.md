@@ -6,12 +6,8 @@ Adapted from evidence-before-claims discipline for **QA deliverables**. Use with
 
 - [Gate function](#gate-function)
 - [Claim → evidence map](#claim--evidence-map)
-- [Story-testing evidence-completeness gate (5-step, per story)](#story-testing-evidence-completeness-gate-5-step-per-story)
-- [Capture scope — every role, every step, every target the ticket names](#capture-scope--every-role-every-step-every-target-the-ticket-names)
+- [Related: moved sections](#related-moved-sections)
 - [MP4 evidence — 7-layer quality + correctness defense gate (mandatory, fail-closed)](#mp4-evidence--7-layer-quality--correctness-defense-gate-mandatory-fail-closed)
-- [Re-recording evidence that was already delivered — 6-layer gate (mandatory, fail-closed)](#re-recording-evidence-that-was-already-delivered--6-layer-gate-mandatory-fail-closed)
-- [AC/EC & bug-detail coverage — 7-layer completeness defense gate (mandatory, fail-closed)](#acec--bug-detail-coverage--7-layer-completeness-defense-gate-mandatory-fail-closed)
-- [Pre-delivery completeness — 7-layer defense gate (before handing results to the requester)](#pre-delivery-completeness--7-layer-defense-gate-before-handing-results-to-the-requester)
 - [Wording red flags](#wording-red-flags)
 - [Workflow pointers](#workflow-pointers)
 - [Evidence must be a real FE screen — a raw-data page is never evidence](#evidence-must-be-a-real-fe-screen--a-raw-data-page-is-never-evidence)
@@ -86,60 +82,24 @@ If what the case needs to prove has no screen that shows it, use the screen that
 value (a count rendered on a detail page, a status chip, a toast). If none exists, the case is
 **BLOCKED and goes to the PO** — a raw-data page is not a substitute.
 
-## Related: moved sections (old anchors still resolve)
+## Related: moved sections
 
-## Story-testing evidence-completeness gate (5-step, per story)
+These sections moved; follow the link:
 
-See also [qa-evidence-capture.md](qa-evidence-capture.md#story-testing-evidence-completeness-gate-5-step-per-story) — this section moved there.
-
-## Capture scope — every role, every step, every target the ticket names
-
-See also [qa-evidence-capture.md](qa-evidence-capture.md#capture-scope--every-role-every-step-every-target-the-ticket-names) — this section moved there.
-
-### Capture red flags — STOP, this recording is not evidence yet
-
-See also [qa-evidence-capture.md](qa-evidence-capture.md#capture-red-flags--stop-this-recording-is-not-evidence-yet) — this section moved there.
-
-### Still spec — the screenshots carry most of the verdicts, so they get a floor too
-
-See also [qa-evidence-capture.md](qa-evidence-capture.md#still-spec--the-screenshots-carry-most-of-the-verdicts-so-they-get-a-floor-too) — this section moved there.
+- [Story-testing evidence-completeness gate (5-step, per story)](qa-evidence-capture.md#story-testing-evidence-completeness-gate-5-step-per-story)
+- [Capture scope — every role, every step, every target the ticket names](qa-evidence-capture.md#capture-scope--every-role-every-step-every-target-the-ticket-names)
+- [Capture red flags — STOP, this recording is not evidence yet](qa-evidence-capture.md#capture-red-flags--stop-this-recording-is-not-evidence-yet)
+- [Still spec — the screenshots carry most of the verdicts, so they get a floor too](qa-evidence-capture.md#still-spec--the-screenshots-carry-most-of-the-verdicts-so-they-get-a-floor-too)
+- [Capture spec — the pipeline layers 1 / 1b / 1c are measured against](qa-evidence-capture.md#capture-spec--the-pipeline-layers-1--1b--1c-are-measured-against)
+- [Re-recording evidence that was already delivered — 6-layer gate (mandatory, fail-closed)](qa-evidence-rerecord.md#re-recording-evidence-that-was-already-delivered--6-layer-gate-mandatory-fail-closed)
+- [Why R2 exists — the shape it keeps catching](qa-evidence-rerecord.md#why-r2-exists--the-shape-it-keeps-catching)
+- [Fixture selection when the demonstration burns the fixture](qa-evidence-rerecord.md#fixture-selection-when-the-demonstration-burns-the-fixture)
+- [Replacing the delivered file without breaking anything](qa-evidence-rerecord.md#replacing-the-delivered-file-without-breaking-anything)
+- [AC/EC & bug-detail coverage — 7-layer completeness defense gate (mandatory, fail-closed)](qa-evidence-coverage.md#acec--bug-detail-coverage--7-layer-completeness-defense-gate-mandatory-fail-closed)
+- [Coverage red flags — STOP, you are about to pass on partial coverage](qa-evidence-coverage.md#coverage-red-flags--stop-you-are-about-to-pass-on-partial-coverage)
+- [Pre-delivery completeness — 7-layer defense gate (before handing results to the requester)](qa-evidence-coverage.md#pre-delivery-completeness--7-layer-defense-gate-before-handing-results-to-the-requester)
+- [Adversarial review pass — read your own deliverable as the reviewer hunting for the shortcut](qa-evidence-coverage.md#adversarial-review-pass--read-your-own-deliverable-as-the-reviewer-hunting-for-the-shortcut)
 
 ## MP4 evidence — 7-layer quality + correctness defense gate (mandatory, fail-closed)
 
 See also [qa-evidence-capture.md](qa-evidence-capture.md#mp4-evidence--7-layer-quality--correctness-defense-gate-mandatory-fail-closed) — this section moved there.
-
-### Capture spec — the pipeline layers 1 / 1b / 1c are measured against
-
-See also [qa-evidence-capture.md](qa-evidence-capture.md#capture-spec--the-pipeline-layers-1--1b--1c-are-measured-against) — this section moved there.
-
-## Re-recording evidence that was already delivered — 6-layer gate (mandatory, fail-closed)
-
-See also [qa-evidence-rerecord.md](qa-evidence-rerecord.md#re-recording-evidence-that-was-already-delivered--6-layer-gate-mandatory-fail-closed) — this section moved there.
-
-### Why R2 exists — the shape it keeps catching
-
-See also [qa-evidence-rerecord.md](qa-evidence-rerecord.md#why-r2-exists--the-shape-it-keeps-catching) — this section moved there.
-
-### Fixture selection when the demonstration burns the fixture
-
-See also [qa-evidence-rerecord.md](qa-evidence-rerecord.md#fixture-selection-when-the-demonstration-burns-the-fixture) — this section moved there.
-
-### Replacing the delivered file without breaking anything
-
-See also [qa-evidence-rerecord.md](qa-evidence-rerecord.md#replacing-the-delivered-file-without-breaking-anything) — this section moved there.
-
-## AC/EC & bug-detail coverage — 7-layer completeness defense gate (mandatory, fail-closed)
-
-See also [qa-evidence-coverage.md](qa-evidence-coverage.md#acec--bug-detail-coverage--7-layer-completeness-defense-gate-mandatory-fail-closed) — this section moved there.
-
-### Coverage red flags — STOP, you are about to pass on partial coverage
-
-See also [qa-evidence-coverage.md](qa-evidence-coverage.md#coverage-red-flags--stop-you-are-about-to-pass-on-partial-coverage) — this section moved there.
-
-## Pre-delivery completeness — 7-layer defense gate (before handing results to the requester)
-
-See also [qa-evidence-coverage.md](qa-evidence-coverage.md#pre-delivery-completeness--7-layer-defense-gate-before-handing-results-to-the-requester) — this section moved there.
-
-### Adversarial review pass — read your own deliverable as the reviewer hunting for the shortcut
-
-See also [qa-evidence-coverage.md](qa-evidence-coverage.md#adversarial-review-pass--read-your-own-deliverable-as-the-reviewer-hunting-for-the-shortcut) — this section moved there.
