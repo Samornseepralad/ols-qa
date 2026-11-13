@@ -35,12 +35,14 @@ t('R4 GitHub body by HEREDOC, screenshots path', () => {
   has(`${P}phase-d-create.md`, /gh uploads no files/);
 });
 t('R5 label-list failure and no-MCP branches', () => {
-  has(`${P}WORKFLOW.md`, /`gh label list` or the create metadata fails/);
+  has(`${P}WORKFLOW.md`, /`gh label list` or createmeta fails/);
   has(`${P}phase-d-create.md`, /No Atlassian MCP in the session/);
 });
-t('R6 stub drops non-filing refs and repeated phase links', () => {
-  lacks(S, /round-time-contract|customer-escape-prevention/);
-  lacks(S, /at their step/);
+t('R6 offsets drop only restated text; SKILL.md links stay', () => {
+  lacks(`${P}phase-d-create.md`, /renders as garbage/);
+  lacks(`${P}references/posting-discipline.md`, /use HEREDOC for body/);
+  has(`${P}references/posting-discipline.md`, /per \[phase-f-close\.md\]/);
+  has(S, /\[F\]\(\.\.\/procedures\/create-bug-workflow\/phase-f-close\.md\) at their step/);
 });
 
 if (fail) { console.log(`\n${fail} failing`); process.exit(1); }

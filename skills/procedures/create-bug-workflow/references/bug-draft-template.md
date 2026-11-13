@@ -79,12 +79,11 @@ Evidence:
 - **What happens / What should happen** — keep both headings. The verbatim source quote and its link go
   *inside* What should happen, under the expected bullets; they never replace the section. Every link comes
   from the input or tool output — a missing one is `{link pending from reporter}`, never built from a domain and a key.
-  Quote the source line verbatim and link it. A paraphrase, a feature name or a
+  A paraphrase, a feature name or a
   translation is not an expected side; with no quotable source the candidate is a question, not a bug
   (WORKFLOW Refusal-first).
 - **Why failed** — the expected-result line quoted verbatim (the same line as in What should happen) and
-  the exact deviation from it, as one observable fact. No quotable line → the candidate is a question, not
-  a bug (WORKFLOW Refusal-first).
+  the exact deviation from it, as one observable fact.
 - **Resolution options** — both rows, each with a named owner in Decided by; name the exact surface to
   change and the parts that must not change. Never pick an option yourself and never edit the ticket's
   expected-result field (contract §4).

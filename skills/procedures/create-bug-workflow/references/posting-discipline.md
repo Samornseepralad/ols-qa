@@ -2,7 +2,6 @@
 
 ## GitHub
 
-- `gh issue create` — use HEREDOC for body; capture stdout for issue URL.
 - Labels: `bug`, `severity:<Severity>` (the draft's Severity: Low / Medium / High / Urgent) —
   only labels the [WORKFLOW Phase B tracker-fields pre-flight](../WORKFLOW.md#phase-b--parse-target-medium-freedom) found or the user approved.
 
@@ -25,7 +24,6 @@ Used only when [phase-d-create.md](../phase-d-create.md) item 4 selects it.
 - [ ] User confirmed drafts
 - [ ] Evidence attached where required (FE/UI screenshots on Jira)
 - [ ] No bare `PROJ-123` in wiki — use `{{PROJ-123}}` when auto-link is unwanted
-- [ ] Tool output shows issue key or URL
 
 ## Post-create verification
 

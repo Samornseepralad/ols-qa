@@ -1,7 +1,6 @@
 # Worked example (anonymized) — Create bug
 
-**Target:** GitHub `example-org/checkout-ui`  
-**Outcome:** 1 issue created and verified
+**Target:** GitHub `example-org/checkout-ui`
 
 ## Inputs
 
@@ -40,4 +39,4 @@ Issue: https://github.com/example-org/checkout-ui/issues/88
 
 - Phase B3 falsification: the reporter's second item (the “Order summary” heading on the payment step) matched the
   design frame char-exact — labelled **Dropped** and reported in chat with the frame link, never drafted.
-- A candidate left at Needs Review is still drafted and shown labelled "Needs Review — not filed" with its open question; it is not counted in Bug count and `confirm` does not create it.
+- A Needs Review candidate is drafted and shown labelled "Needs Review — not filed"; `confirm` does not create it.
