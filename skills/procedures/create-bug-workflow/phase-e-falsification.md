@@ -2,7 +2,7 @@
 
 Part of [WORKFLOW.md](WORKFLOW.md), opened at Phase B3; every rule here is a full gate.
 
-## 🔴 GATE: Phase B3 — Falsification (before create) [high freedom]
+## Phase B3 — Falsification (before create) [high freedom]
 
 Runs after Phase B2 for every candidate that cleared it. **🔴 GATE:** no candidate reaches Phase C until it survives falsification.
 
