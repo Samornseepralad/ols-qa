@@ -137,7 +137,7 @@ At Phase B2, open [phase-b2-board-check.md](phase-b2-board-check.md) and follow 
 
 ---
 
-## 🔴 GATE: Phase B3 — Falsification (before create) [high freedom]
+## Phase B3 — Falsification (before create) [high freedom]
 
 At Phase B3, open [phase-e-falsification.md](phase-e-falsification.md) and follow every line before moving on. 🔴 GATE: no candidate reaches Phase C until it survives falsification.
 

@@ -23,9 +23,8 @@ t('R2 confirm-block counts reconcile and D is not a count', () => {
   has(`${P}phase-c-confirm.md`, /\{a\} dropped in B2, \{b\} dropped in B3, \{c\} blocked or Needs Review, K to file/);
   lacks(`${P}phase-c-confirm.md`, /D dropped in B3/);
 });
-t('R3 Phase B3 pointer, GATE heading, Likely status, cause label', () => {
+t('R3 Phase B3 pointer, GATE heading in the B3 file, Likely status, cause label', () => {
   has(`${P}WORKFLOW.md`, /file name is historical: it holds B3; there is no Phase E/);
-  has(`${P}WORKFLOW.md`, /## 🔴 GATE: Phase B3/);
   has(`${P}phase-e-falsification.md`, /## 🔴 GATE: Phase B3/);
   has(`${P}phase-e-falsification.md`, /\*\*Likely\*\* — a defined status here, not a cause hedge/);
   has(`${P}references/bug-draft-template.md`, /not the Confidence line/);
@@ -44,7 +43,7 @@ t('R6 shared references say what create-bug uses', () => {
   has('references/defect-report-completeness.md', /and the create-bug draft \(§1 Create-bug draft format\)/);
   has('references/defect-report-completeness.md', /create-bug never reproduces/);
   has('references/non-pass-challenge-gate.md', /create-bug never re-runs/);
-  has('references/jira-comment-post-review.md', /create-bug Phase F: 2, and for an issue body only §3, §4 apply/);
+  has(`${P}phase-f-close.md`, /this cap replaces the 3 in jira-comment-post-review\.md/);
 });
 t('R7 portability', () => {
   lacks('references/bug-priority-matrix.md', /ยึดหลักนี้/);
