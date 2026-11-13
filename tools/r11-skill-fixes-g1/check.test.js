@@ -6,13 +6,14 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..', '..');
 const rd = (p) => fs.readFileSync(path.join(root, p), 'utf8');
-const CB = rd('skills/procedures/create-bug-workflow/WORKFLOW.md');
+const CB = ['phase-b2-board-check.md', 'phase-b3-falsification.md', 'phase-c-confirm.md', 'phase-d-create.md', 'phase-f-close.md', 'WORKFLOW.md'].map((f) => rd(`skills/procedures/create-bug-workflow/${f}`)).join('\n');
 const FE = 'skills/procedures/tc-fe-prep-workflow/';
 const FE_WF = rd(`${FE}WORKFLOW.md`);
 const RG = rd(`${FE}requirement-gates.md`);
 const DR = rd(`${FE}design-and-review.md`);
 const FE_SKILL = rd('skills/tc-fe-prep-workflow/SKILL.md');
-const TR = rd('skills/tc-review-workflow/SKILL.md');
+// Step 5 lives in notify.md (owner 13/Nov/2026); SKILL.md + notify.md are checked as one workflow.
+const TR = rd('skills/tc-review-workflow/SKILL.md') + '\n' + rd('skills/tc-review-workflow/notify.md');
 const EE = rd('skills/procedures/retest-bug-workflow/execute-and-evidence.md');
 const flat = (s) => s.replace(/\s+/g, ' ');
 const lines = (s) => s.split('\n');
@@ -29,10 +30,10 @@ const section = (s, from, to) => {
 };
 
 // create-bug
-t('R1 hedged expected side: not drafted, not sent to Phase E, reported as BLOCKED question', () => {
+t('R1 hedged expected side: not drafted, not sent to Phase B3, reported as BLOCKED question', () => {
   const rf = section(CB, '## Refusal-first', '**MUST re-check the tracker');
   has(rf, /do not draft or file it/i);
-  has(rf, /do not send it to Phase E/i);
+  has(rf, /do not send it to Phase B3/i);
   has(rf, /BLOCKED: spec unconfirmed/);
   has(rf, /names the hedge and the (authoritative )?source needed/i);
 });
@@ -47,7 +48,7 @@ t('R3 reporter-only question with nothing against the defect → Likely, questio
   has(CB, /\{Confirmed \| Likely — open question: /);
 });
 t('R4 pasted search: terms, open and closed, result per candidate; comment scope note; draft kept; create held', () => {
-  const b2 = section(CB, '## 🔴 GATE: Phase B2', '## Phase E — Falsification');
+  const b2 = section(CB, '## 🔴 GATE: Phase B2', '## 🔴 GATE: Phase B3 — Falsification');
   has(b2, /pasted[^.]*query terms[^.]*open and closed[^.]*result per candidate/i);
   has(b2, /comment scope not stated[^.]*Board check/);
   has(b2, /ask once[^.]*do not hold the draft/i);
@@ -95,7 +96,8 @@ t('R10 untagged sheet → map by Expected Result vs AC text, inferred, report mi
   has(TR, /no row carries an AC\/EC tag → map by Expected Result vs AC text, mark each `inferred`[^)]*report the missing tags once under Need Improve/);
 });
 t('R11 notify run order stated and consistent with items 2 and 7', () => {
-  has(TR, /Then \(run order 1 → 8 → 5 → 7 → 2 → 3; items 4 and 6 only when correcting a sent message\):/);
+  // r12-p1-three R7/R9: items renumbered into execution order (old 1→8→5→7→2→3 is now 1→6).
+  has(TR, /Then, in this order \(items 1–6 every send; items 7 and 8 only when correcting a sent message\):/);
 });
 t('R11 size: tc-review SKILL.md ≤ 403 lines and < 30000 bytes', () => {
   assert.ok(lines(TR).length <= 403, `${lines(TR).length} lines`);

@@ -5,7 +5,7 @@ asking you anything**. Every question a reader asks after you post is a section 
 and every answer you give in chat instead of in the report is knowledge the next reader will not have.
 
 Applies to every verdict that is not a clean PASSED: the retest comment (retest-bug-workflow Step 6)
-and the defect list / external result write (testing-ticket-workflow Phase F3, Phase G).
+and the defect list / external result write (testing-ticket-workflow Phase F3, Phase G), and the create-bug draft (§1 Create-bug draft format).
 
 ---
 
@@ -22,7 +22,7 @@ and the defect list / external result write (testing-ticket-workflow Phase F3, P
 
 ## 1. The report answers five questions before they are asked
 
-Write these five, in this order. A FAILED or BLOCKED report missing any one of them is **not ready to
+Write these five, in this order. A FAILED, PWMI or BLOCKED report missing any one of them is **not ready to
 post** — fix the report, do not plan to answer it in chat later.
 
 | # | The question the reader will ask | Section that must already answer it |
@@ -35,9 +35,25 @@ post** — fix the report, do not plan to answer it in chat later.
 
 Questions 2, 4 and 5 are the ones that get skipped. They are also the first three a dev asks.
 
+**Retest-bug comment format.** The retest comment forbids a separate Repro-matrix or Why-failed block
+(`retest-bug-workflow/comment-and-post.md` § Step 6a),
+so it answers them in its fixed fields: **Q2** — the `Fixture` line names every entry point exercised, each
+backed by its own evidence file in the `Evidence` cell of the row it proves — and every entry point is
+exercised before drafting (`retest-bug-workflow/execute-and-evidence.md` § 4g), so no unexercised path is claimed; **Q4** — the verdict-table row itself, whose `Expected Result` cell quotes the
+expected-result line verbatim and whose `Actual Result` cell names the exact deviation. The §2 rules and
+the §5 checks apply to those lines and rows unchanged.
+
+**Create-bug draft format.** The Helix default draft (`create-bug-workflow/references/bug-draft-template.md`)
+carries one block per question: What happens / What should happen (Q1, Q3), Repro matrix (Q2), Why failed
+(Q4), Resolution options with a Decided by owner per row (Q5). A new bug has no delivered fix, so its
+`Fix status` line answers the §5 "originally reported symptom" check. Every row of this contract applies to
+that draft unchanged.
+
 ---
 
 ## 2. Repro matrix — REQUIRED for every non-PASSED item
+
+A retest comment carries these rows in its `Fixture` line and `Evidence` cells (§1 *Retest-bug comment format*), never as a separate block.
 
 Every way a user can reach the broken surface gets its own row. No row = no claim about that path.
 
@@ -53,7 +69,7 @@ Every way a user can reach the broken surface gets its own row. No row = no clai
 - **One row per entry point you actually exercised.** An entry point you did not exercise is written
   as `not tested` — never inferred from another row, never omitted.
 - **"Happens everywhere" / "happens both ways" is a claim about N paths and needs N rows**, each with
-  its own evidence file. If you have one screenshot, you may state one path.
+  its own evidence file. If you have one screenshot, state that one path.
 - A scope word in the verdict (`always`, `any entry point`, `only when …`) must be traceable to the
   matrix. If the matrix does not support the word, the word comes out.
 - The matrix goes **in the report**, not only in the local result file.
@@ -82,7 +98,7 @@ If two observations of the same surface disagree — two runs, screenshot vs. no
 this run vs. an earlier run — you **MUST NOT draft the report yet**.
 
 1. Name the contradiction explicitly ("run 1 shows the card clickable, run 2 shows it disabled").
-2. Re-run **that surface only**, cleanly, after §3a.
+2. Re-run **that surface only**, cleanly, after §3a (create-bug never reproduces: the reporter or testing-ticket re-runs, the item stays Needs Review).
 3. The clean re-run decides. Record which earlier observation was the artifact **and why**.
 4. **Never resolve a contradiction by picking the observation that supports the verdict you already
    reached.** That is how a wrong repro path gets published.
@@ -93,7 +109,7 @@ this run vs. an earlier run — you **MUST NOT draft the report yet**.
 ## 4. Resolution options — REQUIRED when actual ≠ expected but the reported symptom is gone
 
 This is its own failure class: **the fix works but deviates from the written expected result** (blocks
-harder, blocks differently, renders a different screen). It is still FAILED — but the report must
+harder, blocks differently, renders a different screen). It is still not PASSED — PWMI or FAILED per [bug-priority-matrix.md](bug-priority-matrix.md) — but the report must
 hand the reader a decision, not a complaint. There are exactly two resolutions and QA picks neither.
 
 ```text

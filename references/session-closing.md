@@ -1,14 +1,14 @@
 # Session closing (all workflows)
 
-Apply at **end of every workflow** (success, partial, or blocked). Write it in the user's language.
+Apply at the **end of every workflow** (success, partial, blocked), in the user's language.
 
 ## 1 — Unified verification
 
-Complete [verify-closing-checklist.md](verify-closing-checklist.md) for this workflow type before saying the session is complete.
+Complete [verify-closing-checklist.md](verify-closing-checklist.md) for this workflow type before saying the session is done. **TC review** (no test run) closes with its own § QA closing, not verify-closing-checklist.md.
 
 ## 2 — Artifact index (mandatory)
 
-Post paths and links the user may need next:
+Post the paths and links the user needs:
 
 ```text
 ━━━ Artifacts ━━━
@@ -22,32 +22,33 @@ Post paths and links the user may need next:
 ━━━━━━━━━━━━━━━
 ```
 
-List only what was actually created. Use workspace-relative paths.
+List only what was created, with workspace-relative paths.
 
 ## 3 — Next workflow (mandatory one line)
 
-Offer **exactly one** logical next step from [skill-routing.md](skill-routing.md) when relevant — user may decline.
+Offer **exactly one** next step, the row for the finished workflow ([skill-routing.md](skill-routing.md)); when no row matches, write `Next: none`.
 
-| Finished | Suggest (one line) |
+| Finished | Next step (one line) |
 |----------|-------------------|
 | TC FE prep | “Run **/testing-ticket** on the same story?” |
 | TC API prep | “Run **/testing-ticket** or export-only — your call.” |
-| Testing ticket (failures) | “File bugs with **/create-bug** using the F3 table?” |
+| Testing ticket (failures) | “Next: **/create-bug** for {scenario ids}” |
+| TC review | “Fix the TCs, then **/testing-ticket**?” |
 | Retest PASSED | “Close or notify PM — no Helix step required.” |
 | Retest FAILED | “**Create bug** or reassign per your process?” |
 | Create bug | “**Retest** after the fix is deployed?” |
+| Catch AI (defects) | “File with **/create-bug** after you approve?” |
 
 Do not auto-start the next workflow without user consent.
 
 ## 4 — Handoff file (every retest / testing round; long or interrupted sessions otherwise)
 
-**Retest and testing ticket (and smoke): write it at the close of every round** — not only long or
-blocked runs — with the per-round state and source fingerprints the next round compares against
+**Retest and testing ticket (and smoke): write it at the close of every round** with the per-round state and source fingerprints the next round compares against
 ([round-time-contract.md §10](round-time-contract.md#10-per-ticket-state-and-fingerprints)).
 
-Other workflows: write when **any** applies:
+Others: write when **any** applies:
 
-- User may continue in a **new chat**
+- User can continue in a **new chat**
 - Workflow ran **> 30 minutes** or **> 15 TC rows**
 - Session ended **blocked** (VPN, auth, partial Jira post)
 

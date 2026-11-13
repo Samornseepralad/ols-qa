@@ -25,7 +25,7 @@ When acting as **Helix** (`/helix` or routed skills), the opening menu, follow-u
 
 - **Jira / Confluence / Sheet content** the user supplies or that already exists on the destination — match **that** document’s language when updating results or posting approved comments.
 - **Product UI** under test — assert on real app copy regardless of language.
-- **Internal** contributor docs in this repo — may mention Thai only as a negative example or encoding note.
+- **Internal** contributor docs in this repo — mention Thai only as a negative example or encoding note.
 
 ## Tone for deliverables (bugs, Jira comments, summaries)
 
@@ -35,7 +35,7 @@ Applies to text Helix **authors** for trackers and chat summaries (not product U
 |------|---------|
 | **Active voice** | “Login failed” not “Login was observed to fail” — faster triage |
 | **No hedging** on verified facts | Avoid “might”, “possibly”, “seems” when evidence is attached |
-| **Hedge only when uncertain** | Use “Needs Review” / “BLOCKED” status instead of guessing PASS/FAIL |
+| **Hedge only when uncertain** | Use the workflow's own not-confirmed status (e.g. BLOCKED; create-bug: Needs Review) instead of guessing PASS/FAIL |
 | **Blameless** in bug bodies | Describe mechanism and gap — never blame a person by name |
 | **Mechanism over narrative** | Steps + expected/actual + evidence link — not long story paragraphs |
 

@@ -15,7 +15,7 @@ Collect these before any Playwright run.
 ## User (account only — no password)
 
 - The test account (username/email). Use `guest` when the ticket is explicitly unauthenticated.
-- Login by command, never a login window or a password — stated once at [WORKFLOW.md](../WORKFLOW.md) Phase D *Fresh login*.
+- Login by command, never a login window or a password — [WORKFLOW.md](../WORKFLOW.md) Phase D *Fresh login*.
 - Record the account names, the env, the URLs and the relink/mint command templates (`<project-dir>`, `<env>`, `<account>`) when the project guide does not name them. Never record a password.
 
 ## VPN
@@ -26,12 +26,12 @@ Collect these before any Playwright run.
 
 ## Confluence
 
-- Optional page with AC tables, API notes, or test data.
+- A page with AC tables, API notes, or test data, when the user has one.
 - `none` if all context is on the Jira ticket.
 
 ## Swagger
 
-- Optional OpenAPI/Swagger URL for API scenarios tied to the ticket.
+- An OpenAPI/Swagger URL for API scenarios tied to the ticket, when the user has one.
 - `none` if UI-only.
 
 ## Confirmation gate

@@ -250,6 +250,12 @@ t('a Story tested without testing-ticket-workflow is SKILL_MISMATCH', () => {
   assert.ok(rules([line({ skill: 'retest-bug-workflow' })], { types: { 'DEMO-1': 'Story' } }).includes('SKILL_MISMATCH'));
 });
 
+t('a Story fix retest with retest-bug-workflow passes only with a fix_ref', () => {
+  assert.deepStrictEqual(rules([line({ skill: 'retest-bug-workflow', fix_ref: 'DEMO-1#comment-10' })], { types: { 'DEMO-1': 'Story' } }), []);
+  const r = G.checkResults([line({ skill: 'retest-bug-workflow', fix_ref: '' })], { types: { 'DEMO-1': 'Story' } }).violations;
+  assert.ok(r.some((v) => v.rule === 'SKILL_MISMATCH' && /fix_ref/.test(v.msg)));
+});
+
 t('a Bug must carry retest-bug-workflow', () => {
   assert.deepStrictEqual(rules([line({ skill: 'retest-bug-workflow' })], { types: { 'DEMO-1': 'Bug' } }), []);
   assert.ok(rules([line()], { types: { 'DEMO-1': 'Bug' } }).includes('SKILL_MISMATCH'));
@@ -282,6 +288,17 @@ t('a code ref without a line number does not count', () => {
 t('a ticket ref must look like a ticket key', () => {
   const f = failed({ attempts: 3, failed_attempts: 3, ticket_refs: ['the story'] });
   assert.ok(rules([f]).includes('NO_SOURCE_SWEEP'));
+});
+
+t('no repo access: the exact not-checked form stands in for a code ref', () => {
+  const nc = ['not checked — no repo access (dev lead)'];
+  const b = line({ verdict: 'BLOCKED', root_cause: 'x', remark: 'y', contact: 'PO', code_refs: nc, ticket_refs: ['DEMO-1'] });
+  assert.ok(!rules([b]).includes('NO_SOURCE_SWEEP'));
+  assert.ok(!rules([failed({ attempts: 3, failed_attempts: 3, code_refs: nc })]).includes('NO_SOURCE_SWEEP'));
+  for (const bad of ['not checked', 'not checked — no repo access', 'no access to code']) {
+    assert.ok(rules([failed({ attempts: 3, failed_attempts: 3, code_refs: [bad] })]).includes('NO_SOURCE_SWEEP'), bad);
+  }
+  assert.ok(rules([{ ...b, ticket_refs: [] }]).includes('NO_SOURCE_SWEEP'));
 });
 
 t('BLOCKED and FAILED with a code ref and a ticket ref pass the sweep rule', () => {

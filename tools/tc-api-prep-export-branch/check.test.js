@@ -6,7 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const root = path.join(__dirname, '..', '..');
-const WF_PATH = 'skills/procedures/tc-api-prep-workflow/WORKFLOW.md';
+const WF_PATH = 'skills/procedures/tc-api-prep-workflow/phase-g-deliver.md';
+const WF_PATH_BEFORE_SPLIT = 'skills/procedures/tc-api-prep-workflow/WORKFLOW.md';
 const WF = fs.readFileSync(path.join(root, WF_PATH), 'utf8');
 const g1 = WF.slice(WF.indexOf('### G1 '), WF.indexOf('### G2 '));
 // Owner Q2 (11/Nov/2026, docs/sdd/r11-skill-fixes-g2 R14): the freeze ends at ### G3, so ## MUST / NEVER is editable.
@@ -16,8 +17,11 @@ function t(name, fn) {
   try { fn(); console.log(`PASS  ${name}`); } catch (e) { fail += 1; console.log(`FAIL  ${name}\n      ${e.message}`); }
 }
 function base() {
-  try { return execFileSync('git', ['show', `origin/main:${WF_PATH}`], { cwd: root, encoding: 'utf8' }); }
-  catch (e) { return null; }
+  for (const p of [WF_PATH, WF_PATH_BEFORE_SPLIT]) {
+    try { return execFileSync('git', ['show', `origin/main:${p}`], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }); }
+    catch (e) { /* not on origin/main under this path; try the next */ }
+  }
+  return null;
 }
 t('R1 G1 has a failure step: STOP, exact error, exact path, not say ready', () => {
   assert.ok(/Write failure/.test(g1), 'no "Write failure" step in G1');
@@ -33,8 +37,9 @@ t('R2 offers workspace root or user-named path, writes only after the pick', () 
   assert.ok(/only after the user picks/i.test(g1), 'no "only after the user picks"');
   assert.ok(/before G2/.test(g1), 'Q1 decision (ask before G2) missing');
 });
-t('R3 delivery A may continue without attachment, no placeholder', () => {
-  assert.ok(/without the attachment/i.test(g1), 'no "without the attachment"');
+t('R3 delivery A continues without attachment, no placeholder', () => {
+  assert.ok(/Delivery A then continues without the attachment/.test(g1), 'no definite "Delivery A then continues without the attachment"');
+  assert.ok(!/Delivery A may/.test(g1), 'soft "Delivery A may" is back');
   assert.ok(/__ATT1_ID__/.test(g1), 'placeholder rule missing');
 });
 t('R4 xlsx sentence unchanged', () => {

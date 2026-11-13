@@ -11,7 +11,7 @@ Required now:
   • Swagger/OpenAPI (URL or path)
 After that I will ask:
   • Column changes (or "default")
-  • Delivery: Jira comment link and/or CSV/Excel path
+  • Delivery: Jira/Confluence link and/or CSV/Excel/Test.md path
 Optional: Jira story key for traceability only
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
@@ -40,8 +40,8 @@ nothing runs in Playwright until you reply **confirm**.
 Required:
   • Where to file (Jira project URL/key or GitHub repo)
   • Format (template link, Helix default, or v2/v3 rule)
-  • Bug details (title, steps, expected, severity, evidence)
-You may reference findings from a prior testing-ticket run in this chat.
+  • Bug details (title, steps, entry points tried, expected + source link, severity, evidence)
+A prior testing-ticket run in this chat counts as input; cite it.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -50,9 +50,9 @@ You may reference findings from a prior testing-ticket run in this chat.
 ```text
 ━━━ What I need from you (Retest) ━━━
 Required:
-  • Bug key or URL
-  • Reachable environment (from workspace *-retest-guide.md or your answers)
-I will summarize what the dev claimed fixed vs what we will verify.
+  • Bug/Task/Story key or URL
+  • Reachable environment (from *-retest-guide.md or your answers)
+I will list what the dev claimed fixed vs what we will verify.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

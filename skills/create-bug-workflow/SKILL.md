@@ -1,9 +1,9 @@
 ---
 name: create-bug-workflow
-description: |
-  Draft and file bug reports on Jira or GitHub after collecting the target link, format template and bug details — re-checks the board for an earlier decision, falsifies the defect, and confirms with the user before anything is created.
-  Use when the user chooses Create bug from Helix, invokes /create-bug, or wants a found defect recorded in a tracker — even without the word bug ("raise a ticket for this", "log this defect", "เปิดบั๊ก").
-  Do NOT use for Playwright test runs (testing-ticket-workflow), retest-after-fix (retest-bug-workflow), posting manual TC tables (tc-fe-prep / tc-api-prep), or updating test result sheets without filing bugs.
+description: |-
+  File bug reports on Jira or GitHub: collect target, format and details, check the board, falsify the defect, confirm before creating.
+  Use when the user picks Create bug from Helix, says /create-bug, or wants a defect logged, even a test-run finding or without the word bug ("raise a ticket for this", "เปิดบั๊ก").
+  Do NOT use for Playwright runs (testing-ticket), retest after a fix (retest-bug), TC tables (tc-fe-prep / tc-api-prep), or result-sheet updates.
 metadata:
   proactive_triggers:
     - /create-bug
@@ -19,63 +19,36 @@ metadata:
 
 When invoked:
 
-1. Announce once: `Using **create-bug-workflow** to file the bug report.`
-2. Read and follow [WORKFLOW.md](../procedures/create-bug-workflow/WORKFLOW.md) **end-to-end** — every step, gate, and reference.
+1. First, before any other work, follow [session-start-context.md](../../references/session-start-context.md) (caveman lite + context-mode).
+2. Announce once: `Using **create-bug-workflow** to file the bug report.`
+3. Read [WORKFLOW.md](../procedures/create-bug-workflow/WORKFLOW.md) and run its progress checklist in order; open each phase or reference file at the step that names it, not before. Never skip a step or gate.
 
 Claude Code shortcut: `/create-bug` → [commands/create-bug.md](../../commands/create-bug.md).
 
 ## Contents
 
-Every must-read file for this workflow, linked directly from here. References already linked above are not repeated.
+Shared reference index with triggers (see also): [skill-reference-index.md](../../references/skill-reference-index.md).
 
-**Read for every run** — every filing run uses these:
+At the start of every run: [shared-preamble.md](../../references/shared-preamble.md), [user-communication.md](../../references/user-communication.md), [long-workflow-todos.md](../../references/long-workflow-todos.md), then [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) and [intake-one-pager.md](../../references/intake-one-pager.md) on the first response (WORKFLOW Refusal-first).
 
-- [WORKFLOW.md](../procedures/create-bug-workflow/WORKFLOW.md) — always: the full procedure, read end to end.
-- [shared-preamble.md](../../references/shared-preamble.md) — read at the start of every run, before the first reply (preamble, constraints, tone).
-- [workspace-guide-discovery.md](../../references/workspace-guide-discovery.md) — read on the first response, to locate the workspace project guide for this workflow.
-- [intake-one-pager.md](../../references/intake-one-pager.md) — read at intake, to show the one-page list of inputs the run needs.
-- [bug-priority-matrix.md](../../references/bug-priority-matrix.md) — read before setting any priority or a PWMI / FAILED verdict.
-- [bug-draft-template.md](../procedures/create-bug-workflow/references/bug-draft-template.md) — read when drafting the bug.
-- [posting-discipline.md](../procedures/create-bug-workflow/references/posting-discipline.md) — read before posting the bug.
-- [user-communication.md](../../references/user-communication.md) — read before the first message to the user (every run sends the intake message).
-- [skill-rules-style.md](../../references/skill-rules-style.md) — read before the Phase A intake message (every run asks for missing inputs there).
-- [long-workflow-todos.md](../../references/long-workflow-todos.md) — read at the start of every run (the workflow always has many phases); keep the todo list.
+Bug-filing gates, at the moment named:
 
-**Read when the run reaches that phase** — mandatory at the moment named:
+- [bug-priority-matrix.md](../../references/bug-priority-matrix.md) — read at Phase A3, before setting any Priority/Severity or a PWMI / FAILED verdict.
+- [figma-design-comparison.md](../../references/figma-design-comparison.md) — read when the expected side cites a design frame (Refusal-first, Phase B3).
+- [defect-report-completeness.md](../../references/defect-report-completeness.md) — read at Phase C, before the first draft body; a run where every candidate is Dropped writes no draft; a Needs Review candidate is drafted and shown labelled "Needs Review — not filed".
+- [bug-draft-template.md](../procedures/create-bug-workflow/references/bug-draft-template.md) — read when drafting; [posting-discipline.md](../procedures/create-bug-workflow/references/posting-discipline.md) — at Phase D, before posting.
+- [shared-must-never.md](../../references/shared-must-never.md) — read at Phase D, before the first write (create call, attachment upload or comment).
+- [jira-wiki-vs-markdown.md](../../references/jira-wiki-vs-markdown.md), [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md), [jira-comment-post-review.md](../../references/jira-comment-post-review.md) (issue body: pre-post render check, §3, §4; Phase F's 2-round cap) — read when the target is Jira: before and after posting any body.
+- [non-pass-challenge-gate.md](../../references/non-pass-challenge-gate.md) — read at Phase B3, before any label or BLOCKED line; [result-quality-gate.md](../../references/result-quality-gate.md) is a test-round gate — when filing, apply its layer map in [B3](../procedures/create-bug-workflow/phase-b3-falsification.md#result-quality-gate-layer-map-filing).
+- [qa-evidence-gates.md](../../references/qa-evidence-gates.md) — read at Phase F, before any completion claim, and at the end of a run that files nothing.
+- [qa-closing-shared.md](../../references/qa-closing-shared.md) — read at QA closing, before reporting done, whether or not anything was filed; its cross-ticket conflict check is for testing-ticket and retest-bug only — this workflow's board check is Phase B2.
+- Reproducing in a browser: never on its own (steps come only from the reporter); hand it to testing-ticket-workflow unless the user insists.
 
-- [defect-report-completeness.md](../../references/defect-report-completeness.md) — read before writing the first draft body (Phase C), before the confirm block is shown; a run where every candidate is Dropped writes no draft; a Needs Review candidate is drafted and shown labelled "Needs Review — not filed".
-- [shared-must-never.md](../../references/shared-must-never.md) — read before the first write of the run: the first create call, attachment upload or comment in Phase D — rules shared by every workflow.
-- [qa-evidence-gates.md](../../references/qa-evidence-gates.md) — read before any completion claim — at Phase F before saying any issue is created or verified, and at the end of a run that files nothing.
-- [qa-closing-shared.md](../../references/qa-closing-shared.md) — read before reporting done, whether or not anything was filed — shared QA closing gates, including the cross-ticket conflict check.
-
-**Read when the trigger in the line fires** — a Jira target, a design comparison, a non-pass verdict, a stuck step or tool error, session start/end, a timed round:
-
-- [agent-rationalizations.md](../../references/agent-rationalizations.md) — read before you skip, shorten or reorder any phase or gate of WORKFLOW.md; each excuse has its correct action.
-- [customer-escape-prevention.md](../../references/customer-escape-prevention.md) — read before any QA run; the gates that stop shipped defects.
-- [figma-design-comparison.md](../../references/figma-design-comparison.md) — read when the expected side cites a design frame (Refusal-first, Phase E "Intentional design?" check).
-- [helix-session-constraints.md](../../references/helix-session-constraints.md) — read once at session start, when this run is the first Helix workflow of the session.
-- [jira-comment-post-review.md](../../references/jira-comment-post-review.md) — read after posting a Jira comment, before saying done.
-- [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md) — read before posting a Jira table with multi-line cells.
-- [jira-wiki-vs-markdown.md](../../references/jira-wiki-vs-markdown.md) — before and after posting any Jira body (v2 wiki vs v3 ADF).
-- [non-pass-challenge-gate.md](../../references/non-pass-challenge-gate.md) — read before recording any result that is not PASSED.
-- [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md) — read when proposing a QA follow-up.
-- [qa-debug-discipline.md](../../references/qa-debug-discipline.md) — read when a test is flaky or a tool errors.
-- [result-quality-gate.md](../../references/result-quality-gate.md) — read before any verdict leaves the round.
-- [root-cause-investigation.md](../../references/root-cause-investigation.md) — read before naming a cause for any failure.
-- [round-time-contract.md](../../references/round-time-contract.md) — read when a round starts and before reporting times.
-- [session-closing.md](../../references/session-closing.md) — read at session end.
-- [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md) — read before invoking or switching skills.
-- [skill-routing.md](../../references/skill-routing.md) — read when choosing which skill handles a request.
-
-**Read only if the user asks you to reproduce the bug in a browser yourself** — create-bug never does this on its own (steps come only from the reporter); hand reproduction to testing-ticket-workflow unless the user insists:
-
-- [playwright-preflight.md](../../references/playwright-preflight.md) — read before that Playwright run.
-- [resilient-selectors.md](../../references/resilient-selectors.md) — read when writing or fixing its selectors.
-- [test-through-real-steps.md](../../references/test-through-real-steps.md) — read before testing the action; no API shortcut for the action under test.
+Also read each only when its trigger fires: [agent-rationalizations.md](../../references/agent-rationalizations.md) (skipping a gate), [helix-session-constraints.md](../../references/helix-session-constraints.md) (first reply), [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md) (switching skills), [qa-debug-discipline.md](../../references/qa-debug-discipline.md) (tool error, env down), [root-cause-investigation.md](../../references/root-cause-investigation.md) (stating a cause); [B2](../procedures/create-bug-workflow/phase-b2-board-check.md), [B3](../procedures/create-bug-workflow/phase-b3-falsification.md), [C](../procedures/create-bug-workflow/phase-c-confirm.md), [D](../procedures/create-bug-workflow/phase-d-create.md), [F](../procedures/create-bug-workflow/phase-f-close.md) at their step; [session-closing.md](../../references/session-closing.md) (close-out), [skill-routing.md](../../references/skill-routing.md) (out-of-scope request), [skill-rules-style.md](../../references/skill-rules-style.md) (editing this skill), [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md) (offering a next skill); [customer-escape-prevention.md](../../references/customer-escape-prevention.md) and [round-time-contract.md](../../references/round-time-contract.md) (test rounds only, not filing).
 
 ## Refusal-first (precondition gate)
 
-All preconditions and refusal rules are in WORKFLOW.md. MUST NOT create issues until the user approves each draft. MUST re-check the tracker/board first (WORKFLOW Phase B2): a defect a prior/closed ticket already settled as intended behavior is not a bug — report it to the user with the reference link instead of filing.
+All preconditions and refusal rules are in WORKFLOW.md. MUST NOT create issues before the Phase C **confirm**; MUST re-check the board first (Phase B2) — a defect an earlier ticket settled as intended is reported with its link, not filed.
 
 ## QA closing (mandatory before "done")
 
@@ -83,7 +56,7 @@ All close-out gates are in WORKFLOW.md and [verify-closing-checklist.md](../../r
 
 ## Dependencies
 
-Run the check for each of these before step 1 — check commands and install hints are in [dependencies.md](../../references/dependencies.md):
+Run the check for each of these after step 1, before step 2 — check commands and install hints are in [dependencies.md](../../references/dependencies.md):
 
 - GitHub CLI `gh` (GitHub targets)
 - Atlassian MCP or Jira REST credentials (Jira targets)

@@ -11,6 +11,8 @@
   - `tools/tc-api-prep-export-branch/check.test.js:45-52` requires the tc-api-prep WORKFLOW from `### G-verify` to the end of the file (this span includes `## MUST / NEVER`) to be byte-identical to `origin/main`, and caps the file at 370 lines.
 - S7 Owner answers, given in chat to the main thread on 11/Nov/2026 and relayed to this lane: **Q1 approved as proposed** and **Q2 approved as proposed** (see Owner questions).
 - S8 `tools/skill-structure/check.test.js:15` asserts that `localOnly()` in `tools/skill-structure/check.js:28-32` returns all four of `content-takedown-workflow`, `review-result-workflow`, `smoke-test-workflow` and `test-data-prep-workflow`. That function reads names written as `` `name` (ols-qa workspace only)`` in `references/skill-routing.md`. A dry run with R5's `skill-routing.md` rows 9 and 11 turned into links failed it: `FAIL  skill-routing.md marks the 4 ols-qa-only skills as not shipped` / `review-result-workflow`.
+- S9 Owner answer to Q3, given in chat to the main thread on 11/Nov/2026 and relayed to this lane: **Q3 approved as proposed**.
+- S10 `references/result-quality-gate.md:256` (§ Used by) also labels `review-result-workflow` "(ols-qa workspace only)". No test parses that line; `tools/result-gate/` names the file only in comments.
 
 ## Rules
 - R1 (A1) — The catch-ai Quick reference must classify an item that a wrong aggregate claim covers ("all N PASSED") but nothing tested. The aggregate claim is one Defect. The untested item is a Coverage gap only, never a second Defect.
@@ -22,15 +24,16 @@
   - keep the other lanes running;
   - queue the re-run for the end decisions popup.
   If the user runs the blocks and the probe is OK while other lanes are still running, the parent re-dispatches per `parallel-test-lanes.md` §3, and the re-run's result lines supersede those BLOCKED rows. `parallel-test-lanes.md` is shared with retest-bug and is not edited.
-- R5 (H1, **blocked: owner decision Q3 needed**) — Helix must say that only content takedown (row 8) and smoke test (row 10) are limited to the ols-qa workspace (S3). This covers:
+- R5 (H1, unblocked by Q3 on 11/Nov/2026) — Helix must say that only content takedown (row 8) and smoke test (row 10) are limited to the ols-qa workspace (S3). This covers:
   - `SKILL.md:4`;
-  - the `SKILL.md:84` condition, which becomes "Row N chosen and its `skills/{name}/SKILL.md` is not in the loaded skill set";
-  - `skill-routing.md:7` and rows 9 and 11, where the label becomes a link to `../skills/{name}/SKILL.md`, as required by `tools/skill-routing/routing.test.js` A5;
-  - `menu-text.md` rows 9 and 11;
-  - `intent-shortcuts.md` rows 15 and 17;
-  - `agent-entry.md:76-77`.
-  Every edit is on the same line, so the exam's `skill-routing.md:28-29` and `:41` citations keep their line numbers.
-  Q1 removed the r7 freeze, but R5 also breaks the S8 test, which Q1 and Q2 do not cover. R5 ships as one change or not at all: no R5 file is edited while `skill-routing.md` still labels rows 9 and 11 "ols-qa workspace only", so the router never contradicts its own routing table.
+  - the `SKILL.md:84` condition, which becomes "Row 8 or 10 chosen and its `skills/{name}/SKILL.md` is not in the loaded skill set";
+  - `skill-routing.md:7`, which says "Rows 8 and 10";
+  - `skill-routing.md` rows 9 and 11. The label becomes a link to `../skills/{name}/SKILL.md`, as `tools/skill-routing/routing.test.js` A5 requires. The "Fallback outside ols-qa" clause is dropped, because the skill now ships;
+  - `menu-text.md` rows 9 and 11, and `intent-shortcuts.md` rows 15 and 17, which drop "(ols-qa workspace only)";
+  - `agent-entry.md:76-77`, which drops "(ols-qa workspace only)";
+  - `result-quality-gate.md:256` (S10). It becomes a link to `../skills/procedures/review-result-workflow/WORKFLOW.md`, like the rows next to it.
+  Every edit is on the same line, so the exam's `skill-routing.md:28-29` and `:41` citations keep their line numbers, and helix `SKILL.md` stays at 155 lines.
+  R5 ships as one change, together with R15. Rows 8 and 10 (content takedown, smoke test) keep "(ols-qa workspace only)" and their fallbacks.
 - R6 (H2, unblocked by Q1 on 11/Nov/2026) — The helix "routing cannot proceed" table must have the row `| menu-text.md or skill-routing.md cannot be read | Name the file; do not route or show a menu from memory; stop. |`, placed after the "routed `SKILL.md` is missing" row. `SKILL.md` then splits to exactly 155 lines, the r7 cap.
 - R7 (H3) — The helix QA closing item "Child workflow skill is loaded (not just described)" must also allow a reply that says "not routed" and why, when no child was loaded (the user declined, the fallback is none, or the request is out of scope).
 - R8 (P1) — tc-api-prep Phase C must offer a Test.md file (agent hand-off, alongside CSV/Excel) in the delivery question and in the Choice table. G1 must point to `delivery-options.md` § Test.md for writing it.
@@ -45,10 +48,12 @@
   The existing assertions stay: "exactly one question" in Opening and "child workflow handles its own intake" in Routing. They are not duplicated. The 155-line cap stays. The new test must fail when "ask one question" is removed from Routing, or when a second question line is added to the opening block.
 - R14 (Q2 test change) — In `tools/tc-api-prep-export-branch/check.test.js`, the R5 byte-equality slice must run from `### G-verify` to `### G3`, on both the working file and `origin/main`, instead of to the end of the file. `## MUST / NEVER` is then editable. The 370-line cap (R6 of that test) stays.
 
+- R15 (Q3 test change) — In `tools/skill-structure/check.test.js:15`, the test must assert that `localOnly()` has `content-takedown-workflow` and `smoke-test-workflow` and does not have `review-result-workflow` or `test-data-prep-workflow`, and still not `helix`. The shipped pair then gets the helix structure check (`run()`). Both already pass it. The test must fail while `skill-routing.md` still labels row 9 or 11 "ols-qa workspace only".
+
 ## Owner questions (for R5, R6, R12)
 - Q1 — **Answered 11/Nov/2026: approved as proposed** (S7). Implemented as R13.
 - Q2 — **Answered 11/Nov/2026: approved as proposed** (S7). Implemented as R14.
-- Q3 (open, for R5) — `tools/skill-structure/check.test.js:15` freezes the old four-skill "ols-qa workspace only" list (S8). Proposed change: assert that `localOnly()` has `content-takedown-workflow` and `smoke-test-workflow`, and does not have `review-result-workflow` or `test-data-prep-workflow`. The two shipped skills then get the helix structure check, and both already pass it (`checkText` returns no violations). This matches S3 and the comment at `tools/skill-structure/check.js:10-11`, which calls that table the single source for what ships.
+- Q3 — **Answered 11/Nov/2026: approved as proposed** (S9). Implemented as R15. Original wording: `tools/skill-structure/check.test.js:15` freezes the old four-skill "ols-qa workspace only" list (S8). Proposed change: assert that `localOnly()` has `content-takedown-workflow` and `smoke-test-workflow`, and does not have `review-result-workflow` or `test-data-prep-workflow`. The two shipped skills then get the helix structure check, and both already pass it (`checkText` returns no violations). This matches S3 and the comment at `tools/skill-structure/check.js:10-11`, which calls that table the single source for what ships.
 
 Original wording of Q1 and Q2:
 - Q1 `tools/r7-helix-one-question/check.test.js` test "routing section and menu text unchanged vs origin/main" freezes the text that R5 and R6 change. Proposed change: replace the byte-equality with assertions of the r7 rules it protected (the one-question rule and "child workflow handles its own intake"). The 155-line cap stays; after R6 the file is exactly 155 lines.
@@ -62,8 +67,9 @@ Original wording of Q1 and Q2:
 ## Done when
 - R1–R4 and R7–R11 are each in the file named in `plan.md`. Each is a changed or added sentence or row.
 - R6, R12, R13 and R14 are implemented (Q1 and Q2 approved 11/Nov/2026).
-- R5 is not implemented until the owner answers Q3. It is listed as blocked in the code PR.
-- `tools/r7-helix-one-question/check.test.js` and `tools/tc-api-prep-export-branch/check.test.js` are the only test files changed. No other test is changed, skipped or weakened.
+- R5 and R15 are implemented together in one PR (Q3 approved 11/Nov/2026).
+- The only test files changed are `tools/r7-helix-one-question/check.test.js`, `tools/tc-api-prep-export-branch/check.test.js` (R13, R14) and `tools/skill-structure/check.test.js` (R15). No other test is changed, skipped or weakened.
+- No file under `references/`, `skills/helix/` or `AGENTS.md` labels review-result or test-data-prep "ols-qa workspace only".
 - helix `SKILL.md` splits to ≤ 155 lines.
 - The catch-ai description parses to ≤ 1024 characters.
 - tc-api-prep WORKFLOW.md is ≤ 370 lines, and its `### G-verify`-to-`### G3` span is unchanged.

@@ -15,7 +15,7 @@ question handed back to the owner is unfinished work, not a result.
 **The rule in one line:** a case leaves this gate with a decision (PASSED · PWMI · FAILED · or a
 BLOCKED that survives all 20 layers), written with its sources — never with "waiting for X".
 
-Fail-closed: if any layer is skipped, the case may not be written as BLOCKED, EVIDENCE_PENDING or
+Fail-closed: if any layer is skipped, the case is not written as BLOCKED, EVIDENCE_PENDING or
 "needs decision". Record each layer's result (checked · source · finding) in the run's decision log.
 
 ## A. Read every source before calling it unclear (layers 1–7)
@@ -43,7 +43,9 @@ Fail-closed: if any layer is skipped, the case may not be written as BLOCKED, EV
 
 8. **Rank the sources.** Later explicit decision (comment/precedent) > AC/EC > ticket detail text >
    design > code. Owner standing decisions (e.g. "spec conflict → follow AC") override this order
-   where they apply.
+   where they apply. **Bug retest:** the bug's own Expected Result and detail text are the primary
+   source and rank above the parent story's or linked tickets' AC/EC — later explicit decision > the bug's
+   own ER/detail > parent/linked AC/EC > design > code (`retest-bug-workflow/WORKFLOW.md` § Step 2).
 9. **One-source check.** If one ranked source covers the point and nothing above it contradicts,
    that source is the expected — decide against it now.
 10. **Same-ticket conflict.** If the app matches one owner-written target in the ticket and not
@@ -59,8 +61,8 @@ Fail-closed: if any layer is skipped, the case may not be written as BLOCKED, EV
     or newer record, a role, a report, a submission), create it with the accounts and flows the
     project allows, on QA-owned content only, ledgered by id. "No data" is never a verdict.
 14. **Time-bound states.** If a state needs time to pass (an age of N days), seed it now and schedule
-    the capture for the earliest moment it exists; record that row as in-progress with the exact
-    timestamp it becomes testable — not as BLOCKED.
+    the capture for the earliest moment it exists; give that row no verdict yet: list it with the exact
+    timestamp it becomes testable, and judge it then — not as BLOCKED.
 15. **Accounts.** Exhaust the project's account roster and session-renewal tools before declaring an
     account missing. Only typing a password is reserved for a person.
 16. **Tooling limits are not product verdicts.** A recorder, viewport or harness limit gets a working
@@ -72,15 +74,27 @@ Fail-closed: if any layer is skipped, the case may not be written as BLOCKED, EV
     (checked by commit/tag, not ticket status); creating the state is forbidden by a hard rule
     (production write, someone else's content, spend, an irreversible shared-env change); or the
     sources still contradict after layers 1–12 with no precedent and no standing decision.
+    **`retest-bug-workflow` adds five causes**, each only after layers 1–16 ran: (a) the visual points
+    of a screen with no design reference, after the report-back to whoever assigned the retest (`retest-bug-workflow/WORKFLOW.md` § Step 2d);
+    (b) the cases of an account whose session is not restored after the relink → mint → probe sequence
+    (`retest-bug-workflow/execute-and-evidence.md` § 4b), with layer 15 exhausted first; (c) the cases that need a tool absent from the
+    environment with no sanctioned alternative, e.g. no Playwright for a UI case (`retest-bug-workflow/WORKFLOW.md` § Extra skills) —
+    a capture or harness limit that has an alternative stays under layer 16; (d) two of the tester's own
+    observations that still disagree after one clean re-run (`retest-bug-workflow/execute-and-evidence.md` § 4g), or a failure seen once that does not
+    reproduce on another env, user or data (`retest-bug-workflow/references/debug-discipline.md` § 1); (e) an expected side that is
+    absent, hedged or unconfirmed after layers 1–12 — a Task stating no verifiable AC (`retest-bug-workflow/WORKFLOW.md` § Step 2),
+    Swagger and error docs silent (`retest-bug-workflow/execute-and-evidence.md` § 4f), or an expected the challenge gate could not confirm
+    (`retest-bug-workflow/execute-and-evidence.md` § 4i). A missing fixture is BLOCKED only under the hard-rule cause above.
+    **`testing-ticket-workflow` adds seven**, also after layers 1–16: (a), (b) and (d)'s first half, at its Phase B 4b, *Lane failure* and E1 step 3; (c) as a row under 1920 px ([qa-evidence-capture.md](qa-evidence-capture.md#narrow-width-rows));
+    (e) as an AC/EC list empty after Phase B step 3; a unit whose lane failed twice (*Lane failure*); a cross-lane case whose precondition case did not PASS (*Fan out*).
 18. **A surviving BLOCKED** carries: every layer checked with its source, the single concrete thing
     still missing, and the role that decides — and the run **continues** with every other case.
 
 ## E. Act, don't hold (layers 19–20)
 
-19. **No holding finished work.** When the owner has delegated the round ("don't ask", "don't wait",
-    "handle it"), finished drafts are posted and transitions done per the workflow's own gates
-    (format, syntax, readback) without an approval wait. Opening new bugs/issues still needs a live
-    yes — that hard limit never relaxes.
+19. **No holding finished work.** Only a post, transition or notify the owner explicitly delegated by name, in this session, for this round skips the approval wait;
+    it runs per the workflow's gates (format, syntax, readback) after the bundle list is printed in chat. General cues ("handle it", "don't ask", "don't wait") never skip a write approval;
+    an action not named still waits for the workflow's approval step. Opening new bugs/issues still needs a live yes — that hard limit never relaxes.
 20. **Self-check before reporting.** Before the round report, scan every row for the words
     "pending decision", "needs PO", "waiting", "ask", "later", "no data". Each hit must point to its
     layer-17 cause and layer-18 record; otherwise reopen the case at layer 1.

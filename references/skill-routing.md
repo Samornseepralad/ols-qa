@@ -4,21 +4,21 @@ The single routing source for the [helix router](../skills/helix/SKILL.md), [com
 
 ## Primary menu
 
-`#` is the number the user replies with; **Option** is the bold name in [menu-text.md](menu-text.md) for the same number. Rows 8–11 are not shipped in helix: outside the ols-qa workspace, say so and offer only the fallback named on that row.
+`#` is the number the user replies with; **Option** is the bold name in [menu-text.md](menu-text.md) for the same number. Rows 8 and 10 are not shipped in helix: outside the ols-qa workspace, say so and offer only the fallback named on that row.
 
 | # | Option | Route to | Command | User intent · what to pass on |
 |---|--------|----------|---------|-------------------------------|
 | 1 | TC FE Preparation | [`tc-fe-prep-workflow`](../skills/tc-fe-prep-workflow/SKILL.md) | `/tc-fe-prep` | FE manual TC from story AC/EC. Pass any issue key/URL from the message. |
 | 2 | TC API Preparation | [`tc-api-prep-workflow`](../skills/tc-api-prep-workflow/SKILL.md) | `/tc-api-prep` | API manual TC from spec + Swagger. Run its Phase A–C intake if spec, Swagger, or delivery is missing. |
-| 3 | Retest Bug | [`retest-bug-workflow`](../skills/retest-bug-workflow/SKILL.md) | `/retest-bug` | Retest a bug after a dev fix. Pass any bug key/URL from the message. |
+| 3 | Retest Bug | [`retest-bug-workflow`](../skills/retest-bug-workflow/SKILL.md) | `/retest-bug` | Retest a bug, task or story after a dev fix; pass its key/URL. |
 | 4 | Testing Ticket | [`testing-ticket-workflow`](../skills/testing-ticket-workflow/SKILL.md) | `/testing-ticket` | Playwright test for one ticket. Pass any issue key/URL; its Phase A intake collects missing fields. |
 | 5 | Create Bug | [`create-bug-workflow`](../skills/create-bug-workflow/SKILL.md) | `/create-bug` | File bug(s) on Jira/GitHub. Reuse bug evidence from the same chat if present. |
 | 6 | Catch AI | [`catch-ai-workflow`](../skills/catch-ai-workflow/SKILL.md) | `/catch-ai` | Audit finished work against its governing sources. Pass the audit target from the message. |
 | 7 | TC Review | [`tc-review-workflow`](../skills/tc-review-workflow/SKILL.md) | `/tc-review` | Review an existing TC document against a ticket's AC/EC. Pass the TC document and the ticket key/URL. |
 | 8 | Content Takedown | `content-takedown-workflow` (ols-qa workspace only) | `/content-takedown` | Hide a set of published content from public view. Fallback outside ols-qa: none — no shipped workflow hides content; ask what the user needs. |
-| 9 | Review Result | `review-result-workflow` (ols-qa workspace only) | `/review-result` | Review already-recorded results and their evidence clips. Fallback outside ols-qa: offer 6 (`catch-ai-workflow`), which audits finished work. |
+| 9 | Review Result | [`review-result-workflow`](../skills/review-result-workflow/SKILL.md) | `/review-result` | Review already-recorded results and their evidence clips. |
 | 10 | Smoke Test | `smoke-test-workflow` (ols-qa workspace only) | `/smoke-test` | Smoke test a deployed build on a named environment. Fallback outside ols-qa: offer 4 (`testing-ticket-workflow`), which tests one ticket, not a whole build. |
-| 11 | Test Data Prep | `test-data-prep-workflow` (ols-qa workspace only) | `/test-data-prep` | Create, fix, or verify test data (content, covers, accounts). Fallback outside ols-qa: none — ask what the user needs. |
+| 11 | Test Data Prep | [`test-data-prep-workflow`](../skills/test-data-prep-workflow/SKILL.md) | `/test-data-prep` | Create, fix, or verify test data (content, covers, accounts). |
 | 12 | TC Change Format | [`tc-change-format-workflow`](../skills/tc-change-format-workflow/SKILL.md) | `/tc-change-format` | Copy a ticket's TC tab into the release TC template (Google Sheet). Pass every TC sheet link (with its tab) and card key/URL from the message. |
 | 13 | Taskfolio Log | [`taskfolio-log-workflow`](../skills/taskfolio-log-workflow/SKILL.md) | `/taskfolio-log` | Fill the user's own Taskfolio timesheet for this week from evidence. Pass any days named in the message. |
 | 14 | Other | — | — | Ask one clarifying question in the user's language, then route by this table or [intent-shortcuts.md](intent-shortcuts.md); if nothing fits, say so. |
@@ -38,7 +38,7 @@ Other issue types (Task, Epic, Sub-task) have no confirmed mapping yet: a runner
 
 ## Proactive suggestion (suggest-only)
 
-Not a routing rule: when and how the router suggests one workflow from context is defined in [skills/helix/SKILL.md § Proactive suggestion](../skills/helix/SKILL.md#proactive-suggestion-suggest-only-opt-out) and [proactive-qa-triggers.md](proactive-qa-triggers.md) (suggest only, never auto-run; `HELIX_PROACTIVE=0` opts out).
+Not a routing rule: when and how the router offers one workflow from context is defined in [skills/helix/SKILL.md § Proactive suggestion](../skills/helix/SKILL.md#proactive-suggestion-suggest-only-opt-out) and [proactive-qa-triggers.md](proactive-qa-triggers.md) (offer only, never auto-run; `HELIX_PROACTIVE=0` opts out).
 
 ## Handoffs (after a workflow ends)
 
@@ -63,7 +63,7 @@ Not a routing rule: when and how the router suggests one workflow from context i
 | `retest-bug-workflow` | Draft new TC tables or file new bugs |
 | `content-takedown-workflow` | Delete content permanently, rename items, or hide an item whose defect has not been surfaced first |
 | `review-result-workflow` | Run the tests being reviewed, retest a ticket after a dev fix, or rename an evidence file |
-| `catch-ai-workflow` | File the bug it confirms (→ create-bug), retest a ticket after a dev fix (→ retest-bug), or rewrite the audited work |
+| `catch-ai-workflow` | File the bug it confirms (→ create-bug), retest a ticket after a dev fix (→ retest-bug), or rewrite the audited work beyond the corrections it reports (those only after the owner approves) |
 | `smoke-test-workflow` | Test a single ticket (→ testing-ticket), retest after a fix (→ retest-bug), or run a full regression |
 | `test-data-prep-workflow` | Run tests on a ticket (→ testing-ticket), retest a bug (→ retest-bug), or draft TC tables (→ tc-fe-prep / tc-api-prep) |
 | `tc-change-format-workflow` | Write or edit test cases (→ tc-fe-prep / tc-api-prep), write into the source TC sheet, or record test results |

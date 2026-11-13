@@ -2,7 +2,7 @@
 
 Save completed answers as `references/{PROJECT}-tc-fe-prep-guide.md` in the **user's repository**.
 
-Ask **one section at a time**. Wait for answers before the next section.
+Ask **one question at a time** (WORKFLOW Step 1).
 
 ---
 
@@ -11,7 +11,7 @@ Ask **one section at a time**. Wait for answers before the next section.
 1. What is the Jira site domain? (e.g. `your-org.atlassian.net`)
 2. What is the ticket prefix? (e.g. `PROJ` from `PROJ-123`)
 3. Should FE TC comments go on the **story** by default? (yes/no)
-4. Cloud ID for API/MCP if needed (optional).
+4. Cloud ID for API/MCP (the user can leave it blank).
 
 ---
 
@@ -41,12 +41,15 @@ Ask **one section at a time**. Wait for answers before the next section.
 ## Section E — Deliverables
 
 1. Column list if not the default ten columns (Type is always included).
-2. Preferred publish method: MCP / browser session / manual paste.
-3. Should the Qase import CSV be attached to the same comment? (default yes)
+2. Export format: `csv` (default) or `xlsx`.
+3. Publish method: browser session (ADF-direct) or manual handoff; never MCP (Step 7).
+4. Qase project code (Step 6 suite gate).
+5. TC glossary: sheet URL, tab, `gid`, local CSV path (Step 2.6).
+6. Tracking sheet: "Create the per-ticket TC tab" command + write scope, or none (skips Step 6.5).
 
 > Fixed for this workspace (do not ask): content language = **Thai** (ราชบัณฑิตยสภา);
 > **Type** column always present (`System Test` / `Unit Test` / `Integration Test`);
-> **Status** = `Done`; export is a **Qase import CSV** named `Import_Qase_{ISSUE_KEY}.csv`;
+> **Status** = `Done`; export is a **Qase import CSV** named `Import_Qase_{ISSUE_KEY}.csv`, always attached with `Draft_Jira`;
 > **Suite** must reuse an existing Qase suite of the project or a user-approved new one.
 
 ---

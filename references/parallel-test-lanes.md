@@ -32,13 +32,13 @@ A **lane** = one subagent that owns:
 | **Scenarios** | A disjoint subset of the confirmed plan — every scenario is in exactly one lane |
 | **Unit work, end to end** | Execution, the Figma compare, recording during execution, the non-PASS root-cause investigation, and the repro shape ([round-time-contract.md §4](round-time-contract.md#4-fan-out-lanes-own-their-unit)) |
 | **Account(s)** | An exclusive lease on the account(s) its scenarios need — no other lane uses them during the run |
-| **Browser context** | Its own browser context, started from its leased account's saved login file `{auth dir from guide}/{env}-{role}-{alias}.json` — named by account, not by lane, gitignored; never a shared profile. Session check before any result counts; fresh login on failure ([round-time-contract.md §5](round-time-contract.md#5-login-reuse-per-operator-across-runs)) |
+| **Browser context** | Its own browser context, started from its leased account's saved login file `{auth dir from guide}/{env}-{role}-{alias}.json` — named by account, not by lane, gitignored; never a shared profile. Session check before any result counts; on failure the lane returns `SESSION-DEAD {account tag}` ([round-time-contract.md §5](round-time-contract.md#5-login-reuse-per-operator-across-runs)) |
 | **Session lease** | If the workspace provides a session-lease tool (see project guide): the lane acquires a lease on its account's login before loading the login file (holder = lane id + round id), renews it on long runs, and releases it in `finally`. Never load a login file without a lease |
 | **Test data** | Records it creates carry the lane id in their name (`QA-L2-…`) and are recorded in its report |
 | **Evidence dir** | Its own output folder (`…/lane-L2/`) — no two lanes write the same path |
 
-The **parent** (main thread) keeps everything that is not unit work: intake, plan (shown, then run —
-no mid-run confirm gate in these rounds), design-node collection, lane plan, merge (one report and one bundle from the lanes, including
+The **parent** (main thread) keeps everything that is not unit work: intake, plan (testing-ticket: shown, then the Phase C confirm; retest-bug: shown, then run —
+no mid-run confirm gate after that), design-node collection, lane plan, merge (one report and one bundle from the lanes, including
 the evidence re-check of every non-PASS in §6), queuing each non-PASS challenge for the end decisions
 popup, the summary, and every external write (Jira comment, transition, notify, results sheet).
 **A lane never posts, transitions, assigns, or notifies.**
@@ -64,9 +64,9 @@ popup, the summary, and every external write (Jira comment, transition, notify, 
      (publishing a course that no other lane opens) stays in that lane.
 3. **Assign units to lanes.** Lane count =
    `min(units, accounts that can be leased without collision, lane cap)`.
-   Default lane cap is **4** (each lane holds a live browser); the user may raise or lower it.
+   Default lane cap is **4** (each lane holds a live browser); the user sets a different cap by saying so.
    **Exception — retest, testing-ticket, and smoke rounds have no fixed cap:** lane count =
-   `min(units, accounts leasable without collision)`, and any round with 2 or more units fans out
+   `min(units, accounts leasable without collision)`, and any round with 2 or more units fans out unless a §4 predicate applies
    ([round-time-contract.md §4](round-time-contract.md#4-fan-out-lanes-own-their-unit)).
    Balance lanes by expected duration, not by scenario count.
 4. **Lease accounts** — write the lease table. One account appears in **one lane only**.
@@ -101,7 +101,7 @@ shared, a rate limit trips, a one-time code is consumed by the other lane.
 |-----------|----|
 | Two units need the same role, pool has two accounts of that role | Two lanes, one account each |
 | Two units need the same role, pool has **one** account | Both units go in **one** lane, run in order |
-| Accounts share one OTP inbox / phone | **Parent pre-login:** before dispatch, the parent logs each of those leased accounts in one at a time (reading only the code issued after that request), saves each account's login file `{env}-{role}-{alias}.json` in the guide's auth dir (named by account, not by lane), then dispatches all lanes at once — each lane points at its leased account's file |
+| Accounts share one OTP inbox / phone | **Parent pre-login by command:** before dispatch, the parent gives the user the relink/mint block (*Dead session* below) for those leased accounts with one account per iteration, so each code is read after its own request; the commands save each account's login file `{env}-{role}-{alias}.json` in the guide's auth dir (named by account, not by lane), then dispatches all lanes at once — each lane points at its leased account's file |
 | Saved login file exists from an earlier run | Load it, call the session endpoint, expect the leased user id. On 401/403, a redirect to login, or a different user → the lane hands back `SESSION-DEAD {account tag}` and the parent recovers it (*Dead session* below; [round-time-contract.md §5](round-time-contract.md#5-login-reuse-per-operator-across-runs)) |
 | App is single-session per account | Already covered by the lease — never re-use a leased account in a second context |
 | Scenario needs a fresh / pre-first-use account | That account is leased to that lane only and is consumed — record it in the lease table |
@@ -109,22 +109,19 @@ shared, a rate limit trips, a one-time code is consumed by the other lane.
 
 **Dead session → login by command, main thread only.** A lane never logs in, types credentials, gives login commands, or runs the login tool. On 401/403, a redirect to login, or a different user, the lane stops that account's cases and returns `SESSION-DEAD {account tag}`. The parent collects every dead account and then follows these steps.
 
-The parent, like the whole skill, never opens a browser, login window or sign-in page, and never drives a login form, for any test account, whether on the main thread or in a lane (spec: login-by-command). Instead the main thread gives the user **ready-to-run commands** in chat as **one combined `bash` block** per step (relink, then setup/mint), never split per account or per command, built from the intake answers (`<project-dir>`, `<env>`, `<account>` and the relink/mint command names from the project guide or intake). The block loops over that step's accounts and isolates each one, so one account failing does not stop the next, and it prints `<account> OK` or `<account> FAILED (log: <path>)` for every account. The user presses Run, and Claude never runs them itself:
+The parent, like the whole skill, never opens a browser, login window or sign-in page, and never drives a login form, for any test account, whether on the main thread or in a lane (spec: login-by-command). Instead the main thread gives the user **ready-to-run commands** in chat as **one combined `bash` block** per step (relink, then setup/mint), never split per account or per command, built from the intake answers (`<project-dir>`, `<env>`, `<account>`, `<log-dir>` (any writable folder) and the relink/mint command names from the project guide or intake). The block loops over that step's accounts and isolates each one, so one account failing does not stop the next, and it prints `<account> OK` or `<account> FAILED (log: <path>)` for every account. The user presses Run, and the agent never runs them itself:
 
 1. **Relink.** One combined block over every needed account whose session is not live. This step uses no password:
    ```bash
-   cd <project-dir> && for a in <account-1> <account-2>; do echo "=== $a"; <relink-command> --env <env> --account "$a" >/tmp/relink-$a.log 2>&1 && echo "$a OK" || echo "$a FAILED (log: /tmp/relink-$a.log)"; done
+   cd <project-dir> && for a in <account-1> <account-2>; do echo "=== $a"; <relink-command> --env <env> --account "$a" > <log-dir>/relink-$a.log 2>&1 && echo "$a OK" || echo "$a FAILED (log: <log-dir>/relink-$a.log)"; done
    ```
 2. **Setup/mint.** One combined block over only the accounts whose relink printed **FAILED**, never an account that printed OK. The user types any secret in their own terminal; if the block pauses, the mint command is waiting for that input:
    ```bash
-   cd <project-dir> && for a in <failed-account-1> <failed-account-2>; do echo "=== $a"; <mint-command> --env <env> --account "$a" >/tmp/mint-$a.log 2>&1 && echo "$a OK" || echo "$a FAILED (log: /tmp/mint-$a.log)"; done
+   cd <project-dir> && for a in <failed-account-1> <failed-account-2>; do echo "=== $a"; <mint-command> --env <env> --account "$a" > <log-dir>/mint-$a.log 2>&1 && echo "$a OK" || echo "$a FAILED (log: <log-dir>/mint-$a.log)"; done
    ```
-3. **Probe.** When the user says the commands have run, Claude calls the session endpoint for each account, expects that account's user id, and reports account → OK / FAILED with the reason. An account still FAILED blocks only its cases, which are reported BLOCKED ("session not restored") and never PASSED.
+3. **Probe.** When the user says the commands have run, the agent calls the session endpoint for each account, expects that account's user id, and reports account → OK / FAILED with the reason. An account still FAILED blocks only its cases, which are reported BLOCKED ("session not restored") and never PASSED.
 
 Once the probe is OK, the parent re-dispatches that lane's remaining cases. Prefer accounts whose sessions are already live when leasing, so the run needs as few commands as possible (zero when enough are live).
-
-When choosing lane accounts, prefer accounts whose sessions are live now, so the run needs as few
-windows as possible — none when enough live accounts exist.
 
 **Proof of isolation (mandatory per lane).** Each lane's session preflight records the authenticated
 user id from the app's own session endpoint — **one id per leased account** when the lane holds more
@@ -146,6 +143,8 @@ Serial (one lane) is chosen only when the plan can name one of these:
 | **d. Plan has ≤ 2 scenarios** | Dispatch overhead exceeds the run |
 | **e. User asked for serial** | Explicit in chat ("one browser", "run it yourself") — state the lane plan and its time saving once in the confirm block, then follow the user's choice |
 
+**Host that cannot start subagents** is not a predicate: run the planned lanes one after another in the parent, each on its own leased account.
+
 A constraint on **part** of the plan limits **that part**, never the whole run:
 
 | Rationalization | Reality |
@@ -160,44 +159,58 @@ A constraint on **part** of the plan limits **that part**, never the whole run:
 
 ## 5. Lane prompt (what the parent sends)
 
-Each lane gets a self-contained prompt — a subagent does not see the conversation:
+A subagent does not see the conversation, so the prompt must be complete — but it passes **file
+paths, not pasted text**: the fixed lane rules live once in *Lane rules* below and the lane reads
+them from this file; the scenarios, the calling workflow and the guide are files the lane opens.
+Only the per-lane values go inline. Before dispatch, the parent writes each lane's scenarios
+(ids, steps, expected, design node per screen, widths, fixture) to `{evidence dir}/lane-{Lx}/scenarios.md`.
 
 ```text
-You are lane {Lx} of a {N}-lane test run for {TICKET}. Read-only on Jira/chat: never post,
-transition, assign, or notify.
+You are lane {Lx} of a {N}-lane test run for {TICKET}.
+First read and obey, in full: {path to this file} §5 "Lane rules" — every rule there binds you.
 Environment: {env} · base URL {url} · build {build id}
-Account lease: {account(s) + role} — credentials from {guide path / env var name}. Use ONLY
-these accounts. Do not log in with any other.
-Browser context: own context, started from the leased account's login file
-{auth dir}/{env}-{role}-{alias}.json (pre-logged-in by the parent when the account shares an OTP
-inbox — start from it, do not request a new code). Before any result counts, call the session
-endpoint and expect {user id}; on 401/403, a login redirect, or another user, STOP that account's
-cases and return SESSION-DEAD {account tag}. Never log in, type credentials, give login commands, or run the
-login tool yourself — the parent restores sessions by ready-to-run command.
-Session lease: if the workspace provides a session-lease tool ({lease tool from guide}), acquire the
-lease on {account tag} BEFORE loading the login file — holder "{Lx} {round id}", TTL longer than the
-run — renew the lease before it expires, and release the lease with the same holder in finally (on
-error too). Never load a login file without a lease. If acquire is refused because another holder has
-the account, use a different account or wait — never force or delete another lane's lease. (When the
-parent already holds it: LEASE-HELD-BY-PARENT — do not acquire or release it yourself.)
-NO-ADVISOR: do not call the advisor tool — the parent reviews your work. A cut-off advisor call can
-stall a lane for minutes with nothing written.
-Time limit: run every driver or browser script under a hard time limit — `timeout {seconds} node …`,
-or the script's own overall deadline that closes the browser and exits. Never leave a script without
-one. Before you return, make sure no process you started is still running (driver, browser, shell);
-stop any that is, by its PID, and report each one you had to stop.
-You own your units end to end: execution, Figma compare (one per screen × width), recording during
-execution, non-PASS root-cause investigation, and the repro shape.
-Scenarios (run in this order): {ids, steps, expected, design node per screen, widths, fixture}
-Test data: prefix every record you create with QA-{Lx}-; list every id you create.
-Evidence dir: {path}/lane-{Lx}/
+Account lease: {account(s) + role} — credentials from {guide path / env var name}; login file
+{auth dir}/{env}-{role}-{alias}.json; expected user id {user id}; lease tool {lease tool from guide
+| none}; holder "{Lx} {round id}" {| LEASE-HELD-BY-PARENT}.
+Scenarios (run in file order): {evidence dir}/lane-{Lx}/scenarios.md
+Evidence dir: {evidence dir}/lane-{Lx}/ · record prefix QA-{Lx}- · script time limit {seconds}s
 Follow: {calling WORKFLOW.md path} — Phase D preflight + Phase E (E0–E2), or Step 4 (4a–4h).
-Return: (1) session preflight — env, build id, authenticated user id (2) one row per scenario:
-status · actual · evidence paths (3) every non-PASS with the root-cause investigation and its
-artifacts (4) records created (5) anything that blocked you (6) every lease you acquired and that you
-released it (7) every process you had to stop before returning (none = say none). Never report a
-status without evidence.
 ```
+
+### Lane rules (the lane reads these from this file)
+
+1. **Read-only on Jira/chat:** never post, transition, assign, or notify.
+2. **Accounts:** use ONLY the leased accounts; do not log in with any other.
+3. **Session:** own browser context, started from the leased account's login file (pre-logged-in by
+   the parent when the account shares an OTP inbox — start from it, do not request a new code).
+   Before any result counts, call the session endpoint and expect the given user id; on 401/403, a
+   login redirect, or another user, STOP that account's cases and return `SESSION-DEAD {account tag}`.
+   Never log in, type credentials, give login commands, or run the login tool yourself — the parent
+   restores sessions by ready-to-run command.
+4. **Session lease:** if a lease tool is given, acquire the lease on the account BEFORE loading the
+   login file — with the given holder, TTL longer than the run — renew it before it expires, and
+   release it with the same holder in finally (on error too). Never load a login file without a
+   lease. If acquire is refused because another holder has the account, use a different account; none
+   free → report it to the parent as a lane failure, never an open wait — never force or delete another lane's lease. With `LEASE-HELD-BY-PARENT`, do not acquire or
+   release it yourself.
+5. **NO-ADVISOR:** call no advisor or other reviewer-model tool — the parent reviews your work. A cut-off
+   call can stall a lane for minutes with nothing written.
+6. **Time limit:** run every driver or browser script under a hard time limit — `timeout {seconds}
+   node …`, or the script's own overall deadline that closes the browser and exits. Never leave a
+   script without one. Before you return, make sure no process you started is still running
+   (driver, browser, shell); stop any that is, by its PID, and report each one you had to stop.
+7. **Ownership:** you own your units end to end: execution, Figma compare (one per screen × width),
+   recording during execution, non-PASS root-cause investigation, and the repro shape.
+8. **Test data:** prefix every record you create with `QA-{Lx}-`; list every id you create.
+9. **Return:** (1) session preflight — env, build id, authenticated user id (2) one row per scenario:
+   status · actual · evidence paths (3) every non-PASS with the root-cause investigation and its
+   artifacts (4) records created (5) anything that blocked you (6) every lease you acquired and that
+   you released it (7) every process you had to stop before returning (none = say none). Never
+   report a status without evidence.
+
+The parent checks before dispatch that the prompt names this file's path, the scenarios file exists
+and is non-empty, and every inline value is filled; a lane prompt missing the *Lane rules* line is
+not sent.
 
 Never paste a password into the prompt or let a lane echo one in its report — point to where the
 credential lives.
@@ -208,7 +221,7 @@ credential lives.
 
 1. **Isolation check** (§3) per lane — authenticated user id = leased account.
 2. **Coverage check** — the union of lane rows equals the confirmed plan; every AC/EC id has its own
-   row. A missing scenario is NOT TESTED until run, never assumed.
+   row. A missing scenario is BLOCKED (not run) until run, never assumed.
 3. **Evidence check** — open the evidence paths each lane cites; a row without evidence is not a
    result.
 4. **Verify every non-PASS yourself** — a lane's verdict and root cause are claims until the parent

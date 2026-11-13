@@ -41,13 +41,15 @@ Jira comment body (Step 7 / G2)   →  CONVERT <br>  ← THIS GATE
 CSV / Excel export (Step 6 / G1)  →  CONVERT <br>  (csv-export-rules handles this)
 ```
 
+Step numbers are tc-fe / tc-api; in testing-ticket the post is Phase G5.
+
 ## Verification after post
 
 After posting to Jira, re-read the comment on Jira UI and check:
 
 - [ ] No literal `<br>` text visible in any cell
 - [ ] Multi-line cells display each numbered item on a separate line
-- [ ] If literal `<br>` found → delete comment, re-convert, re-post
+- [ ] If literal `<br>` found → re-convert and PUT the corrected body to the same comment id (edit in place — never delete and re-post)
 
 ## Common mistakes
 

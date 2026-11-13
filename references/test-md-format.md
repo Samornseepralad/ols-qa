@@ -44,7 +44,7 @@ url: https://example.com/login
 - Steps are a **numbered or bulleted Markdown list** in plain English; **one action or assertion per step**.
 - **Actions:** `Click ...`, `Type ... in ...`, `Navigate to ...`
 - **Assertions:** `Verify ...`, `Expect ...`, `Check that ...`
-- Optionally group related steps under **H2 section headings** (`## Setup`, `## Purchase`) — these are readability groups, not required.
+- **H2 section headings** (`## Setup`, `## Purchase`) group related steps for readability; they are not required.
 - **Data capture/reuse:** `Store the order number as orderId` … later `Verify the confirmation shows orderId`.
 - **Imports:** `@import ./flows/login.test.md` reuses a shared flow.
 
@@ -69,12 +69,12 @@ A Helix TC table is a *suite* of cases. Helix maps **one reviewed TC row → one
 | (suite / ISSUE_KEY) | frontmatter `name` + `# {name}` H1 |
 | (environment URL) | frontmatter `url` — from intake/guide or `--url`; if unknown, a `REPLACE_ME` placeholder the user must fill |
 
-`url` is **required** by the spec but TC tables often lack it — the exporter takes `--url` and otherwise writes a `REPLACE_ME` placeholder so the gap is visible, never silently wrong. `config` is omitted by default (optional).
+`url` is **required** by the spec but TC tables often lack it — the exporter takes `--url` and otherwise writes a `REPLACE_ME` placeholder so the gap is visible, never silently wrong. `config` is omitted by default (the spec does not require it).
 
 ## Rules
 
 - Emit **exactly** the reviewed rows shown in chat — never invent cases (same rule as CSV).
-- UTF-8, `.test.md` suffix (e.g. `{ISSUE_KEY}.test.md`).
+- UTF-8, `.test.md` suffix; `{ISSUE_KEY}.test.md`, or `{SCOPE}_API_TC.test.md` for tc-api-prep.
 - Portable: no host paths, secrets, or real customer keys.
 - Keep the format spec only here — one edit point if upstream changes.
 
@@ -92,5 +92,5 @@ A Helix TC table is a *suite* of cases. Helix maps **one reviewed TC row → one
 ## Delivery & script
 
 - Generator: [scripts/export-test-md.py](../scripts/export-test-md.py) — reads the same one-table Markdown that [export-markdown-table-to-csv.py](../scripts/export-markdown-table-to-csv.py) reads; `--url` sets the entry URL, `--self-test` runs an internal check.
-- Offered alongside CSV/Excel in tc-fe-prep and tc-api-prep delivery options.
+- Offered alongside CSV/Excel in tc-api-prep delivery options.
 - Sibling export path: [csv-export-rules.md](csv-export-rules.md).

@@ -1,16 +1,16 @@
 ---
 name: retest-bug-workflow
-description: |
-  Retest a Jira bug or task after a dev fix — read ticket, build the retest case list, compare every screen against the design (Figma), test API or UI, compare Swagger, draft evidence, post the comment with its case list (with approval), transition and assign back to dev.
-  Use when the user says retest bug, retest task, verify fix, check if an issue is fixed, /retest-bug, or Retest bug from Helix — or when a ticket is Ready to Retest or the user asks whether a fix works, even without the word retest ("dev says it's done, check it", "แก้แล้วยัง").
-  Do NOT use for writing new FE/API test case tables (tc-fe-prep / tc-api-prep), full ticket Playwright runs (testing-ticket-workflow), or opening new bugs (create-bug-workflow).
+description: |-
+  Retest a Jira bug/task after a fix: case list, Figma, API/UI + Swagger, approved evidence comment, transition, reassign dev.
+  Use when the user says retest bug, verify fix, /retest-bug, Ready to Retest, or "does the fix work" ("dev says it's done, check it", "แก้แล้วยัง"), or a ticket returns fixed.
+  Do NOT use for TC tables (tc-fe-prep / tc-api-prep), ticket runs (testing-ticket), new bugs (create-bug).
 metadata:
   proactive_triggers:
     - /retest-bug
     - retest bug
     - retest task
     - verify fix
-    - retest
+    - retest the fix
     - check if bug is fixed
 ---
 
@@ -20,26 +20,28 @@ metadata:
 
 When invoked:
 
+0. **Session start first** — do [session-start-context.md](../../references/session-start-context.md) before step 1.
 1. Announce once: `Using **retest-bug-workflow** to retest the bug fix.`
-2. **Settle and strategize first** — before any tool call, follow [settle-and-strategize.md](../../references/settle-and-strategize.md): invoke **`engineering:testing-strategy`** to plan the retest approach, no guessing an expected/spec, no blind retry loops.
-3. **Design (Figma) comparison is mandatory on every UI retest** — [figma-design-comparison.md](../../references/figma-design-comparison.md). A screen with no design reference is **reported back to the person or channel that assigned the retest** and its visual points stay BLOCKED; never assume a label, order, or layout.
+2. **Settle and strategize first** — right after step 0, before any other tool call, follow [settle-and-strategize.md](../../references/settle-and-strategize.md): invoke **`engineering:testing-strategy`** to plan the retest approach, no guessing an expected/spec, no blind retry loops.
+3. **Design (Figma) comparison is mandatory on every UI retest** ([figma-design-comparison.md](../../references/figma-design-comparison.md)) — rule stated once at [Step 2d](../procedures/retest-bug-workflow/WORKFLOW.md#design-reference-gate) (no reference → visual points BLOCKED) and [Step 4d](../procedures/retest-bug-workflow/execute-and-evidence.md#design-comparison) (the comparison).
 4. **Retest deeply** — [customer-escape-prevention.md](../../references/customer-escape-prevention.md): cover the whole surface the fix touched, measure overflow/overlap at every in-scope width, evidence on passed rows too, and never PASSED over a "cannot verify" actual result.
 5. **Run in parallel lanes by default** — [parallel-test-lanes.md](../../references/parallel-test-lanes.md): split the case list across subagents, **one leased account per lane** (never two lanes on one login), barrier for anything every lane sees; serial only with a named predicate.
-5a. **Login by command, never a login window** — when an account must log in or its session has expired, give the user ready-to-run commands as one combined `bash` block per step that loops over the accounts (each isolated, prints OK / FAILED with a log path): relink every needed account, then setup/mint only the FAILED ones. Then probe and report. Never collect or fill a password ([parallel-test-lanes.md](../../references/parallel-test-lanes.md) §3).
+5a. **Login by command, never a login window** — never collect or fill a password; at step 4 the relink → setup/mint command blocks in [parallel-test-lanes.md](../../references/parallel-test-lanes.md) §3 (one copy) restore a dead session.
 6. **Result quality gate before any verdict** — [result-quality-gate.md](../../references/result-quality-gate.md): all 20 layers on every case before a verdict is reported or written; the main thread re-runs it on the lanes' files.
 6a. **No-wait decision gate before any BLOCKED / "needs decision" / held post** — [no-wait-decision-gate.md](../../references/no-wait-decision-gate.md): all 20 layers — read every source, apply precedent, create missing data, decide and act; never park a case or a finished post waiting for someone.
-7. Read and follow [WORKFLOW.md](../procedures/retest-bug-workflow/WORKFLOW.md) **end-to-end** — every step, gate, and reference.
+7. Read [WORKFLOW.md](../procedures/retest-bug-workflow/WORKFLOW.md) and run its progress checklist in order; open each phase or reference file at the step whose line names it — never before.
 
 Claude Code shortcut: `/retest-bug` → [commands/retest-bug.md](../../commands/retest-bug.md).
 
 ## Contents
 
-Every file this workflow uses, linked directly from here. Only WORKFLOW.md is read up front; load each other file at the step or moment its line names. References already linked above are not repeated.
+Read at start: [WORKFLOW.md](../procedures/retest-bug-workflow/WORKFLOW.md) and [shared-preamble.md](../../references/shared-preamble.md). Every other file below is opened only at the step or moment its line names.
 
-- [WORKFLOW.md](../procedures/retest-bug-workflow/WORKFLOW.md) — always: the full procedure, read end to end.
-- [execute-and-evidence.md](../procedures/retest-bug-workflow/execute-and-evidence.md) — before Step 4 — read and follow Steps 4–5 and the result quality gate, end to end.
-- [comment-and-post.md](../procedures/retest-bug-workflow/comment-and-post.md) — before drafting the comment — read and follow Steps 6–7, end to end.
-- [closeout-and-notify.md](../procedures/retest-bug-workflow/closeout-and-notify.md) — right after the comment is posted — read and follow Steps 8–10, end to end.
+See also (optional lookup, not read at start): [skill-reference-index.md](../../references/skill-reference-index.md).
+
+- [execute-and-evidence.md](../procedures/retest-bug-workflow/execute-and-evidence.md) — open at step 4 (Steps 4–5 and the result quality gate).
+- [comment-and-post.md](../procedures/retest-bug-workflow/comment-and-post.md) — open at step 6 (Steps 6–7).
+- [closeout-and-notify.md](../procedures/retest-bug-workflow/closeout-and-notify.md) — open at step 8, after the post (Steps 8–10).
 - [bug-priority-matrix.md](../../references/bug-priority-matrix.md) — whenever a Priority/Severity is named or judged.
 - [comment-template-v2.md](../procedures/retest-bug-workflow/references/comment-template-v2.md) — before drafting the v2 comment — render it from run.json per this template; never type the body.
 - [defect-candidates.md](../../references/output-templates/defect-candidates.md) — before reporting any defect found in the round — follow this exact table and the fixed owner question; never file without the owner.
@@ -52,6 +54,8 @@ Every file this workflow uses, linked directly from here. Only WORKFLOW.md is re
 - [qa-closing-shared.md](../../references/qa-closing-shared.md) — before reporting done — shared QA closing gates, including the cross-ticket conflict check.
 - [qa-debug-discipline.md](../../references/qa-debug-discipline.md) — when results conflict with expectations, with dev claims, or look flaky.
 - [qa-evidence-gates.md](../../references/qa-evidence-gates.md) — read when recording or judging evidence clips and the AC/EC coverage gate.
+- [qa-evidence-capture.md](../../references/qa-evidence-capture.md) — at step 5: capture scope and the MP4 7-layer gate.
+- [qa-evidence-coverage.md](../../references/qa-evidence-coverage.md) — at step 5 and before the step 6d approval: coverage and pre-delivery gates.
 - [retest-fix-intake.md](../../references/retest-fix-intake.md) — when building the retest plan, before executing tests.
 - [root-cause-investigation.md](../../references/root-cause-investigation.md) — before calling any case FAILED or BLOCKED — investigate to a verified root cause.
 - [round-time-contract.md](../../references/round-time-contract.md) — before logging in or reusing a session for the round.
@@ -63,8 +67,8 @@ Every file this workflow uses, linked directly from here. Only WORKFLOW.md is re
 - [helix-session-constraints.md](../../references/helix-session-constraints.md) — read once at session start.
 - [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md) — read before posting a Jira table with multi-line cells.
 - [long-workflow-todos.md](../../references/long-workflow-todos.md) — read when the workflow has many steps; keep the todo list.
-- [playwright-preflight.md](../../references/playwright-preflight.md) — read before any Playwright run.
-- [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md) — read before the round report, to suggest (never start) at most one follow-up Helix workflow.
+- [playwright-preflight.md](../../references/playwright-preflight.md) — read before any Playwright run (its Phase D/E = this workflow's Step 4; its guide = `*-retest-guide.md`).
+- [proactive-qa-triggers.md](../../references/proactive-qa-triggers.md) — read before the round report, to offer (never start) at most one follow-up Helix workflow.
 - [resilient-selectors.md](../../references/resilient-selectors.md) — read when writing or fixing Playwright selectors.
 - [session-closing.md](../../references/session-closing.md) — read at session end.
 - [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md) — read before invoking or switching skills.
@@ -75,10 +79,9 @@ Every file this workflow uses, linked directly from here. Only WORKFLOW.md is re
 - [worked-example.md](../procedures/retest-bug-workflow/references/worked-example.md) — read for a full worked retest.
 - [debug-discipline.md](../procedures/retest-bug-workflow/references/debug-discipline.md) — read when a case is still failing, to triage FAILED vs BLOCKED.
 - [gotchas.md](../procedures/retest-bug-workflow/references/gotchas.md) — read when a Jira body hits encoding or v2 rendering issues.
-- [handoff-template.md](../procedures/retest-bug-workflow/references/handoff-template.md) — read when handing the session to another person or agent mid-round.
 - [post-mortem-template.md](../procedures/retest-bug-workflow/references/post-mortem-template.md) — read when writing up a mistake made in the round.
 - [jira-fast-publish.md](../../references/jira-fast-publish.md) — read at Step 7a when the comment has more than 3 table rows (ADF-direct publish and error recovery).
-- [handoff-file-template.md](../../references/handoff-file-template.md) — read at Step 8 close-out when writing the round's `helix-handoff-{KEY}.md`.
+- [handoff-file-template.md](../../references/handoff-file-template.md) — read at Step 8 close-out, or to hand the session over mid-round, when writing the round's `helix-handoff-{KEY}.md`.
 
 ## Refusal-first (precondition gate)
 
@@ -96,7 +99,7 @@ All close-out gates are in WORKFLOW.md and [verify-closing-checklist.md](../../r
 
 Run the check for each of these before step 1 — check commands and install hints are in [dependencies.md](../../references/dependencies.md):
 
-- Node.js + in-repo guard tools (`tools/retest-guard`, `tools/lane-lease-check`, `tools/run-time`, `tools/adoption-check`)
+- Node.js + in-repo guard tools (`tools/retest-guard`, `tools/result-gate`, `tools/lane-lease-check`, `tools/run-time`, `tools/adoption-check`)
 - curl + Jira REST credentials
 - Atlassian MCP
 - Figma
@@ -109,3 +112,4 @@ Run the check for each of these before step 1 — check commands and install hin
 - notify channel webhook / bot
 - `engineering:testing-strategy`
 - `superpowers:systematic-debugging`
+- `superpowers:verification-before-completion` (optional — WORKFLOW Step 3 names the fallback)
