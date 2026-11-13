@@ -214,7 +214,7 @@ forbids guessing a spec forbids guessing an absence.
 | MUST turn any result worth a verdict into a **case row with an id** — never leave it as prose in a comment | A result that is not a case is never re-run; 3 escapes came through that gap |
 | MUST write display-surface expected results with all four dimensions (present · values correct vs source · order/position vs design node · no overflow/overlap measured) | "Shows A, B, C" passes a wrecked screen |
 | MUST NOT use `complete` / `correct` / `properly` / `ครบถ้วน` / `ถูกต้อง` / `สวยงาม` alone as an expected result | They are unfalsifiable, and they passed the screen that produced five customer bugs |
-| MUST report a wrong thing observed while checking something else, even when no expected asked for it | The badge-overflow defect was on screen and unremarked |
+| MUST report a wrong thing observed while checking something else or during a run, even when no expected or AC asked for it | The badge-overflow defect was on screen and unremarked; "Badges render correctly" was written beside it |
 | MUST NOT record PASSED when the actual result contains `caveat` / `not verifiable` / `assumed` / `ยืนยันไม่ได้` / `ตรวจไม่ได้` — it is BLOCKED (or PWMI with a bug) | We shipped a PASSED whose own text said it could not be verified |
 | MUST state the verification method (endpoint + permission) for any expected the UI does not display, at the time the case is written; no method ⇒ BLOCKED from the start | Discovering it mid-run is how the caveat-then-PASSED happened |
 | MUST settle in writing which screen widths are in scope, run every in-scope width as its own row, and judge overflow/overlap by **measurement** | 7 escapes were on widths nobody ran; the numeric checks caught them when finally run |
