@@ -53,6 +53,8 @@ that draft unchanged.
 
 ## 2. Repro matrix — REQUIRED for every non-PASSED item
 
+A retest comment carries these rows in its `Fixture` line and `Evidence` cells (§1 *Retest-bug comment format*), never as a separate block.
+
 Every way a user can reach the broken surface gets its own row. No row = no claim about that path.
 
 ```text

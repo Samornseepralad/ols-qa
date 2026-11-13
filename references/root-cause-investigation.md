@@ -127,7 +127,7 @@ copied into a Jira comment, sheet cell, or notify message — the label travels 
 
 `น่าจะ` · `คาดว่า` · `เข้าใจว่า` · `probably` · `likely` · `seems` · `appears to be caused by` ·
 `must be` · `cache issue` · `environment issue` · `flaky` · `intermittent` · `race condition`
-· `it works on my side`.
+· `it works on my side`. (`intermittent` with its attempt counts is the label [result-quality-gate.md](result-quality-gate.md) layer 16 asks for.)
 
 Each of these is a cause claim wearing a hedge. Either it has an artifact and a label, or it is not
 written down at all.

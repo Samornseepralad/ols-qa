@@ -1,16 +1,16 @@
 # Proactive QA triggers (suggest-only)
 
-Rules for **offering** the right Helix workflow from context (branch, linked ticket, changed files) instead of waiting for the user to open the `/helix` menu. **Offer only — never auto-run** (CLAUDE.md Rule #5: do not act on work the user did not ask for).
+Rules for **offering** the right Helix workflow from context (branch, linked ticket, changed files) instead of waiting for the user to open the `/helix` menu. **Offer only — never auto-run** (do not act on work the user did not ask for).
 
 ## Hard guardrails
 
 | Rule | Because |
 |------|---------|
-| MUST only **offer**, never start a workflow automatically | Rule #5 — no unrequested side effects |
+| MUST only **offer**, never start a workflow automatically | No unrequested side effects |
 | MUST respect opt-out `HELIX_PROACTIVE=0` (env var) | User keeps manual control |
 | MUST offer **at most one** workflow per turn, once | Avoid nagging |
 | MUST fall back to branch + commit when no Jira context | Works without Jira MCP |
-| NEVER call paid Managed Agents API for triggers | Free hook/router only (Rule #3) |
+| NEVER call paid Managed Agents API for triggers | Free hook/router only — no new cost |
 | NEVER post to Jira / create issues from an offer | Side effects belong in the chosen workflow |
 
 ## Trigger table

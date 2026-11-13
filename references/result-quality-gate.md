@@ -64,8 +64,8 @@ the exact sentence that preceded a recorded escape below.
 ## The 20 layers
 
 Kind: **M** = mechanical (the checker or a counted hand check decides) · **J** = judgement (the
-agent decides, and must write what it compared). Citations: `docs/post-mortem/` report numbers, or
-2026-10-10/11 incidents (described generically).
+agent decides, and must write what it compared). Citations: post-mortem ids of the source repository (each
+incident is described inline, so the file stands alone), or 2026-10-10/11 incidents (described generically).
 
 ### A. Right test, right place
 

@@ -50,9 +50,9 @@ Findings from a prior testing-ticket run in this chat count as input; cite the r
 ```text
 ━━━ What I need from you (Retest) ━━━
 Required:
-  • Bug key or URL
-  • Reachable environment (from workspace *-retest-guide.md or your answers)
-I will summarize what the dev claimed fixed vs what we will verify.
+  • Bug/Task/Story key or URL
+  • Reachable environment (from *-retest-guide.md or your answers)
+I will list what the dev claimed fixed vs what we will verify.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

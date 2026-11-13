@@ -30,7 +30,7 @@ Use when the retest cannot finish in one session.
 
 - Bug type: API / FE
 - Comment format: v3 ADF / v2 wiki
-- Retest result so far: PASSED / FAILED / blocked
+- Retest result so far: PASSED / FAILED / BLOCKED / PWMI
 
 ## Next steps
 

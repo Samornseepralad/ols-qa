@@ -30,7 +30,7 @@ This contract is shared by `retest-bug-workflow`, `testing-ticket-workflow`, and
 ## 3. End of round (fixed order)
 
 1. **Reviewer and bundle in parallel.** Start the independent reviewer subagent in the background. Meanwhile, build the bundle: run the render and media check (§6) and prepare the popups. The reviewer must return CLEAN before step 4. Its loop has no round cap, as today.
-2. **Decisions popup.** Shown only when questions are queued. Use one `AskUserQuestion`, batched 4 questions at a time. It holds: the scope plan, each queued non-PASS (A/B/C), missing design, and conflicts (Investigate / Close).
+2. **Decisions popup.** Shown only when questions are queued. Use one `AskUserQuestion` (Claude Code; another host: its one question popup), batched 4 questions at a time. It holds: the scope plan, each queued non-PASS (A/B/C), missing design, and conflicts (Investigate / Close).
 3. **Apply the answers.** Re-render the draft and re-run the guard.
 4. **Approval popup.** One approval for the whole bundle, listing every concrete action by name:
    - the comment (target ticket and endpoint);

@@ -112,7 +112,7 @@ In an **interactive / supervised** session, post a short, plain-language flag in
 recording the non-PASS verdict or opening a bug. Keep it readable for a non-developer:
 
 ```text
-⚠️ เอ๊ะ — {case / ticket}: ผลไม่ผ่านตรง ๆ ขอเช็คก่อนบันทึก
+⚠️ {in the user's language: "Wait — {case / ticket}: not a clean pass, checking before recording"; Thai: "เอ๊ะ — {case / ticket}: ผลไม่ผ่านตรง ๆ ขอเช็คก่อนบันทึก"}
 • Expected: {X}  (source: {ticket AC / related ticket KEY / Figma frame})
 • Observed: {Y}  (evidence)
 • AC/EC check: {confirmed authoritative | expected looks wrong | superseded by {KEY} | unclear — needs {PO/role}}
@@ -130,7 +130,7 @@ The recommendation is exactly one of:
   re-run and re-observe before any verdict.
 - **(C) Confirm the defect** — not offered when the expected was superseded (only A or B then). Also not offered while a newer source that may supersede the expected is unresolved (an `unclear` AC/EC check with a competing newer source): C is offered only when the AC/EC check is confirmed authoritative. The expected is authoritative, the app genuinely differs, cause is on
   the product side. Proceed to the verdict / bug, and still state the finding so the user sees
-  the reasoning, and file it with its full write-up (repro matrix + expected-verbatim + labelled root
+  the reasoning, and file it with its full write-up (repro matrix — a retest writes it in its Fixture line and Evidence cells, [defect-report-completeness.md](defect-report-completeness.md) §1 — + expected-verbatim + labelled root
   cause + resolution options).
 
 For A and B, **wait for the user's decision** — the whole point is that adjusting a spec or re-testing

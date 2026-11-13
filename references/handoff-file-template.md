@@ -26,7 +26,7 @@ source is not re-read in full, a changed or missing one is re-read
 - AC/EC list: {id · one-line summary}
 - Figma node refs: {screen · node link · width(s)}
 - Swagger version: {version or spec URL + hash — or N/A}
-- Last-round results: {case id · PASSED | FAILED | BLOCKED | NOT TESTED · evidence path}
+- Last-round results: {case id · PASSED | FAILED | PWMI | BLOCKED | NOT TESTED · evidence path}
 
 ## Source fingerprints (captured at close of round {N})
 
