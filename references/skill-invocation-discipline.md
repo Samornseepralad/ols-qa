@@ -8,7 +8,7 @@ Helix workflows are **skills** (`SKILL.md`), not informal chat habits. This docu
 2. **Helix workflow skills** — override default agent behavior for QA tasks  
 3. **Default system behavior** — lowest  
 
-If the user says “skip Jira post,” that overrides a skill’s default gate.
+If the user says “skip Jira post,” that overrides a skill’s default gate, except a hard confirm gate (create-bug Phase C).
 
 ## When to invoke a skill
 

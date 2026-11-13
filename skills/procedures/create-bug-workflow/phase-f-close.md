@@ -4,7 +4,7 @@ Part of [WORKFLOW.md](WORKFLOW.md), opened at Phase F; every rule here is a full
 
 ## Phase F — Fix-verify and close (mandatory) [low freedom]
 
-After Phase D create calls:
+Runs after Phase D create calls. A run that files nothing (every candidate Dropped, BLOCKED or Needs Review, or the user cancelled) skips items 1-6: close with `Verdict: CREATED 0/{K} — {reason}`, each candidate with its outcome and source link, then QA closing.
 
 1. List each issue with **URL or key** from tool output (not guessed).
 2. **Fix-verify round 1:** Fetch each link (`gh issue view <url> --json title,body,labels`; Jira `getJiraIssue`) — confirm title/summary and body match approved draft.
