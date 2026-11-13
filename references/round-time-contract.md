@@ -59,7 +59,7 @@ If no decisions are queued, step 2 is skipped, and the round has a single human 
 
 ## 6. Comment render and media check (before the approval popup)
 
-Run the render and media checks of [jira-comment-post-review.md § Pre-post render + media check](jira-comment-post-review.md#pre-post-render--media-check-before-the-approval-popup) on the **final** body. A failure blocks the approval popup; the post-publish re-read remains the proof of what was posted.
+Run the render and media checks of `jira-comment-post-review.md` § Pre-post render + media check on the **final** body. A failure blocks the approval popup; the post-publish re-read remains the proof of what was posted.
 
 ## 7. Figma compare: keep it full, dedupe
 

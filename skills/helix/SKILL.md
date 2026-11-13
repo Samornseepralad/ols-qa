@@ -135,7 +135,7 @@ The router reads only what it needs to pick and hand off a workflow. Every gate 
 - Read [session-closing.md](../../references/session-closing.md) at session end.
 - Read [skill-invocation-discipline.md](../../references/skill-invocation-discipline.md) before invoking or switching skills.
 - Read [skill-routing.md](../../references/skill-routing.md) when choosing which skill handles a request.
-- Read [skill-rules-style.md](../../references/skill-rules-style.md) for refusal wording only; the router asks one item (Opening).
+- Read [skill-rules-style.md](../../references/skill-rules-style.md) for refusal wording only; its multi-item Missing list never overrides the one-item rule in Opening.
 
 **Not opened by the router** — the routed workflow reads each at the step named; listed only because the shared rules above MUST-link them (skill-lint must-read-depth):
 - Read [jira-comment-post-review.md](../../references/jira-comment-post-review.md) after posting a Jira comment, before saying done.

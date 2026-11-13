@@ -77,7 +77,7 @@ A failure blocks the approval popup; the post-publish re-read below still proves
 
 | Failure | Fix |
 |---------|-----|
-| Missing rows / truncated table | PUT the full corrected body to the same comment id (edit in place, [jira-wiki-vs-markdown.md](jira-wiki-vs-markdown.md) § Fixing a comment that already shipped); when the re-read still shows the table truncated, send that body as ADF (v3) — unless the session locked v2/v3, then hand the corrected body to the user |
+| Missing rows / truncated table | PUT the full corrected body to the same comment id (edit in place, `jira-wiki-vs-markdown.md` § Fixing a comment that already shipped); when the re-read still shows the table truncated, send that body as ADF (v3) — unless the session locked v2/v3, then hand the corrected body to the user |
 | Literal `<br>` or HTML tags | Re-run [jira-linebreak-conversion.md](jira-linebreak-conversion.md), strip tags, PUT to the same comment id |
 | Numbered items on same line | Verify conversion produced actual line breaks; PUT the corrected body to the same id |
 | Literal `**` visible | The body is markdown but was posted to the **v2 wiki** endpoint. Wiki bold is a single `*`; `**x**` renders as bold-wrapped-in-asterisks. Convert the whole body to wiki syntax (`*bold*`, `----`, `\|\|header\|\|` with no divider row, bare `!file.png!`) and PUT it back to the same comment id — never repost |

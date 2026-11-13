@@ -1,6 +1,6 @@
 # Intent shortcuts (Helix router)
 
-Use when the user writes **Thai, informal, or mixed language**. Map intent → workflow; **skip the menu** when exactly one row below matches the message (a row matches when the message contains any phrase in its first column); when two rows match, ask **one** clarifying question — do not show the full menu unless the user asks. Reply in **the user's language** ([user-communication.md](user-communication.md)). Each workflow's number, command, and ols-qa-only status: [skill-routing.md § Primary menu](skill-routing.md#primary-menu).
+Use when the user writes **Thai, informal, or mixed language**. Map intent → workflow; **skip the menu** when exactly one row below matches the message; when two rows match, ask one question — do not show the full menu unless the user asks. A row matches when the message contains any phrase in its first column. Reply in **the user's language** ([user-communication.md](user-communication.md)). Each workflow's number, command, and ols-qa-only status: [skill-routing.md § Primary menu](skill-routing.md#primary-menu).
 
 | User intent (examples) | Route to |
 |------------------------|----------|

@@ -66,7 +66,7 @@ Do not use without fresh evidence in the **same** turn:
 | Testing ticket | Playwright preflight YES before run (see also [playwright-preflight.md](playwright-preflight.md), linked from that skill's SKILL.md); F1–F3 before external update; **pre-delivery 7-layer gate green before any post/sheet/notify** |
 | Retest | Plan posted before execute; v2/v3 format locked; **pre-delivery 7-layer gate green before the comment goes out** |
 | Create bug | Phase C confirm before create; URL verify after |
-| Re-record delivered evidence | **R1–R6 in [qa-evidence-rerecord.md](qa-evidence-rerecord.md)**: read the old run's own result, prove the ER is demonstrable before the take, budget single-use fixtures, assert in the recorder, replace by file id, read back and compare |
+| Re-record delivered evidence | **R1–R6 in `qa-evidence-rerecord.md`** (linked above): read the old run's own result, prove the ER is demonstrable before the take, budget single-use fixtures, assert in the recorder, replace by file id, read back and compare |
 | Catch AI (audit) | Coverage reconciliation (enumerated == classified) before drafting; **pre-delivery 7-layer gate green — read as a second QA or another AI with only the report — before the audit is shown**; every root cause carries a [root-cause-investigation.md](root-cause-investigation.md) confidence label |
 
 ## Evidence must be a real FE screen — a raw-data page is never evidence
