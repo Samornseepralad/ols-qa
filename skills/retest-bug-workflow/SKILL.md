@@ -79,10 +79,9 @@ See also (optional lookup, not read at start): [skill-reference-index.md](../../
 - [worked-example.md](../procedures/retest-bug-workflow/references/worked-example.md) — read for a full worked retest.
 - [debug-discipline.md](../procedures/retest-bug-workflow/references/debug-discipline.md) — read when a case is still failing, to triage FAILED vs BLOCKED.
 - [gotchas.md](../procedures/retest-bug-workflow/references/gotchas.md) — read when a Jira body hits encoding or v2 rendering issues.
-- [handoff-template.md](../procedures/retest-bug-workflow/references/handoff-template.md) — read when handing the session to another person or agent mid-round.
 - [post-mortem-template.md](../procedures/retest-bug-workflow/references/post-mortem-template.md) — read when writing up a mistake made in the round.
 - [jira-fast-publish.md](../../references/jira-fast-publish.md) — read at Step 7a when the comment has more than 3 table rows (ADF-direct publish and error recovery).
-- [handoff-file-template.md](../../references/handoff-file-template.md) — read at Step 8 close-out when writing the round's `helix-handoff-{KEY}.md`.
+- [handoff-file-template.md](../../references/handoff-file-template.md) — read at Step 8 close-out, or to hand the session over mid-round, when writing the round's `helix-handoff-{KEY}.md`.
 
 ## Refusal-first (precondition gate)
 

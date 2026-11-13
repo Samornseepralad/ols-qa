@@ -135,7 +135,6 @@ One line per reference: link — when to open it. **Do not read this file at sta
 - [comment-template-v2.md](../skills/procedures/retest-bug-workflow/references/comment-template-v2.md) — rendering a FE retest comment.
 - [debug-discipline.md](../skills/procedures/retest-bug-workflow/references/debug-discipline.md) — fix still fails after retest.
 - [gotchas.md](../skills/procedures/retest-bug-workflow/references/gotchas.md) — browser/page oddities during retest.
-- [handoff-template.md](../skills/procedures/retest-bug-workflow/references/handoff-template.md) — retest cannot finish this session.
 - [post-mortem-template.md](../skills/procedures/retest-bug-workflow/references/post-mortem-template.md) — retest wasted time or repeated a mistake.
 - [post-mortem-log.md](../skills/procedures/retest-bug-workflow/references/post-mortem-log.md) — reading past lessons.
 - [new-skill-template.md](../skills/procedures/retest-bug-workflow/references/new-skill-template.md) — stub pointing to the skill template.
