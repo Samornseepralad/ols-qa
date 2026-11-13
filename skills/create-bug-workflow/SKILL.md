@@ -2,7 +2,7 @@
 name: create-bug-workflow
 description: |-
   File bug reports on Jira or GitHub: collect target, format and details, check the board, falsify the defect, confirm before creating.
-  Use when the user picks Create bug from Helix, says /create-bug, or wants a defect logged, even without the word bug, including one a test run in this chat found ("raise a ticket for this", "เปิดบั๊ก").
+  Use when the user picks Create bug from Helix, says /create-bug, or wants a defect logged, even a test-run finding or without the word bug ("raise a ticket for this", "เปิดบั๊ก").
   Do NOT use for Playwright runs (testing-ticket), retest after a fix (retest-bug), TC tables (tc-fe-prep / tc-api-prep), or result-sheet updates.
 metadata:
   proactive_triggers:

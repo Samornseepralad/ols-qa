@@ -4,10 +4,8 @@ Use at the **start of the first response** in a Helix workflow (or when `/helix`
 
 ## All Helix workflows
 
-Recite once when starting any routed workflow:
-
 > **Helix constraints:**
-> 1. No side effects (Jira post, file create, issue create) without user approval unless they waive it; a hard confirm gate a workflow names (create-bug Phase C) is never waived, and saving an intake answer to the workspace guide is covered by that answer.
+> 1. No side effects (Jira post, file create, issue create) without user approval unless they waive it (never a workflow's hard confirm gate, e.g. create-bug Phase C).
 > 2. No success claim without tool output and destination verification.
 > 3. Work only on the issue, URL, and environment the user specified.
 > 4. Load project defaults from the user's workspace `references/*-guide.md` when present — never from the Helix install repo.

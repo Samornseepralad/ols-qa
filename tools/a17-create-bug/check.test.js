@@ -34,25 +34,25 @@ t('R4 resize names a tool and a width check', () => {
   has(`${P}phase-d-create.md`, /sips -Z 640 <file>.*sips -g pixelWidth <file>/);
 });
 t('R5 waiver and embed lines match the create-bug gates', () => {
-  has('references/helix-session-constraints.md', /hard confirm gate .*create-bug Phase C.* never waived/);
-  has('references/skill-invocation-discipline.md', /except a hard confirm gate \(create-bug Phase C\)/);
-  has('references/agent-rationalizations.md', /create-bug Phase C \*\*confirm\*\* is never waived/);
-  has('references/agent-rationalizations.md', /embed an image only after it is attached \(new bug: create, attach, then update the body\)/);
+  has('references/helix-session-constraints.md', /never a workflow's hard confirm gate, e\.g\. create-bug Phase C/);
+  has('references/skill-invocation-discipline.md', /except create-bug Phase C confirm/);
+  has('references/agent-rationalizations.md', /never create-bug Phase C/);
+  has('references/agent-rationalizations.md', /embed only after attach \(new bug: create, attach, update\)/);
   lacks('references/agent-rationalizations.md', /attach before embed/);
 });
 t('R6 shared references say what create-bug uses', () => {
   has('references/defect-report-completeness.md', /and the create-bug draft \(§1 Create-bug draft format\)/);
   has('references/defect-report-completeness.md', /create-bug never reproduces/);
   has('references/non-pass-challenge-gate.md', /create-bug never re-runs/);
-  has('references/jira-comment-post-review.md', /create-bug issue body, apply §3 and §4; Phase F's 2-round cap replaces the 3/);
+  has('references/jira-comment-post-review.md', /create-bug Phase F: 2, and for an issue body only §3, §4 apply/);
 });
 t('R7 portability', () => {
   lacks('references/bug-priority-matrix.md', /ยึดหลักนี้/);
-  has('references/jira-wiki-vs-markdown.md', /!\[alt\]\(https:\/\/example\.com\/a\.png\)/);
+  has('references/jira-wiki-vs-markdown.md', /!\[alt\]\(http:\/\/x\/a\.png\)/);
   has('references/skill-reference-index.md', /## Workspace-specific \*\(ols-only\)\*/);
 });
 t('R8 intake and draft slots', () => {
-  has('references/intake-one-pager.md', /every entry point tried, expected and its source link/);
+  has('references/intake-one-pager.md', /entry points tried, expected \+ source link/);
   has(`${P}references/bug-draft-template.md`, /plain text `link pending from reporter` \(no braces\)/);
   has(`${P}WORKFLOW.md`, /\| 🔴 STOP — Ask, never decide: no Severity given/);
 });
@@ -60,7 +60,7 @@ t('R9 example and entry text agree', () => {
   has(`${P}references/worked-example.md`, /gh repo view example-org\/checkout-ui --json name/);
   has('commands/create-bug.md', /check the board, falsify, confirm, then file/);
   has('commands/create-bug.md', /TC tables \(tc-fe-prep \/ tc-api-prep\) or result-sheet updates/);
-  has(S, /even without the word bug, including one a test run in this chat found/);
+  has(S, /even a test-run finding or without the word bug/);
 });
 t('R10 Refusal-first is one statement', () => {
   has(S, /MUST NOT create issues before the Phase C \*\*confirm\*\*; MUST re-check the board first \(Phase B2\)/);
