@@ -15,8 +15,8 @@
 | Off-scope refs, bulk list, no triggers | F12 F26 F32 F37 F49 F61 F67 F86 F98 F112 F120 F132 | `SKILL.md:34-47` (trigger per link; two test-round files labelled). Links stay: skill-lint reports 6 new violations without them | Out of scope (evidence in spec) |
 | A3 rule hard to execute | F13 F22 | `CB/WORKFLOW.md:87-99` (table, order fixed) | R8 |
 | quick_validate needs PyYAML | F14 F35 | Not a text fix; run with venv python (see PR) | Report |
-| Descriptions drift / not pushy | F18 F36* F62 F82 F90 F103 | `commands/create-bug.md:3-4`, `SKILL.md:4-5` | R9 |
-| Phase letters / file name phase-e = B3 | F19 F24 F38 F46 F50* F54 F65 F77 F88 F99 F108 F119 F131 | `CB/WORKFLOW.md:19` pointer; B3 headings; file rename NOT done | R3; rename out of scope (rule 5) |
+| Descriptions drift / not pushy | F18 F62 F82 F90 F103 | `commands/create-bug.md:3-4`, `SKILL.md:4-5` | R9 |
+| Phase letters / file name phase-e = B3 | F19 F24 F38 F46 F54 F65 F77 F88 F99 F108 F119 F131 | `CB/WORKFLOW.md:19` pointer; B3 headings; file rename NOT done | R3; rename out of scope (rule 5) |
 | Resize without tool | F20 | `CB/phase-d-create.md:63-64` | R4 |
 | MCP vs REST choice, no-MCP create, non-field failures | F22 F51 F105 | `CB/phase-d-create.md:36-37, 43-51` | Already |
 | Imprecise Markdown examples read as links | F27 | `references/jira-wiki-vs-markdown.md:27-29` | R7 |
@@ -41,6 +41,5 @@
 | Intake omits expected source | F121 F128 | `references/intake-one-pager.md:43` | R8 |
 | ols-only rows in portable index | F124 | `references/skill-reference-index.md:147-149` | R7 |
 
-\* F36 and F50 appear twice in the table because the catalogue row mixes two findings; both parts are covered.
 
 Darwin deductions (dim1-dim9, 9 or 8 each): every cited cause maps to a row above (frontmatter drift, phase letters, restated rules, bundle size, markers, soft commands). dim7 (42-file bundle) is structural: reported, not editable inside this skill.
