@@ -1,8 +1,8 @@
 ---
 name: catch-ai-workflow
 description: |-
-  Audit finished work (doc, artifact, feature): trace claims to source, split defects from questions, fix each with source + prevention.
-  Use on CatchAI, /catch-ai, "check yourself", ตรวจงานตัวเองอีกรอบ; before reporting pass/defect/done; or a result rests on a guess (น่าจะ).
+  Audit finished work (doc, artifact): trace claims to source, split defects from questions, fix with source + prevention.
+  Use when the user says CatchAI, /catch-ai, "check yourself", ตรวจงานตัวเองอีกรอบ; before reporting pass/defect/done; or a result rests on a guess (น่าจะ).
   Do NOT use for bug retest (retest-bug), TC tables (tc-fe-prep, tc-api-prep), TC review (tc-review), ticket testing (testing-ticket) or bug filing (create-bug).
 metadata:
   proactive_triggers:
@@ -257,19 +257,19 @@ state any unfinished part and why; the count line is the handover.
 
 *Defect or non-pass verdict in scope:*
 
-- [bug-priority-matrix.md](../../references/bug-priority-matrix.md) before any priority or PWMI / FAILED verdict.
-- [defect-report-completeness.md](../../references/defect-report-completeness.md) before writing up any defect or non-pass (its § 2 repro matrix and § 4 resolution options go under that defect).
-- [non-pass-challenge-gate.md](../../references/non-pass-challenge-gate.md) before recording any non-PASSED result (its § 4 wait for the decision is the CHECKPOINT after step 9: report the recommendation and stop there).
-- [qa-debug-discipline.md](../../references/qa-debug-discipline.md) when a test is flaky or a tool errors.
+- Read [bug-priority-matrix.md](../../references/bug-priority-matrix.md) when a priority or PWMI / FAILED verdict is about to be written.
+- Read [defect-report-completeness.md](../../references/defect-report-completeness.md) before writing up any defect or non-pass (its § 2 repro matrix and § 4 resolution options go under that defect).
+- Read [non-pass-challenge-gate.md](../../references/non-pass-challenge-gate.md) before recording any non-PASSED result (its § 4 wait for the decision is the CHECKPOINT after step 9: report the recommendation and stop there).
+- Read [qa-debug-discipline.md](../../references/qa-debug-discipline.md) when a test is flaky or a tool errors.
 
 *UI screen or design in scope:* read [figma-design-comparison.md](../../references/figma-design-comparison.md) before judging a screen or visual result against the design.
 
 *Test run in scope (re-executed or its results audited):*
 
-- [customer-escape-prevention.md](../../references/customer-escape-prevention.md) when re-executing a run or judging whether its gates would have stopped a shipped defect.
-- [playwright-preflight.md](../../references/playwright-preflight.md) only when re-executing a Playwright run; [resilient-selectors.md](../../references/resilient-selectors.md) only when Playwright selectors are under review.
-- [test-through-real-steps.md](../../references/test-through-real-steps.md) when judging whether the action was tested through its real steps.
-- [round-time-contract.md](../../references/round-time-contract.md) when the work reports round times; [verify-closing-checklist.md](../../references/verify-closing-checklist.md) when the target is a verify or retest close-out.
+- Read [customer-escape-prevention.md](../../references/customer-escape-prevention.md) when re-executing a run or judging whether its gates would have stopped a shipped defect.
+- Read [playwright-preflight.md](../../references/playwright-preflight.md) only when re-executing a Playwright run; read [resilient-selectors.md](../../references/resilient-selectors.md) only when Playwright selectors are under review.
+- Read [test-through-real-steps.md](../../references/test-through-real-steps.md) when judging whether the action was tested through its real steps.
+- Read [round-time-contract.md](../../references/round-time-contract.md) when the work reports round times; read [verify-closing-checklist.md](../../references/verify-closing-checklist.md) when the target is a verify or retest close-out.
 
 *Jira artifact in scope (already-posted comment or table):* read [jira-comment-post-review.md](../../references/jira-comment-post-review.md) when the target is a posted Jira comment · [jira-linebreak-conversion.md](../../references/jira-linebreak-conversion.md) when that comment has a table with multi-line cells.
 

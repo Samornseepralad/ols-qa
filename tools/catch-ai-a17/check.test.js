@@ -98,7 +98,7 @@ t('R7 reference Verdict follows the matrix for a coverage gap; PWMI pointer name
   has(REF, /coverage gap.*bug-priority-matrix\.md\) § Hard rule.*BLOCKED.*never PASSED with a caveat/);
   lacks(REF, /§ PWMI/);
   has(rd('references/skill-routing.md'), /rewrite the audited work beyond the corrections it reports/);
-  has(rd('references/bug-priority-matrix.md'), /catch-ai-workflow\/SKILL\.md/);
+  has(rd('references/bug-priority-matrix.md'), /`catch-ai-workflow` SKILL\.md § Must-read files/);
 });
 t('R8 shared refs: no product role ids / product names; fallbacks; doc-audit sweep; one duplicate row', () => {
   lacks(rd('references/qa-evidence-capture.md'), /GUEST · LEARNER/);
@@ -107,7 +107,7 @@ t('R8 shared refs: no product role ids / product names; fallbacks; doc-audit swe
   has(rd('references/root-cause-investigation.md'), /Audit of a document or your own prior work/);
   const ce = rd('references/customer-escape-prevention.md');
   assert.strictEqual((ce.match(/\| MUST report (a wrong thing|anything wrong) observed/g) || []).length, 1, 'one row');
-  has(rd('references/dependencies.md'), /root-cause-investigation\.md\]\(root-cause-investigation\.md\) § 0/);
+  has(rd('references/dependencies.md'), /root-cause-investigation § 0\]\(root-cause-investigation\.md\)/);
   for (const f of ['qa-debug-discipline', 'playwright-preflight', 'qa-evidence-capture', 'qa-evidence-coverage']) lacks(rd(`references/${f}.md`), /PD3/);
 });
 t('R9 FIXED-BEFORE items stay fixed', () => {
