@@ -65,7 +65,7 @@ t('R22 tc-api API mapping for Test Steps and CSV names', () => { has(A, /Test Da
 t('R23 tc-review language follows the user per user-communication.md', () => { lacks(T, /stay English per/); has(T, /Helix menus, intake questions and the thread question follow the user's language per/); });
 t('R24 tc-review bullet measure', () => { lacks(T, /Keep each bullet tight/); has(T, /One finding per bullet, at most two lines plus its Suggest line/); });
 t('R25 tc-review delivered review = matrix + two lists', () => has(T, /The delivered review is the Step 2 matrix, then two short lists/));
-t('R26 tc-review MUST row and command do not restate Step 5', () => { lacks(T, /whoever invoked it, ask only the thread, never invent/); lacks('commands/tc-review.md', /refusal-first gate, traceability matrix/); has('commands/tc-review.md', /Every review rule lives only in the workflow's SKILL\.md/); });
+t('R26 tc-review MUST row and command do not restate Step 5', () => { lacks(T, /whoever invoked it, ask only the thread, never invent/); lacks('commands/tc-review.md', /refusal-first gate, traceability matrix/); has('commands/tc-review.md', /Every review rule lives only in the workflow's SKILL\.md/); assert.equal((flat(rd('commands/tc-review.md')).match(/end-to-end/g) || []).length, 1, 'command repeats the follow-it instruction'); });
 // R27 withdrawn: tools/skill-lint must-read-depth needs those links (spec amendment).
 t('R28 caps: tc-review ≤ 403, tc-api WORKFLOW ≤ 370', () => { assert.ok(nlines(T) <= 403, `${nlines(T)}`); assert.ok(nlines(W) <= 370, `${nlines(W)}`); });
 t('R29 soft-phrase sweep: instruction-context "may"/"optionally"/"suggest" rewrites', () => {

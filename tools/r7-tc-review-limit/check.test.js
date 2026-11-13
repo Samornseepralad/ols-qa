@@ -5,7 +5,8 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..', '..');
-const S = fs.readFileSync(path.join(root, 'skills/tc-review-workflow/SKILL.md'), 'utf8');
+// Step 5 lives in notify.md (owner 13/Nov/2026).
+const S = fs.readFileSync(path.join(root, 'skills/tc-review-workflow/SKILL.md'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'skills/tc-review-workflow/notify.md'), 'utf8');
 // r12-p1-three R9: the limit item is now item 3 (execution order); its text is unchanged.
 const start = S.indexOf("3. **Fit the platform's message limit");
 const end = S.indexOf('4. A thread is reached through a webhook');

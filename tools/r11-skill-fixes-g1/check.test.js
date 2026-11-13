@@ -12,7 +12,8 @@ const FE_WF = rd(`${FE}WORKFLOW.md`);
 const RG = rd(`${FE}requirement-gates.md`);
 const DR = rd(`${FE}design-and-review.md`);
 const FE_SKILL = rd('skills/tc-fe-prep-workflow/SKILL.md');
-const TR = rd('skills/tc-review-workflow/SKILL.md');
+// Step 5 lives in notify.md (owner 13/Nov/2026); SKILL.md + notify.md are checked as one workflow.
+const TR = rd('skills/tc-review-workflow/SKILL.md') + '\n' + rd('skills/tc-review-workflow/notify.md');
 const EE = rd('skills/procedures/retest-bug-workflow/execute-and-evidence.md');
 const flat = (s) => s.replace(/\s+/g, ' ');
 const lines = (s) => s.split('\n');
