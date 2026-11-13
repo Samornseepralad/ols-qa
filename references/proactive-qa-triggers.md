@@ -15,14 +15,14 @@ Rules for **offering** the right Helix workflow from context (branch, linked tic
 
 ## Trigger table
 
-Match the **strongest** signal available. Ticket type wins over branch when both are known.
+Match the **strongest** signal available: linked ticket type, then branch, then last commit subject. Ticket type wins over branch when both are known.
 
 | Signal | Offer | Command |
 |--------|---------|---------|
 | Branch `feat/*` **+** linked Jira type = Story | TC FE prep | `/tc-fe-prep` |
 | Branch `feat/*` touching API/Swagger only | TC API prep | `/tc-api-prep` |
 | Branch `fix/*` **+** linked Jira type = Bug | Retest bug | `/retest-bug` |
-| Ticket needs a Playwright run (UI/E2E scope) | Testing ticket | `/testing-ticket` |
+| Linked ticket or the user's message asks for a browser / Playwright / E2E run | Testing ticket | `/testing-ticket` |
 | Defects found in chat, no ticket filed yet | Create bug | `/create-bug` |
 | Signal ambiguous / none | Show `/helix` menu | `/helix` |
 

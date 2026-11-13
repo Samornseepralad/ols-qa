@@ -20,7 +20,7 @@ Helix does **not** patch product code unless the user explicitly asks — this s
 
 1. **Reproduce or prove non-repro** — exact steps, data, role, environment URL.  
 2. **Read failures literally** — Playwright trace, `test-results/`, console, network failed requests.  
-3. **Recent changes** — deploy version, config, test data, VPN, `CF_BYPASS`, auth session age.  
+3. **Recent changes** — deploy version, config, test data, VPN, proxy or bypass flags, auth session age.  
 4. **One boundary at a time** — browser vs API vs Jira vs VPN:
    - Log or note: request URL, status, response snippet at each boundary.  
    - Do not fix multiple layers in one guess.

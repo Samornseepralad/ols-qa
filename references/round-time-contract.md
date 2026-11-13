@@ -9,7 +9,7 @@ This contract is shared by `retest-bug-workflow`, `testing-ticket-workflow`, and
 - **Cap:** 15 minutes of **AGENT + EXEC** time per round. AGENT is reading, comparing and drafting. EXEC is login, browser and API steps, recording, upload, and posting.
 - **Human wait is not counted.** Report it on its own line.
 - **Soft cap:**
-  - At about 12 minutes, print one line: `Round time: ~12 min of 15 used — finishing.`
+  - At 12 minutes, print one line: `Round time: ~12 min of 15 used — finishing.`
   - Finish the round. Never cut cases to stay under the cap.
 - **Every round report ends with this line:**
 
@@ -59,12 +59,7 @@ If no decisions are queued, step 2 is skipped, and the round has a single human 
 
 ## 6. Comment render and media check (before the approval popup)
 
-Run both checks on the **final** body:
-
-- **Render the body locally** (ADF or wiki, whichever the format the guide sets). Confirm the tables, line breaks, and formatting.
-- **Resolve every referenced image or clip:** the attachment exists, and the id or filename matches the reference.
-
-A failure blocks the approval popup until it is fixed. The post-publish re-read remains the proof of what was posted.
+Run the render and media checks of [jira-comment-post-review.md § Pre-post render + media check](jira-comment-post-review.md#pre-post-render--media-check-before-the-approval-popup) on the **final** body. A failure blocks the approval popup; the post-publish re-read remains the proof of what was posted.
 
 ## 7. Figma compare: keep it full, dedupe
 

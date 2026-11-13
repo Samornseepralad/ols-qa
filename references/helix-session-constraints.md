@@ -1,6 +1,6 @@
 # Helix session constraints (recite once)
 
-Use at the **start of the first response** in a Helix workflow (or when `/helix` routes to a skill). Write it in the user's language.
+Recite once, in the user's language: the router after its route line; a workflow started directly after its announce line. A child routed by `/helix` does not.
 
 ## All Helix workflows
 

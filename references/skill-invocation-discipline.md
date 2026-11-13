@@ -26,7 +26,7 @@ If tempted to skip a workflow skill (“I can draft TC without it”, “quick r
 
 ## Long workflows and todos
 
-When a skill lists **5+ mandatory checklist items** or multi-phase gates, create todos per major phase ([long-workflow-todos.md](long-workflow-todos.md)) with the agent's todo tool; with no todo tool, list the phases in chat and tick them off — so the user sees progress.
+When [long-workflow-todos.md § When to create todos](long-workflow-todos.md#when-to-create-todos) applies, create todos per major phase with the agent's todo tool; with no todo tool, list the phases in chat and tick them off — so the user sees progress.
 
 ## Subagents and parallel work
 

@@ -194,5 +194,5 @@ cause does not change anything" — the cause is what the reader acts on.
 | MUST NOT use a hedge word from the [§4 banned list](#hedges) as a cause | Hedged guessing is still guessing, and it is published as QA's finding |
 | MUST NOT infer a cause from a different record, role, run, entry point, or from a pre-state-change view | Learned repeatedly: the transferred observation is the artifact, not the product's behaviour |
 | MUST NOT restate the symptom as the cause | It reads as an answer and stops anyone else from investigating |
-| MUST NOT patch product code — QA diagnoses and hands off the isolated boundary + evidence | Fixing the product is dev's decision, not QA's |
+| MUST NOT patch product code unless the user explicitly asks — QA diagnoses and hands off the isolated boundary + evidence | Fixing the product is dev's decision, not QA's |
 | MUST re-run the surface before answering any "why" question that arrives after publishing | Answering from memory is how a wrong cause reached a developer |

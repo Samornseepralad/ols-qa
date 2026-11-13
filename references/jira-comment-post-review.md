@@ -23,16 +23,14 @@ Post comment → Review on Jira UI → Pass all checks?
 
 ## Pre-post render + media check (before the approval popup)
 
-Run both checks on the **final** draft body, before the approval popup is shown
-([round-time-contract.md §6](round-time-contract.md#6-comment-render-and-media-check-before-the-approval-popup)):
+Run both checks on the **final** draft body, before the approval popup is shown (this is the only copy; [round-time-contract.md §6](round-time-contract.md#6-comment-render-and-media-check-before-the-approval-popup) links here):
 
 1. **Render the body locally** in the format the guide sets (ADF for v3, wiki markup for v2). Confirm
    tables, line breaks, numbered items, and formatting render as intended.
 2. **Resolve every referenced image or clip** — the attachment exists, and its id or filename matches
    the reference in the body.
 
-A failure blocks the approval popup until it is fixed. This check does not replace the post-publish
-review below — the re-read on Jira UI remains the proof of what was posted.
+A failure blocks the approval popup; the post-publish re-read below still proves what was posted.
 
 ## Review checklist (all items must pass)
 
@@ -78,7 +76,7 @@ review below — the re-read on Jira UI remains the proof of what was posted.
 
 | Failure | Fix |
 |---------|-----|
-| Missing rows / truncated table | PUT the full corrected body to the same comment id (edit in place, `jira-wiki-vs-markdown.md` § Fixing a comment that already shipped); when the re-read still shows the table truncated, send that body as ADF (v3) — unless the session locked v2/v3, then hand the corrected body to the user |
+| Missing rows / truncated table | PUT the full corrected body to the same comment id (edit in place, [jira-wiki-vs-markdown.md](jira-wiki-vs-markdown.md) § Fixing a comment that already shipped); when the re-read still shows the table truncated, send that body as ADF (v3) — unless the session locked v2/v3, then hand the corrected body to the user |
 | Literal `<br>` or HTML tags | Re-run [jira-linebreak-conversion.md](jira-linebreak-conversion.md), strip tags, PUT to the same comment id |
 | Numbered items on same line | Verify conversion produced actual line breaks; PUT the corrected body to the same id |
 | Literal `**` visible | The body is markdown but was posted to the **v2 wiki** endpoint. Wiki bold is a single `*`; `**x**` renders as bold-wrapped-in-asterisks. Convert the whole body to wiki syntax (`*bold*`, `----`, `\|\|header\|\|` with no divider row, bare `!file.png!`) and PUT it back to the same comment id — never repost |
@@ -102,7 +100,7 @@ If a fix attempt fails, **find the best alternative — never give up:**
 | Blocked by | Escalation path |
 |------------|-----------------|
 | MCP post shows `<br>` literal | Re-convert with `\n` and PUT the corrected body to the same comment id (edit in place — never delete and re-post). If it still fails and the session has not locked v2/v3 → switch to ADF via browser. Format locked, or no browser → provide the corrected body for the user to paste manually. |
-| MCP truncates table | Not locked → ADF + browser; locked → the full body in that format via browser; PUT to the same id. No browser → split into 2 labelled comments only if the format is not locked and the workflow allows more than one table; else give the user the body to paste. |
+| MCP truncates table | Not locked → ADF + browser; locked → the full body in that format via browser; PUT to the same id. No browser → add the second table as a new labelled comment (the first stays, edited in place, never deleted) only if the format is not locked and the workflow allows more than one table; else give the user the body to paste. |
 | CSV upload fails via MCP | Try browser upload. If no browser → save CSV in workspace + instruct user to drag-and-drop attach. |
 | Bold `**` not rendering | Session has not locked v2/v3 → switch to ADF bold nodes and PUT to the same comment id. Format locked, or ADF not possible → accept plain text headers (functional over pretty). |
 | Numbered items still on same line | Check conversion output — likely `\n` not actually inserted. Re-run conversion with explicit verification before the PUT. |
@@ -118,4 +116,3 @@ Here's the corrected body ready to paste: [see above]
 CSV file: {workspace path} — please attach to {ISSUE_KEY}
 ```
 
-Never use vague success language.
