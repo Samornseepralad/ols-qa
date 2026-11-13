@@ -131,7 +131,7 @@ Findings from a **prior testing-ticket** run in this chat: reuse that evidence; 
   field id the workspace project guide names — never a guessed `customfield_` id. A required field with
   no value in the draft, or a Severity field the guide does not name → ask in the Phase C confirm block.
   Show the mapping on the `Fields:` line.
-- **Metadata cannot be read** (no permission, error) → report the error verbatim and ask; do not create
+- **Metadata cannot be read** (`gh label list` or createmeta fails: no permission, error) → report the error verbatim and ask; do not create
   with unmapped fields.
 
 **Go back:** If pre-flight fails, return to Phase A — Intake (A1 — Where to open bugs) once the user gives a reachable target; nothing is created meanwhile.
