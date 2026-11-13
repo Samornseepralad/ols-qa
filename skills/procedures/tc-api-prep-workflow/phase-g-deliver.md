@@ -72,7 +72,7 @@ After G1 and/or G2, run the **full review checklist** from [jira-comment-post-re
 
 MUST NOT run G3 close until post-publish review passes — because first export/post is often wrong.
 
-**Go back:** If any G-verify check fails, fix and return to G2 (comment) or G1 (file) to re-post, then run G-verify again — max 3 rounds. G3 waits.
+**Go back:** a failed G-verify check returns to G2 (comment) or G1 (file) per step 3; G3 waits.
 
 ### G3 — Close
 
@@ -86,6 +86,6 @@ Follow [qa-closing-shared.md](../../../references/qa-closing-shared.md) + skill-
 - [ ] G-verify checklist passed for the chosen delivery (A, B or both), with at least one re-read of the destination.
 - [ ] **(A only)** Post-publish review passed per [jira-comment-post-review.md](../../../references/jira-comment-post-review.md).
 - [ ] Close-out includes `Verified:` and test case count.
-- [ ] [verify-closing-checklist.md](../../../references/verify-closing-checklist.md) § *TC FE / TC API prep* — skip its **Final TC review report posted** item (tc-fe-prep only), and skip its attachment item unless a CSV/Excel file was generated in this run **and** the delivery includes A (A alone or both — same rule as G-verify and the MUST table).
+- [ ] [verify-closing-checklist.md](../../../references/verify-closing-checklist.md) § *TC FE / TC API prep* — skip its **Final TC review report posted** item (tc-fe-prep only), and skip its attachment item unless a CSV/Excel file was generated in this run **and** the delivery includes A (as in G-verify).
 
 **Go back:** If any item above is unchecked, return to the phase it names (E or G) and redo from there; do not report done.
