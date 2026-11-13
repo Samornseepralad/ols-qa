@@ -106,6 +106,9 @@ nothing outside docs and skill-lint passes.
 The 🔴 verdict-rule bullet becomes one 🔴 rule line plus three 🔴 sub-bullets (differ → matrix, unverified → BLOCKED,
 summary order), same words, anchor kept. A MUST/NEVER table row is cut only when helix `scripts/check-rule-lines.sh`
 finds the identical line elsewhere; on `fix/a17-retest` no retest row has an identical copy, so none is cut.
+Owner widening 13/Nov/2026 ("รวม (นับเป็น reword ลง register)"): near-duplicate rows with the same meaning merge into one
+row that keeps every condition of both — WORKFLOW headers (3 → 1), local paths (2 → 1), notify dry-run + pre-notify
+gate (2 → 1); each merge is a register reword. `customer-escape-prevention.md` rows are left to the testing-ticket lane.
 
 ## R11 No cost rise
 Per file bytes before → after reported; helix `scripts/ci-token-budget.sh` prints `token-budget: pass`; every reworded
