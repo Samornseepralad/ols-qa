@@ -23,7 +23,7 @@ Post comment → Review on Jira UI → Pass all checks?
 
 ## Pre-post render + media check (before the approval popup)
 
-Run both checks on the **final** draft body, before the approval popup is shown
+Run both checks on the **final** draft body, before the approval popup is shown (tc-api/tc-fe: the G2 preview)
 ([round-time-contract.md §6](round-time-contract.md#6-comment-render-and-media-check-before-the-approval-popup)):
 
 1. **Render the body locally** in the format the guide sets (ADF for v3, wiki markup for v2). Confirm

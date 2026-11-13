@@ -11,7 +11,7 @@ Required now:
   • Swagger/OpenAPI (URL or path)
 After that I will ask:
   • Column changes (or "default")
-  • Delivery: Jira comment link and/or CSV/Excel path
+  • Delivery: Jira/Confluence link and/or CSV/Excel/Test.md path
 Optional: Jira story key for traceability only
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```

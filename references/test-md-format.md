@@ -74,7 +74,7 @@ A Helix TC table is a *suite* of cases. Helix maps **one reviewed TC row → one
 ## Rules
 
 - Emit **exactly** the reviewed rows shown in chat — never invent cases (same rule as CSV).
-- UTF-8, `.test.md` suffix (e.g. `{ISSUE_KEY}.test.md`).
+- UTF-8, `.test.md` suffix; `{ISSUE_KEY}.test.md`, or `{SCOPE}_API_TC.test.md` for tc-api-prep.
 - Portable: no host paths, secrets, or real customer keys.
 - Keep the format spec only here — one edit point if upstream changes.
 
