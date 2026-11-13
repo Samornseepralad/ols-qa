@@ -62,7 +62,7 @@ Not a routing rule: when and how the router offers one workflow from context is 
 | `retest-bug-workflow` | Draft new TC tables or file new bugs |
 | `content-takedown-workflow` | Delete content permanently, rename items, or hide an item whose defect has not been surfaced first |
 | `review-result-workflow` | Run the tests being reviewed, retest a ticket after a dev fix, or rename an evidence file |
-| `catch-ai-workflow` | File the bug it confirms (→ create-bug), retest a ticket after a dev fix (→ retest-bug), or rewrite the audited work |
+| `catch-ai-workflow` | File the bug it confirms (→ create-bug), retest a ticket after a dev fix (→ retest-bug), or rewrite the audited work beyond the corrections it reports (those only after the owner approves) |
 | `smoke-test-workflow` | Test a single ticket (→ testing-ticket), retest after a fix (→ retest-bug), or run a full regression |
 | `test-data-prep-workflow` | Run tests on a ticket (→ testing-ticket), retest a bug (→ retest-bug), or draft TC tables (→ tc-fe-prep / tc-api-prep) |
 | `tc-change-format-workflow` | Write or edit test cases (→ tc-fe-prep / tc-api-prep), write into the source TC sheet, or record test results |

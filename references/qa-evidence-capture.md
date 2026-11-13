@@ -49,7 +49,7 @@ files that must exist.
 
 **Roles — one set each, no sampling.** If the ticket mentions 5 roles, the deliverable is **5 capture
 sets**, not one clip from whichever account happened to be logged in. Roles are written with the
-canonical identifiers the project guide lists (e.g. `GUEST · LEARNER · CREATOR · CONTENT_ADMIN · SYSTEM_ADMIN`) — **copy-pasted,
+canonical identifiers — the exact role ids the ticket or the project guide lists — **copy-pasted,
 never typed from memory** (PM-008). A role that could not be exercised (no account, login fails) is an
 explicit **BLOCKED row naming that role and the reason** — never an unmentioned gap, and never
 "covered by another role".

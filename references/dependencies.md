@@ -48,10 +48,10 @@ workspace under test), or asked once and saved there.
 
 | Dependency | Check | Install / fallback |
 |------------|-------|--------------------|
-| `superpowers:systematic-debugging` (every skill: any failure, error or mismatch) | the name appears in the session's available-skills list | install the superpowers plugin (`/plugin`); fallback: a debugging skill the session lists (e.g. `engineering:debug`) with the same reproduce → root cause → fix → verify order |
-| `engineering:testing-strategy` (retest, testing ticket, review result) | listed in available skills | install the engineering plugin (`/plugin`); fallback: write the test strategy inline before running |
-| `superpowers-chrome:browsing` (browser fallback) | listed in available skills | install (`/plugin`); fallback: the browser MCP below |
-| `superpowers:writing-skills` (maintainers editing a skill) | listed in available skills | install (`/plugin`) |
+| `superpowers:systematic-debugging` (every skill: any failure, error or mismatch) | the name appears in the session's available-skills list | install the superpowers plugin (`/plugin` or host installer); fallback: [root-cause-investigation § 0](root-cause-investigation.md), then [qa-debug-discipline](qa-debug-discipline.md) |
+| `engineering:testing-strategy` (retest, testing ticket, review result) | listed in available skills | install the engineering plugin via `/plugin`; fallback: write the test strategy inline before running |
+| `superpowers-chrome:browsing` (browser fallback) | listed in available skills | install via `/plugin`; fallback: the browser MCP below |
+| `superpowers:writing-skills` (maintainers editing a skill) | listed in available skills | install via `/plugin` |
 
 ## MCP servers and accounts
 
